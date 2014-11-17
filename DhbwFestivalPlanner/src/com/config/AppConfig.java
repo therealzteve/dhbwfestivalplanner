@@ -1,5 +1,8 @@
 package com.config;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
@@ -38,11 +41,22 @@ public class AppConfig {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
+		
+		
 		DataSource ds = new DataSource();
-		ds.setUrl("jdbc:mysql://localhost:3307/dhbwfestivalplanner");
-		ds.setDriverClassName("com.mysql.jdbc.Driver");
-		ds.setUsername("dhbw");
-		ds.setPassword("Test1234!");
+		
+		
+		try {
+			Properties prop = getProperties();
+			
+			ds.setUrl(prop.getProperty("url"));
+			ds.setDriverClassName(prop.getProperty("driver"));
+			ds.setUsername(prop.getProperty("username"));
+			ds.setPassword(prop.getProperty("password"));
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		sessionFactory.setDataSource(ds);
 		sessionFactory.setPackagesToScan("com");
@@ -93,5 +107,20 @@ public class AppConfig {
 	// configuration.buildSessionFactory(builder.build());
 	// return factory;
 	// }
+	
+	private Properties getProperties() throws IOException{
+		String result = "";
+		Properties prop = new Properties();
+		String propFileName = "com/config/config.properties";
+		 
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+		if (inputStream == null) {
+		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+		}
+		prop.load(inputStream);
+
+		 
+		return prop;
+	}
 
 }
