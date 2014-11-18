@@ -126,9 +126,9 @@ input[type=submit] {
     font-size: 20px;
     padding: 9px 7px;
     color: rgba(255, 255, 255, 0.95);
-    background: rgba(88, 132, 158, 0.85);
-    border: 1px solid rgba(88, 132, 158, 1);
-    box-shadow: 0px 1px 1px rgba(88, 132, 158, 0.9);
+    background: rgba(62, 190, 121, 0.85);
+    border: 1px solid rgba(62, 190, 121, 1);
+    box-shadow: 0px 1px 1px rgba(62, 190, 121, 0.9);
 }
 input[type=submit].green-submit {
     background: rgba(88, 158, 120, 0.85);
