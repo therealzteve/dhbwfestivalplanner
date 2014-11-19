@@ -47,7 +47,7 @@
                     <br>
                     <br>
                     <!-- meins -->
-                    <div class="errordiv" hidden="hidden">Benutzername und/oder Passwort falsch. Bitte versuche es erneut.</div>
+                    <div class="errordiv" id="loginerror" hidden="hidden">Benutzername und/oder Passwort falsch. Bitte versuche es erneut.</br></div>
                     <input type="submit" value="Einloggen" >
                 </form>
                 <form method="post" action="lostpassword.php">
@@ -55,7 +55,8 @@
                 </form>
             </div>
             <div id="registerform">
-                <form method="post" action="register.php">
+                <!-- form method="post" action="register.php" -->
+                <form method="post" onsubmit="register()">
                     <input name="username" type="text" placeholder="E-Mail">
                     <br>
                     <input name="username" type="text" placeholder="Benutzername">
@@ -63,8 +64,8 @@
                     <input name="password" type="password" placeholder="Passwort">
                     <br>
                     <br>
-                    <div class="errordiv" hidden="hidden">Nutzer existiert bereits! Bitte wähle einen anderen Namen!</div>
-                    <div class="errordiv" hidden="hidden">Bitte gebe eine gültige Emailadresse ein!</div>
+                    <div class="errordiv" id="userexists" hidden="hidden">Nutzer existiert bereits! Bitte wähle einen anderen Namen!</div>
+                    <div class="errordiv" id="emailvalidation" hidden="hidden">Bitte gebe eine gültige Emailadresse ein!</div>
                     <input type="submit" value="Registrieren">
                 </form>
             </div>

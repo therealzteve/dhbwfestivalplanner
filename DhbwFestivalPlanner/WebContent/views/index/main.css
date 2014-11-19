@@ -6,6 +6,7 @@
  font-weight:normal;
  font-style:normal;
 }
+.errordiv {color:red;font-size:12px}
 * {
     margin: 0;
     padding: 0;
@@ -149,4 +150,3 @@ input[type=submit].red-submit {
 .actualtab {
     background-color: transparent;
 }
-.errordiv{color:red}
