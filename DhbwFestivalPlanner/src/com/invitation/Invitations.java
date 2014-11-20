@@ -1,4 +1,4 @@
-package controller;
+package com.invitation;
 
 public class Invitations {
 	public void invite(){

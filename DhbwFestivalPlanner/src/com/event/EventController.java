@@ -12,12 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.event.component.Event;
+import com.model.Event;
 
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/event")
 public class EventController {
 
 	@Autowired
@@ -39,6 +39,66 @@ public class EventController {
 		model.addAttribute("events", events);
 		
 		
-		return "result";
+		return "event/result";
 	}
+	
+	@RequestMapping("/create")
+	public String create(Model model) {
+		return "event/create";
+	}
+	
+	@RequestMapping("/save")
+	public String save(Model model) {
+
+		Event newEvent = new Event();
+		
+		newEvent.setName("the new event");
+		
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+	    session.save(newEvent);
+		session.getTransaction().commit();
+
+	
+		
+		model.addAttribute("event", newEvent);
+		
+		
+		return "event";
+	}
+	
+	@RequestMapping("/list")
+	public String list(Model model) {
+		
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+	    List<Event> events = session.createQuery("from Event").list();
+		session.getTransaction().commit();
+
+	
+		for(Event ev : events){
+			System.out.println(ev);
+		}
+		model.addAttribute("events", events);
+		
+		
+		return "event/list";
+	}
+	
+	@RequestMapping("/edit")
+	public String edit(Model model) {
+		
+		
+		
+		return "event/edit";
+	}
+	
+	@RequestMapping("/display")
+	public String display(Model model) {
+		
+		
+		
+		return "event/display";
+	}
+	
 }

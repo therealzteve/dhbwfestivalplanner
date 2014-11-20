@@ -1,4 +1,4 @@
-package controller;
+package com.messages;
 
 public class Messages {
 	public void display(){
