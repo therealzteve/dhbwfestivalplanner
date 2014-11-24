@@ -7,7 +7,8 @@
 
     <!-- Angabe der 'StyleSheet'-Datei die hier verwendet wird -->
     <link rel="stylesheet" href="../style/mainpage.css">
-     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="../style/fonts/fontAwesome/css/font-awesome.min.css" rel='stylesheet'>
 
     <title>Festival PLanner Übersicht</title>
 </head>
@@ -30,7 +31,7 @@
         <div id="contentwrapper">
             <div id="leftside">
                 <div id="blah">
-                    <div id="glistenheader" class="icons">TEILNEHMER:</div>
+                    <a id="teiln" class="icons"><i class="fa fa-wrench fontawicons" id="wrench"></i>TEILNEHMER</a>
                     <div class="clear"></div>
                 </div>
 
@@ -87,12 +88,11 @@
                     </ul>
                 </div>
 
-
             </div>
             <div id="rightside">
                 <div id="yeah">
                     <a class="icons" href="#" id="createevent">
-                        <div id="plus">+</div>NEUE PARTY</a>
+                        <i class="fa fa-plus fontawicons"></i> NEUE PARTY</a>
                     <div class="clear"></div>
                 </div>
 
@@ -102,47 +102,196 @@
                     <ul id="navi">
                         <li id="vlistenheader" class="dummy">Deine Veranstaltungen:</li>
                         <li class="dummy"><a href="#">test1</a>
+                            <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="dummy"><a href="#">test2</a>
+                            <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="dummy"><a href="#">test3</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test2</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test3</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test2</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test3</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test2</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test3</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test2</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test3</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test2</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test3</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test2</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test3</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test2</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test3</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test2</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test3</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test2</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                         <li class="dummy"><a href="#">test3</a>
-                        </li>
+                        <ul>
+                                <!-- steht für veranstaltungsseite bearbeiten-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-pencil"></i></a>
+                                </li>
+                                <!-- steht für veranstaltung absagen/löschen-->
+                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                </li>
+                            </ul></li>
                     </ul>
                 </div>
             </div>

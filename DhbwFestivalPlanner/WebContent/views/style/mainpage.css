@@ -145,7 +145,6 @@ a.icons:active {
     height: 100%;
     float: right;
     padding: 10px;
-
 }
 
 #veranstaltungsliste {
@@ -236,8 +235,9 @@ a.icons:active {
 
 #blah {
     margin-right: 10px;
-    display: block;
+    display: inline-block;
     width: 100%;
+    float: left;
 }
 
 .gaestel {
@@ -254,6 +254,66 @@ a.icons:active {
 }
 
 #gaesteliste {
+
     border-radius: 0px;
     border-bottom: 1px solid black
+}
+
+#icon {
+    display: inline-block;
+    height: 400px;
+    width:0 auto;
+    float:right;
+
+}
+
+#iconbar {
+    list-style-type: none;
+}
+
+#vgaesteliste {
+}
+
+#wrench {
+    font-size: 30px;
+}
+
+.fontawicons {
+    font-size: 30px!important;
+}
+
+#teiln {
+     display: inline-block;
+    float: left;
+    height: auto;
+    width: auto;
+   border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    font-size: 40px;
+    font-family: "Novitolight";
+        background-color: rgba(216, 255, 0, 0.56);
+}
+#navi li ul {
+    display:none;
+}
+#navi li:hover ul {
+    display:block;
+}
+body {
+    behavior:url("csshover.htc");
+}
+ul{
+list-style-type: none;
+}
+li .dropdo {
+    list-style-type: none;
+    display: inline-block;
+  text-align: center;
+color: black;
+
+}
+
+a {
+    color: black;
 }
