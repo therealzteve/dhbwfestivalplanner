@@ -1,8 +1,8 @@
-@font-face{font-family:'Novitolight';src:url('Fonds/Novitolight.otf') format('opentype');
+@font-face{font-family:'Novitolight';src:url('fonts/Novitolight.otf') format('opentype');
  font-weight:normal;
  font-style:normal
 }
-@font-face{font-family:'Novito';src:url('Fonds/Novito.otf') format('opentype');
+@font-face{font-family:'Novito';src:url('fonts/Novito.otf') format('opentype');
  font-weight:normal;
  font-style:normal;
 }
@@ -22,7 +22,7 @@ h1 {
     font-size: 60;
 }
 body {
-    background-image: url(HintergrundDesign/FrauBallons.png);
+    background-image: url('images/FrauBallons.png');
     background-size: cover;
     background-position: 0% 20%;
     color: black;

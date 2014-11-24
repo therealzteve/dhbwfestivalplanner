@@ -8,9 +8,9 @@
     <meta name="firstPage" content="Die Startseite des FestivalPlanners der dualen Hochschule Karlsruhe.">
     <link rel="stylesheet" href="main.css">
     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="Handler.js"></script>
+    <script type="text/javascript" src="<c:url   />/js/Handler.js"></script>
     </head>
-
+<
 <body>
     <div id="logo">
 
@@ -40,7 +40,7 @@
             <br><br><br><br><br>
             <div id="loginform" >
                 <!--<form method="post" action="login.php">  -->
-                <form method="post" onsubmit="login()">
+                <form method="post" action="login">
                     <input name="username" type="text" placeholder="Benutzername">
                     <br>
                     <input name="password" type="password" placeholder="Passwort">
@@ -56,8 +56,8 @@
             </div>
             <div id="registerform">
                 <!-- form method="post" action="register.php" -->
-                <form method="post" onsubmit="register()">
-                    <input name="username" type="text" placeholder="E-Mail">
+                <form method="post" action="register">
+                    <input name="email" type="text" placeholder="E-Mail">
                     <br>
                     <input name="username" type="text" placeholder="Benutzername">
                     <br>

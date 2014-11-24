@@ -21,19 +21,17 @@ public class Event implements Serializable{
 	
 	@Id
 	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
 	
-	@Transient
+	
 	private String title, address, plz, city;
 	
 	@Id @ManyToOne
 	@JoinColumn(name= "Veranstalter_ID")
 	private User creator;
 	
-	@Transient
 	private Date date , time;
 	
 	public int getId() {

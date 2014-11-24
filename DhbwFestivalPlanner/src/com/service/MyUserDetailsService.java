@@ -30,33 +30,31 @@ public class MyUserDetailsService implements UserDetailsService {
 		throws UsernameNotFoundException {
  
 		com.model.User user = getUser(username);
-		List<GrantedAuthority> authorities = 
-                                      buildUserAuthority();
- 
-		return buildUserForAuthentication(user, authorities);
+		return user;
  
 	}
  
-	// Converts commodel.User user to
-	// org.springframework.security.core.userdetails.User
-	// Currently auto enabled, maybe make enabling process later
-	private User buildUserForAuthentication(com.model.User user, 
-		List<GrantedAuthority> authorities) {
-		return new User(user.getUsername(), user.getPassword(), 
-			true, true, true, true, authorities);
-	}
- 
-	//Currently just ROLE_USER
-	private List<GrantedAuthority> buildUserAuthority() {
- 
-		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
- 
-		setAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
- 
-		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
- 
-		return Result;
-	}
+//	// Converts commodel.User user to
+//	// org.springframework.security.core.userdetails.User
+//	// Currently auto enabled, maybe make enabling process later
+//	private User buildUserForAuthentication(com.model.User user, 
+//		List<GrantedAuthority> authorities) {
+//		User u = new User(user.getUsername(), user.getPassword(), 
+//				true, true, true, true, authorities);
+//		return u;
+//	}
+// 
+//	//Currently just ROLE_USER
+//	private List<GrantedAuthority> buildUserAuthority() {
+// 
+//		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+// 
+//		setAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
+// 
+//		List<GrantedAuthority> result = new ArrayList<GrantedAuthority>(setAuths);
+// 
+//		return result;
+//	}
 	
 	private com.model.User getUser(String username){
 		List<com.model.User> users = new ArrayList<com.model.User>();

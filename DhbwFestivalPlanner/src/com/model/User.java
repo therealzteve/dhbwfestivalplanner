@@ -1,7 +1,12 @@
 package com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +16,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name = "veranstalter")
-public class User implements Serializable {
+public class User implements Serializable, UserDetails {
 	
 	@Id
 	@Column(name = "ID")
@@ -21,6 +30,12 @@ public class User implements Serializable {
 	private int id;
 	
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	private String username,name,password,email;
 	
 	@Transient
@@ -65,5 +80,36 @@ public class User implements Serializable {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	
+	// SPRING METHODS
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+		 
+		setAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
+ 
+		List<GrantedAuthority> result = new ArrayList<GrantedAuthority>(setAuths);
+ 
+		return result;
+	}
+	
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 }

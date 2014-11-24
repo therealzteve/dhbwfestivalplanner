@@ -44,12 +44,12 @@ public class LoginController {
 		
 		//If we got an error we display a message to the user
 		if (error != null) {
-			model.addAttribute("error", "Invalid username and password!");
+			model.addAttribute("error", true);
 		}
 
 		//Show logout message to the user
 		if (logout != null) {
-			model.addAttribute("msg", "You've been logged out successfully.");
+			model.addAttribute("logout", true);
 		}
 
 		//Display the login page

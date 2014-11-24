@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.access("hasRole('ROLE_USER')").and().formLogin()
 		.loginPage("/login").failureUrl("/login?error")
 		.usernameParameter("username")
-		.passwordParameter("password")
+		.passwordParameter("password").defaultSuccessUrl("/event/list")
 		.and().logout().logoutSuccessUrl("/login?logout")
 		.and().csrf().disable();
 	}

@@ -6,10 +6,12 @@ import javax.servlet.ServletRegistration.Dynamic;
 
 
 
+
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 public class WebAppInitializer implements WebApplicationInitializer {
 	
@@ -22,7 +24,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
 		ctx.register(AppConfig.class);
 		ctx.setServletContext(servletContext);
 		
-		
+	
 		
 		Dynamic dynamic = servletContext.addServlet("Dispatcher",
 				new DispatcherServlet(ctx));
@@ -32,5 +34,9 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
 
 		
+	}
+	
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 }

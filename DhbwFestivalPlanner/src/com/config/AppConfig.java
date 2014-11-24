@@ -18,6 +18,8 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
@@ -26,7 +28,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @ComponentScan("com")
 @EnableWebMvc
 @EnableTransactionManagement
-public class AppConfig {
+public class AppConfig extends WebMvcConfigurerAdapter{
 
 	@Bean
 	public UrlBasedViewResolver setupViewResolver() {
@@ -123,5 +125,13 @@ public class AppConfig {
 		 
 		return prop;
 	}
+	
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("js/**").addResourceLocations("/views/js/").setCachePeriod(31556926);
+    	registry.addResourceHandler("style/**").addResourceLocations("/views/style/").setCachePeriod(31556926);
+       // registry.addResourceHandler("/js/**").addResourceLocations("/views/").setCachePeriod(31556926);
+    }
 
 }
