@@ -1,0 +1,36 @@
+Login:
+
+GET:
+/login <-- Weiterleitung zum Login Formular
+
+/register <-- Weiterleitung zum Login Formular
+
+POST:
+
+/login?username=username&password=password <-- Einloggen und zur Eventliste Seite
+
+/register   <-- Account registrieren, einloggen, zur Eventliste Seite
+	?username=username
+	&password=password
+	&email=email 
+
+
+Event actions:
+
+GET:
+
+/event/list  <-- Eigene Events auflisten
+/event/create <-- Neues Event erstellen (Weiterleitung auf leere editierseite
+/event/display?id=1234&mode=edit <-- Anzeigen einer Veranstaltung bzw. editieren (über Parameter gesteuert)
+
+Nur POST:
+/event/save
+	?id=1234
+	&title=meineVeranstaltung
+	&address=meineAdresse
+	&plz=12345
+	&date=1.1.2014
+	&time=1.1.2014:20:00:00
+	
+	
+	
