@@ -22,7 +22,7 @@ h1 {
     font-size: 60;
 }
 body {
-    background-image: url('images/FrauBallons.png');
+    background-image: url('images/FrauBallons.jpg');
     background-size: cover;
     background-position: 0% 20%;
     color: black;
@@ -42,6 +42,7 @@ body {
     width: 50%;
     height: 100%;
     float: left;
+    vertical-align: top;
 }
 .whitebox {
     background-color: rgba(255, 255, 255, 0.74);

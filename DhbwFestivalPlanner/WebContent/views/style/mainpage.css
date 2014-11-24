@@ -1,0 +1,259 @@
+@font-face{font-family:'Novito';src:url('Fonds/Novito.otf') format('opentype');
+ font-weight:normal;
+ font-style:normal;
+
+}
+@font-face{font-family:'Novitolight';src:url('fonts/Novitolight.otf') format('opentype');
+ font-weight:normal;
+ font-style:normal
+}
+@font-face{font-family:'Icons';src:url('fonts/sosaIcons.ttf') format('truetype');
+ font-weight:normal;
+ font-style:normal
+}
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+}
+body {
+    background-image:url('images/FrauBallons.jpg');
+    background-size:cover;
+    background-position:0% 20%;
+    color:black;
+    font-family:"Muli";
+}
+body,
+html {
+    width:100%;
+    height:100%;
+}
+
+#header {
+    width:100%;
+    height:40px;
+    top:0;
+    left:0;
+    background-color:rgba(253, 192, 53, 0.55);
+    position:fixed;
+}
+#content {
+    padding: 50px 0px 20px 0px;
+    width:100%;
+    height: 100%;
+}
+#logobox {
+    display:inline-block;
+    margin:0px auto;
+    background-color:rgba(250,  247, 247, 0.95);
+    border-bottom-left-radius:15px;
+    border-bottom-right-radius: 15px;
+        text-transform:uppercase;
+    font-family:"Novitolight";
+    text-align:center;
+    font-size: 55px;
+    padding: 0 15px;
+}
+#headerLogo {
+    text-transform:uppercase;
+    font-family:"Novitolight";
+    text-align:center;
+    font-size:3.5em;
+}
+#test {
+    font-family:"Icons";
+}
+.icons {
+    display:inline-block;
+    text-align:center;
+    width:6%;
+    height:40px;
+    border-style:ridge;
+    border-width:1px;
+    padding:2px;
+    text-decoration:none;
+    font-family:"Icons";
+    border-bottom:0px;
+    border-top:0px;
+    color:black;
+    border-color:transparent;
+}
+a.icons:link {
+    color:black;
+    background-color:transparent;
+}
+a.icons:hover {
+    color:black;
+    background-color:rgba(255, 235, 0, 0.30) !important;
+}
+a.icons:active {
+    color:black;
+    background-color:rgba(255, 235, 0, 0.30);
+}
+#postfachbutton {
+    border-left:0px;
+    float:left;
+    font-size:34px;
+}
+#ausloggenbutton {
+    padding-right: 5px;
+    float:right;
+    font-size:34px;
+}
+#einstellungsbutton {
+    width: 5%;
+    border-left:0px;
+    float:left;
+    font-size:34px;
+}
+#headerplatzhalter {
+    float:right;
+}
+#createevent {
+    display: inline-block;
+    float: right;
+    height: auto;
+    width: auto;
+   border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    font-size: 40px;
+    font-family: "Novitolight";
+        background-color: rgba(216, 255, 0, 0.56);
+}
+
+#plus {
+    display: inline-block;
+    font-weight: 900;
+    font-size: 40px;
+    font-family: "Muli";
+}
+#yeah {
+    margin-right: 10px;
+    display: block;
+    width: 100%;
+
+
+}
+
+#rightside {
+      width: 45%;
+    height: 100%;
+    float: right;
+    padding: 10px;
+
+}
+
+#veranstaltungsliste {
+  /*  background-color: rgba(253, 209, 241, 0.53);*/
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    display: block;
+    padding: 5px;
+    position: relative;
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+
+#listeevent {
+    list-style-type: none;
+    display:inline-block;
+    width: 100%;
+    text-align:center;
+    padding: 0 15px;
+
+}
+
+#vlistenheader {
+    font-size: 35px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Novitolight";
+}
+
+.dummy {
+    height: 50px;
+
+
+}
+
+#contentwrapper {
+    height: 100%;
+    width: 100%;
+    padding: 20px 0;
+      /*      background-color: rgba(252, 250, 251, 0.34);*/
+}
+
+.clear {
+    clear: both;
+}
+
+#leftside {
+    float: left;
+    width: 45%;
+    height: 100%;
+    padding: 10px;
+}
+
+#navi {
+       list-style-type: none;
+    display:inline-block;
+    width: 100%;
+    text-align:center;
+    padding: 0 15px;
+
+}
+
+#glistenheader {
+    display: inline-block;
+    float: left;
+    height: auto;
+    width: auto;
+   border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    font-size: 40px;
+    font-family: "Novitolight";
+        background-color: rgba(216, 255, 0, 0.56);
+}
+
+#gaeste {
+    list-style-type: none;
+    display:inline-block;
+    width: 100%;
+    text-align:left;
+    padding: 0 15px;
+}
+
+
+
+#blah {
+    margin-right: 10px;
+    display: block;
+    width: 100%;
+}
+
+.gaestel {
+         background-color: rgba(255, 255, 255, 0.71);
+    -moz-border-radius: 15px;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    display: block;
+    padding: 5px;
+    position: relative;
+    height: 200px;
+       overflow-y: auto;
+    overflow-x: hidden
+}
+
+#gaesteliste {
+    border-radius: 0px;
+    border-bottom: 1px solid black
+}

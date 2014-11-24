@@ -6,16 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Festival Planner</title>
     <meta name="firstPage" content="Die Startseite des FestivalPlanners der dualen Hochschule Karlsruhe.">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../style/main.css">
     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="<c:url   />/js/Handler.js"></script>
-    </head>
-<
-<body>
+</head>
+ <body>
     <div id="logo">
 
         <div class="whitebox" id="logowhite">
-            <h1 >FESTIVAL PLANNER</h1>
+            <h1>FESTIVAL PLANNER</h1>
             </br>
             <p>Du willst eine Veranstaltung planen und die Organisation wächst dir über den Kopf?</br>
                 </br>
@@ -34,11 +33,15 @@
         <div class="whitebox" id="loginwhite">
             <div class="tab actualtab" onclick="showlogin(this)">
                 Login
-       </div>
+            </div>
             <div class="tab" onclick="showregister(this)">Register
-       </div>
-            <br><br><br><br><br>
-            <div id="loginform" >
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div id="loginform">
                 <!--<form method="post" action="login.php">  -->
                 <form method="post" action="login">
                     <input name="username" type="text" placeholder="Benutzername">
@@ -47,8 +50,9 @@
                     <br>
                     <br>
                     <!-- meins -->
-                    <div class="errordiv" id="loginerror" hidden="hidden">Benutzername und/oder Passwort falsch. Bitte versuche es erneut.</br></div>
-                    <input type="submit" value="Einloggen" >
+                    <div class="errordiv" id="loginerror" hidden="hidden">Benutzername und/oder Passwort falsch. Bitte versuche es erneut.</br>
+                    </div>
+                    <input type="submit" value="Einloggen">
                 </form>
                 <form method="post" action="lostpassword.php">
                     <input type="submit" value="Passwort vergessen?">
@@ -72,6 +76,6 @@
         </div>
     </div>
     <a id="ImpressumLink" href="">Impressum</a>
-</body>
+    </body>
 
 </html>
