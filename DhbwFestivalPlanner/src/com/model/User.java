@@ -23,93 +23,124 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @Table(name = "veranstalter")
 public class User implements Serializable, UserDetails {
-	
+
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	private String username,name,password,email;
-	
+
+	private String username, name, password, email, code;
+
 	@Transient
 	private String country;
-	
-	@Transient
+
 	private Date birth;
-	
-	
+
+	private Boolean isEnabled;
+
+	public Boolean getIsEnabled() {
+		return isEnabled;
+	}
+
+	public void setIsEnabled(Boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getCountry() {
 		return country;
 	}
+
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
 	public Date getBirth() {
 		return birth;
 	}
+
 	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	// SPRING METHODS
-	
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
-		 
+
 		setAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
- 
-		List<GrantedAuthority> result = new ArrayList<GrantedAuthority>(setAuths);
- 
+
+		List<GrantedAuthority> result = new ArrayList<GrantedAuthority>(
+				setAuths);
+
 		return result;
 	}
-	
+
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
+
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
+
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
+
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return isEnabled;
 	}
 }

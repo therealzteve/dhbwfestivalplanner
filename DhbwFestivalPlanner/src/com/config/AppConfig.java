@@ -5,15 +5,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.jasper.tagplugins.jstl.core.Url;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.annotation.Scope;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -22,6 +28,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
 
 
 @Configuration
@@ -132,6 +140,31 @@ public class AppConfig extends WebMvcConfigurerAdapter{
         registry.addResourceHandler("js/**").addResourceLocations("/views/js/").setCachePeriod(31556926);
     	registry.addResourceHandler("style/**").addResourceLocations("/views/style/").setCachePeriod(31556926);
        // registry.addResourceHandler("/js/**").addResourceLocations("/views/").setCachePeriod(31556926);
+    }
+    
+
+    @Bean
+    TilesConfigurer tilesConfigurer(){
+    	TilesConfigurer tc = new TilesConfigurer();
+    	return tc;
+    }
+    
+    @Bean
+    MailSender mailSender(){
+    	JavaMailSenderImpl sender = new JavaMailSenderImpl();
+    	sender.setHost("localhost");
+    	sender.setPort(23);
+    	sender.setPassword("1234");
+    	sender.setUsername("username");
+    	
+    	Properties p = new Properties();
+    	p.setProperty("mail.transport.protocol", "smtp");
+    	p.setProperty("mail.smtp.auth", "true");
+    	p.setProperty("mail.smtp.starttls.enable", "true");
+    	sender.setJavaMailProperties(p);
+    	
+    	return sender;
+
     }
 
 }

@@ -90,9 +90,11 @@ public class EventController {
 
 	@RequestMapping("/list")
 	public String list(Model model) {
-
+		
+		// Aktueller User bestimmen
 		User user = UserHelper.getCurrentUser();
 
+		// Events aus Datenbank laden
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Criteria crit = session.createCriteria(Event.class);
@@ -100,13 +102,11 @@ public class EventController {
 		List<Event> ev = crit.list();
 		session.getTransaction().commit();
 
-		for (Event ev1 : ev) {
-			System.out.println(ev1);
 
-		}
-
+		// Event Liste fuer JSP Seite
 		model.addAttribute("events", ev);
 
+		// aufgerufene JSP Seite
 		return "event/list";
 	}
 
