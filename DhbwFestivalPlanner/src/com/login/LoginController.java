@@ -67,11 +67,23 @@ public class LoginController {
 
 	}
 
+	/**
+	 * Handles registration post request, adds user to database etc.
+	 * 
+	 * @param model
+	 * @param username
+	 * @param password
+	 * @param email
+	 * @param name
+	 * @return
+	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(HttpServletRequest request, Model model,
+	public String register(
+			Model model,
 			@RequestParam(value = "username", required = true) String username,
 			@RequestParam(value = "password", required = true) String password,
-			@RequestParam(value = "email", required = true) String email) {
+			@RequestParam(value = "email", required = true) String email,
+			@RequestParam(value = "name", required = false, defaultValue = "") String name) {
 
 		// TODO: Fill validation later
 		validate();
@@ -80,21 +92,25 @@ public class LoginController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(password);
 
-		//Create unlock code:
+		// Create unlock code:
 		RandomString rs = new RandomString(40);
-		
-		
+
 		// Create user model
 		User user = new User();
 		user.setUsername(username);
 		user.setEmail(email);
 		user.setPassword(hashedPassword);
-		user.setName("Temporary Test Name");
+		user.setName(name);
 		user.setCode(rs.nextString());
 		user.setBirth(new Date());
 		user.setIsEnabled(false);
+
 		// Save user
-		saveUser(user);
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(user);
+		session.getTransaction().commit();
+		session.close();
 
 		// Send unlock E-Mail
 		try {
@@ -108,24 +124,13 @@ public class LoginController {
 	}
 
 	/**
-	 * Show registration form
-	 * 
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String showRegistration(Model model) {
-		return "login/registerForm";
-	}
-
-	/**
-	 * Show registration form
+	 * Handles unlock request from user's E-Mail link
 	 * 
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/unlock", method = RequestMethod.GET)
-	public String unlock(Model model,
+	public String unlock(HttpServletRequest request, Model model,
 			@RequestParam(value = "username", required = true) String username,
 			@RequestParam(value = "code", required = true) String code) {
 
@@ -135,8 +140,6 @@ public class LoginController {
 		Criteria c = session.createCriteria(User.class);
 		c.add(Restrictions.eq("username", username));
 		List<User> userList = c.list();
-		session.getTransaction().commit();
-		session.close();
 
 		// Check unlock code and enable user
 		if (userList.size() > 0) {
@@ -144,56 +147,38 @@ public class LoginController {
 			if (u.getCode().equals(code)) {
 				u.setCode("");
 				u.setIsEnabled(true);
-				saveUser(u);
-				autologin(username, u.getPassword(), null);
+				session.save(u);
+				session.getTransaction().commit();
 			} else {
 				// Add handling when user is not registered
 				return "login/error";
 			}
 		}
+		session.close();
+
+		// True to display unlock message to user
+		model.addAttribute("unlock", true);
 
 		// Redirect to main page
-		return "redirect:event/list";
+		return "redirect:login";
 	}
 
-	protected void autologin(String username, String password,
-			HttpServletRequest request) {
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-				username, password);
-
-		// generate session if one doesn't exist
-		request.getSession();
-
-		token.setDetails(new WebAuthenticationDetails(request));
-		Authentication authenticatedUser = authenticationManager
-				.authenticate(token);
-
-		SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
-
-	}
-
+	/**
+	 * Sends an E-Mail to client with unlock code
+	 * 
+	 * @param u
+	 */
 	protected void sendUnlockEmail(User u) {
 
 		SimpleMailMessage message = new SimpleMailMessage();
 
 		message.setFrom("info@dhbwfestivalplanner.de");
 		message.setTo(u.getEmail());
-		message.setSubject("Deine Registrierung");
-		message.setText("Hier kommt noch Text rein");
+		message.setSubject("Deine Registrierung bei DhbwFestivalplanner");
+		message.setText("Vielen Dank f&uumlr deine Registrierung bei DhbwFestivalplanner!\n"
+				+ "Um deine Registrierung abzuschliessen musst du folgenden Link aufrufen:\n"
+				+ "http://dhbwfestivalpanner/unlock?username="+u.getUsername()+"&code="+u.getCode());
 		mailSender.send(message);
-	}
-
-	/**
-	 * Saves user in database
-	 * 
-	 * @param user
-	 */
-	protected void saveUser(User user) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.save(user);
-		session.getTransaction().commit();
-		session.close();
 	}
 
 	public void validate() {

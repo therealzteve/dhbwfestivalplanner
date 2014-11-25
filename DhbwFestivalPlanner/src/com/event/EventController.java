@@ -25,22 +25,6 @@ public class EventController {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@RequestMapping("/helloWorld")
-	public String hello(Model model) {
-
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		List<Event> events = session.createQuery("from Event").list();
-		session.getTransaction().commit();
-		session.close();
-		for (Event ev : events) {
-			System.out.println(ev);
-		}
-		model.addAttribute("events", events);
-
-		return "event/result";
-	}
-
 	@RequestMapping("/create")
 	public String create(Model model) {
 		return "event/create";
@@ -53,7 +37,7 @@ public class EventController {
 			@RequestParam(value = "title", required = false) String title,
 			@RequestParam(value = "address", required = false) String address,
 			@RequestParam(value = "plz", required = false) int plz,
-			@RequestParam(value = "city", required = false) int city,
+			@RequestParam(value = "city", required = false) String city,
 			@RequestParam(value = "date", required = false) Date date,
 			@RequestParam(value = "time", required = false) Date time)
 			throws Exception {
@@ -72,13 +56,22 @@ public class EventController {
 			}
 
 		} else {
+
 			event = new Event();
 
 		}
 
+		// Set event data
 		event.setName("the new event");
 		event.setCreator(user);
+		event.setTitle(title);
+		event.setAddress(address);
+		event.setCity(city);
+		event.setPlz(plz);
+		event.setDate(date);
+		event.setTime(time);
 
+		// Save event in database
 		session.beginTransaction();
 		session.save(event);
 		session.getTransaction().commit();
@@ -90,7 +83,7 @@ public class EventController {
 
 	@RequestMapping("/list")
 	public String list(Model model) {
-		
+
 		// Aktueller User bestimmen
 		User user = UserHelper.getCurrentUser();
 
@@ -101,7 +94,6 @@ public class EventController {
 		crit.add(Restrictions.eq("creator", user));
 		List<Event> ev = crit.list();
 		session.getTransaction().commit();
-
 
 		// Event Liste fuer JSP Seite
 		model.addAttribute("events", ev);

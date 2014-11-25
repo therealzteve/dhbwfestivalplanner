@@ -26,7 +26,9 @@ public class Event implements Serializable{
 	private String name;
 	
 	
-	private String title, address, plz, city;
+	private String title, address, city;
+
+	int plz;
 	
 	@Id @ManyToOne
 	@JoinColumn(name= "Veranstalter_ID")
@@ -71,12 +73,12 @@ public class Event implements Serializable{
 		this.address = address;
 	}
 
-	public String getPlz() {
+	public int getPlz() {
 		return plz;
 	}
 
-	public void setPlz(String plz) {
-		this.plz = plz;
+	public void setPlz(int plz2) {
+		this.plz = plz2;
 	}
 
 	public String getCity() {
