@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <link rel="stylesheet" href="../style/mainpage.css">
+    <link rel="stylesheet" href="<c:url value="/style/mainpage.css" />" >
     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <link href="../style/fonts/fontAwesome/css/font-awesome.min.css" rel='stylesheet'>
+    <link href="<c:url value="/style/fonts/fontAwesome/css/font-awesome.min.css" />" rel='stylesheet'>
 <title>	<tiles:insertAttribute name="pageTitle"></tiles:insertAttribute></title>
 </head>
 <body>

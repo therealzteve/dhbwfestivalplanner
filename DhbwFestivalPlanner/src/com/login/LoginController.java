@@ -47,7 +47,7 @@ public class LoginController {
 	 * @param logout
 	 * @return
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = {"/login"}, method = RequestMethod.GET)
 	public String login(Model model,
 			@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
@@ -63,7 +63,7 @@ public class LoginController {
 		}
 
 		// Display the login page
-		return "login/loginForm";
+		return "login/index";
 
 	}
 

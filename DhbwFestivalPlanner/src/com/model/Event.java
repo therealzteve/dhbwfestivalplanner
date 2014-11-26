@@ -28,7 +28,8 @@ public class Event implements Serializable{
 	
 	private String title, address, city;
 
-	int plz;
+	
+	int plz = -1;
 	
 	@Id @ManyToOne
 	@JoinColumn(name= "Veranstalter_ID")

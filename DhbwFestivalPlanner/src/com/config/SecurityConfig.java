@@ -31,13 +31,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-	    http.authorizeRequests().antMatchers("/event/**")
+	    http.authorizeRequests().
+	    antMatchers("/login").permitAll().
+	    antMatchers("/register").permitAll().
+	    antMatchers("/unlock").permitAll().
+	    antMatchers("/style/**").permitAll().
+	    antMatchers("/js/**").permitAll().
+	    anyRequest()
 		.access("hasRole('ROLE_USER')").and().formLogin()
 		.loginPage("/login").failureUrl("/login?error")
 		.usernameParameter("username")
-		.passwordParameter("password").defaultSuccessUrl("/event/list")
+		.passwordParameter("password").defaultSuccessUrl("/")
 		.and().logout().logoutSuccessUrl("/login?logout")
 		.and().csrf().disable();
+	    
+
 	}
 	
 	@Bean
