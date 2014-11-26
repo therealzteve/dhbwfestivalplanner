@@ -1,9 +1,14 @@
+############################
+Main:
+/ <-- Anzeige interne Uebersichtsseite (View: mainpage/mainOverview.jsp)
+
+
+############################
 Login:
 
 GET:
-/login <-- Weiterleitung zum Login Formular
+/login <-- Weiterleitung zum Login Formular (View: Login/LoginForm.jsp)
 
-/register <-- Weiterleitung zum Login Formular
 
 POST:
 
@@ -15,6 +20,7 @@ POST:
 	&email=email 
 
 
+############################
 Event actions:
 
 GET:
