@@ -44,6 +44,9 @@
             <div id="loginform" >
                 <!--<form method="post" action="login.php">  -->
                 <form method="post" action="login">
+                    <c:if test="${regSuccess}">
+                    	<div class="infodiv" id="loginerror" >Bitte geben Sie Ihre Zugangsdaten ein:</br></div>
+                    </c:if>
                     <input name="username" type="text" placeholder="Benutzername">
                     <br>
                     <input name="password" type="password" placeholder="Passwort">
@@ -51,7 +54,7 @@
                     <br>
                     <!-- meins -->
                     <c:if test="${error}">
-                    	<div class="errordiv" id="loginerror" >Benutzername und/oder Passwort falsch. Bitte versuche es erneut.</br></div>
+                    	<div class="errordiv infodiv" id="loginerror" >Benutzername und/oder Passwort falsch. Bitte versuche es erneut.</br></div>
                     </c:if>
                     <input type="submit" value="Einloggen" >
                 </form>
@@ -71,6 +74,9 @@
                     <br>
                     <div class="errordiv" id="userexists" hidden="hidden">Nutzer existiert bereits! Bitte wähle einen anderen Namen!</div>
                     <div class="errordiv" id="emailvalidation" hidden="hidden">Bitte gebe eine gültige Emailadresse ein!</div>
+                    <c:if test="${regSuccess}">
+                    	<div class="infodiv" id="loginerror" >Vielen Dank für Ihre Registrierung bei FestivalPlanner! Es würde eine Email an die angegebene Emailadresse versandt. Bitte bestätigen Sie diese, um die Registrieung abzuschließen.</br></div>
+                    </c:if>
                     <input type="submit" value="Registrieren">
                 </form>
             </div>
