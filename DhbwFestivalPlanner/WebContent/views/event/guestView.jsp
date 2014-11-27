@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+Veranstaltungsseite für die Gaeste!
 </body>
 </html>

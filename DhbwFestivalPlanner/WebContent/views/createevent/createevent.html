@@ -27,7 +27,7 @@
                 <form method="post" id="eventdata">
                     <h1>Allgemeines: </h1>
                     <label for="name">Name der Veranstaltung:</label>
-                    <input type="text" id="name">
+                    <input type="text" value="${event.name}" id="name">
                     <br>
                     <label for="datum">Datum:</label>
                     <input type="date" id="date">
@@ -52,32 +52,35 @@
                     <label for="plz">Postleitzahl:</label>
                     <input type="text" id="plz">
                     <br>
-                    <label for="beschreibung">Beschreibung: </label>
-                    <textarea id="beschreibung" placeholder="Füge hier einen Beschreibungstext für deine Gäste ein!"></textarea>
+                    <label for="beschreibung">Beschreibung:</label>
+                    <textarea id="beschreibung" placeholder="Füge hier einen Beschreibungstext für deine Gäste ein!">
+
+                    </textarea>
+                    <br>
+                    <input type="submit" value="Abbrechen">
+                    <input type="submit" value="Los geht's">
 
 
             </div>
             <div id="rightside">
                 <h1>Party Homepage: </h1>
-                Wähle ein passendes Design für deine Veranstaltungsseite: <br>
-                <label for="design1" >Design 1: </label>
-                <input type="radio" checked=true id="design1" onchange="changedesign(this)" name="designw">
-                <label for="design4">Design 4: </label>
-                <input type="radio" id="design4" onchange="changedesign(this)" name="designw">
+                Wähle ein passendes Design für deine Veranstaltungsseite:
                 <br>
-                  <label for="design2">Design 2: </label>
-                <input type="radio" id="design2" onchange="changedesign(this)" name="designw"><br>
-                   <label for="design3">Design 3: </label>
-                <input type="radio" id="design3" onchange="changedesign(this)" name="designw"><br>
+                <label for="design1">Design 1:</label>
+                <input type="radio" checked=true id="design1" onchange="changedesign(this)" name="designw">
+                <br>
+                <label for="design2">Design 2:</label>
+                <input type="radio" id="design2" onchange="changedesign(this)" name="designw">
+                <br>
+                <label for="design3">Design 3:</label>
+                <input type="radio" id="design3" onchange="changedesign(this)" name="designw">
+                <br>
+                <label for="design4">Design 4:</label>
+                <input type="radio" id="design4" onchange="changedesign(this)" name="designw">
+                <form method="post" id="eventdata">
 
-                <img src="../style/images/FrauBallons.jpg" id="bilddesign">
 
-
-
-
-
-                  <input type="submit" value="Abbrechen">
-                    <input type="submit" value="Los geht's">
+                    <img src="../style/images/FrauBallons.jpg" id="bilddesign">
             </div>
             </form>
         </div>
