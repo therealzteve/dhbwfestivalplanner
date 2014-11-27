@@ -147,5 +147,26 @@ public class EventController {
 		return "event/edit";
 	}
 	
+	@RequestMapping("/guestView")
+	public String guestView(
+			Model model,
+			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
+
+		if (id != -1) {
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			Event event = (Event) session.get(Event.class, id);
+			session.getTransaction().commit();
+			session.close();
+
+			model.addAttribute("event", event);
+
+		}else{
+			return "event/guestViewError";
+		}
+		
+		
+		return "event/guestView";
+	}
 
 }
