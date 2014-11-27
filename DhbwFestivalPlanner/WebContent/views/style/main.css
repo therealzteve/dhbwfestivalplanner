@@ -6,7 +6,8 @@
  font-weight:normal;
  font-style:normal;
 }
-.errordiv {color:red;font-size:12px}
+.infodiv{font-size:12px}
+.errordiv {color:red}
 * {
     margin: 0;
     padding: 0;

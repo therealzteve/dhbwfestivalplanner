@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.helper.UserHelper;
 import com.model.Event;
@@ -24,22 +27,6 @@ public class EventController {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
-	@RequestMapping("/helloWorld")
-	public String hello(Model model) {
-
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		List<Event> events = session.createQuery("from Event").list();
-		session.getTransaction().commit();
-		session.close();
-		for (Event ev : events) {
-			System.out.println(ev);
-		}
-		model.addAttribute("events", events);
-
-		return "event/result";
-	}
 
 	@RequestMapping("/create")
 	public String create(Model model) {
@@ -53,9 +40,9 @@ public class EventController {
 			@RequestParam(value = "title", required = false) String title,
 			@RequestParam(value = "address", required = false) String address,
 			@RequestParam(value = "plz", required = false) int plz,
-			@RequestParam(value = "city", required = false) int city,
-			@RequestParam(value = "date", required = false) Date date,
-			@RequestParam(value = "time", required = false) Date time)
+			@RequestParam(value = "city", required = false) String city)
+			//@RequestParam(value = "date", required = false) Date date,
+			//@RequestParam(value = "time", required = false) Date time)
 			throws Exception {
 		Session session = sessionFactory.openSession();
 		User user = UserHelper.getCurrentUser();
@@ -72,27 +59,38 @@ public class EventController {
 			}
 
 		} else {
+
 			event = new Event();
 
 		}
 
+		// Set event data
 		event.setName("the new event");
 		event.setCreator(user);
+		event.setTitle(title);
+		event.setAddress(address);
+		event.setCity(city);
+		event.setPlz(plz);
+		//event.setDate(date);
+		//event.setTime(time);
 
+		// Save event in database
 		session.beginTransaction();
 		session.save(event);
 		session.getTransaction().commit();
 
 		model.addAttribute("event", event);
 
-		return "event/list";
+		return "event/saved";
 	}
 
 	@RequestMapping("/list")
 	public String list(Model model) {
 
+		// Aktueller User bestimmen
 		User user = UserHelper.getCurrentUser();
 
+		// Events aus Datenbank laden
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Criteria crit = session.createCriteria(Event.class);
@@ -100,24 +98,20 @@ public class EventController {
 		List<Event> ev = crit.list();
 		session.getTransaction().commit();
 
-		for (Event ev1 : ev) {
-			System.out.println(ev1);
-
-		}
-
+		// Event Liste fuer JSP Seite
 		model.addAttribute("events", ev);
 
+		// aufgerufene JSP Seite
 		return "event/list";
 	}
 
 	@RequestMapping("/display")
-	public String display(
+	public @ResponseBody Event display(
 			Model model,
-			@RequestParam(value = "id", required = true, defaultValue = "-1") int id,
-			@RequestParam(value = "mode", required = false, defaultValue = "display") String mode) {
+			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
 
 		if (id == -1) {
-			return "error";
+			return null;
 		}
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -126,10 +120,53 @@ public class EventController {
 		session.close();
 
 		model.addAttribute("event", event);
-		if ("edit".equals(mode)) {
-			return "event/edit";
+		Hibernate.initialize(event);
+
+		return event;
+	}
+
+	@RequestMapping("/edit")
+	public String edit(
+			Model model,
+			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
+
+		if (id != -1) {
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			Event event = (Event) session.get(Event.class, id);
+			session.getTransaction().commit();
+			session.close();
+
+			model.addAttribute("event", event);
+
+		}else{
+			model.addAttribute("event",new Event());
 		}
-		return "event/display";
+
+
+		return "event/edit";
+	}
+
+	@RequestMapping("/guestView")
+	public String guestView(
+			Model model,
+			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
+
+		if (id != -1) {
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			Event event = (Event) session.get(Event.class, id);
+			session.getTransaction().commit();
+			session.close();
+
+			model.addAttribute("event", event);
+
+		}else{
+			return "event/guestViewError";
+		}
+
+
+		return "event/guestView";
 	}
 
 }

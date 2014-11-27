@@ -1,18 +1,27 @@
 package com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.Hibernate;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "event")
@@ -26,9 +35,15 @@ public class Event implements Serializable{
 	private String name;
 	
 	
-	private String title, address, plz, city;
+	private String title, address, city;
+
+	@OneToMany(mappedBy="event", fetch= FetchType.EAGER)
+	private List<Guest> guests;
+
+
+	int plz = -1;
 	
-	@Id @ManyToOne
+	@ManyToOne
 	@JoinColumn(name= "Veranstalter_ID")
 	private User creator;
 	
@@ -71,12 +86,12 @@ public class Event implements Serializable{
 		this.address = address;
 	}
 
-	public String getPlz() {
+	public int getPlz() {
 		return plz;
 	}
 
-	public void setPlz(String plz) {
-		this.plz = plz;
+	public void setPlz(int plz2) {
+		this.plz = plz2;
 	}
 
 	public String getCity() {
@@ -109,5 +124,13 @@ public class Event implements Serializable{
 
 	public void setTime(Date time) {
 		this.time = time;
+	}
+
+	public List<Guest> getGuests() {
+		return guests;
+	}
+
+	public void setGuests(List<Guest> guests) {
+		this.guests = guests;
 	}
 }
