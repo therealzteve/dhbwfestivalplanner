@@ -13,35 +13,46 @@ function showregister(element) {
     registerform.style.display = "block";
 }
 
+function changedesign(element) {
+    debugger;
+    if (element.id=="design1") {
+    bilddesign.src= "../style/images/FrauBallons.jpg";
+    }  else if (element.id=="design2") {
+    bilddesign.src= "../style/images/Hase.jpg";
+    } else if (element.id=="design3") {
+    bilddesign.src= "../style/images/LustigeBrille.jpg";}
+    else {
+        alert("Kein Bild vorhanden");
+    }
+}
 /*ab hier von yvonne*/
 
 function login() {
-	var name='Test';
-	var pw=1234;
-	if (document.getElementsByName("username")[0].value==name){
-		if(document.getElementsByName("password")[0].value==pw){
-		window.alert("Login erfolgreich!");}
-	}
-	else{
-    document.getElementById("loginerror").removeAttribute("hidden");}
+    var name = 'Test';
+    var pw = 1234;
+    if (document.getElementsByName("username")[0].value == name) {
+        if (document.getElementsByName("password")[0].value == pw) {
+            window.alert("Login erfolgreich!");
+        }
+    } else {
+        document.getElementById("loginerror").removeAttribute("hidden");
+    }
 
 }
 
 function register() {
-	var name='Test';
-	var pw=1234;
-	if (document.getElementsByName("username")[1].value==name){
-		if(document.getElementsByName("password")[0].value==pw){
-			document.getElementById("userexists").removeAttribute("hidden");}
-	}
-	else{
-	    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	    if (re.test(email)){
-	    	window.alert("Eine Bestätigungsemail wurde versendet!");
-	    }
-	    else{
-	    	document.getElementById("emailvalidation").removeAttribute("hidden");}
-	    }
-	}
-    
-
+    var name = 'Test';
+    var pw = 1234;
+    if (document.getElementsByName("username")[1].value == name) {
+        if (document.getElementsByName("password")[0].value == pw) {
+            document.getElementById("userexists").removeAttribute("hidden");
+        }
+    } else {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (re.test(email)) {
+            window.alert("Eine Bestätigungsemail wurde versendet!");
+        } else {
+            document.getElementById("emailvalidation").removeAttribute("hidden");
+        }
+    }
+}

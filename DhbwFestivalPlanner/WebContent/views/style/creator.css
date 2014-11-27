@@ -70,3 +70,19 @@ html {
     overflow-y:auto;
     overflow-x:hidden;
 }
+#rightside {
+      width: 45%;
+    height: 100%;
+    float: right;
+    padding: 10px;
+}
+#leftside {
+    float: left;
+    width: 45%;
+    height: 100%;
+    padding: 10px;
+}
+#bilddesign {
+    height: auto;
+    width: 100%;
+}
