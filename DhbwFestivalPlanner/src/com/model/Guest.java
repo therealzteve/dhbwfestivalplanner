@@ -75,4 +75,18 @@ public class Guest {
 		this.confirmed = confirmed;
 	}
 	
+	/**
+	 * Compares 2 guests without the id
+	 * @param g
+	 * @return
+	 */
+	public boolean softEquals(Guest g){
+		if(event.equals(g.getEvent())
+				&&  name.equals(g.getName())
+				&& email.equals(g.getEmail())
+				){
+			return true;
+		}
+		return false;
+	}
 }

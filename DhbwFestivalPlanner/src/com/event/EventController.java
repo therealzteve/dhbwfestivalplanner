@@ -40,9 +40,9 @@ public class EventController {
 			@RequestParam(value = "title", required = false) String title,
 			@RequestParam(value = "address", required = false) String address,
 			@RequestParam(value = "plz", required = false) int plz,
-			@RequestParam(value = "city", required = false) String city,
-			@RequestParam(value = "date", required = false) Date date,
-			@RequestParam(value = "time", required = false) Date time)
+			@RequestParam(value = "city", required = false) String city)
+			//@RequestParam(value = "date", required = false) Date date,
+			//@RequestParam(value = "time", required = false) Date time)
 			throws Exception {
 		Session session = sessionFactory.openSession();
 		User user = UserHelper.getCurrentUser();
@@ -71,8 +71,8 @@ public class EventController {
 		event.setAddress(address);
 		event.setCity(city);
 		event.setPlz(plz);
-		event.setDate(date);
-		event.setTime(time);
+		//event.setDate(date);
+		//event.setTime(time);
 
 		// Save event in database
 		session.beginTransaction();
@@ -81,7 +81,7 @@ public class EventController {
 
 		model.addAttribute("event", event);
 
-		return "event/list";
+		return "event/saved";
 	}
 
 	@RequestMapping("/list")
@@ -124,5 +124,28 @@ public class EventController {
 		
 		return event;
 	}
+	
+	@RequestMapping("/edit")
+	public String edit(
+			Model model,
+			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
+
+		if (id != -1) {
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			Event event = (Event) session.get(Event.class, id);
+			session.getTransaction().commit();
+			session.close();
+
+			model.addAttribute("event", event);
+
+		}else{
+			model.addAttribute("event",new Event());
+		}
+		
+		
+		return "event/edit";
+	}
+	
 
 }
