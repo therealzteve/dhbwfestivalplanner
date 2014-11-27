@@ -26,8 +26,8 @@ Event actions:
 GET:
 
 /event/list  <-- Eigene Events auflisten
-/event/create <-- Neues Event erstellen (Weiterleitung auf leere editierseite
-/event/display?id=1234&mode=edit <-- Anzeigen einer Veranstaltung bzw. editieren (über Parameter gesteuert)
+/event/edit?id=1234 <-- Neues Event erstellen (Weiterleitung auf leere editierseite
+/event/display <-- Anzeigen einer Veranstaltung bzw. editieren (über Parameter gesteuert)
 
 Nur POST:
 /event/save

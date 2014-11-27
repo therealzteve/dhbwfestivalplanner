@@ -86,8 +86,7 @@ public class LoginController {
 			@RequestParam(value = "username", required = true) String username,
 			@RequestParam(value = "password", required = true) String password,
 			@RequestParam(value = "email", required = true) String email,
-			@RequestParam(value = "name", required = false, defaultValue = "") String name)//, 
-			//@RequestParam(value = "regSuccess", required = false) String regSuccess 
+			@RequestParam(value = "name", required = false, defaultValue = "") String name)
 			{
 
 		// TODO: Fill validation later
@@ -123,14 +122,11 @@ public class LoginController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		// If we got an error we display a message to the user
-		/*if (regSuccess == null) {
-			model.addAttribute("regSuccess", true);
-		}*/
 
+		model.addAttribute("regSuccess", true);
+		
 		// Redirect to main page
-		return "login/registrationFinished";
+		return "login/index";
 	}
 
 	/**

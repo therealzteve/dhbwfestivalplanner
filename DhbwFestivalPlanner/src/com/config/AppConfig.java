@@ -18,14 +18,21 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.annotation.Scope;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.http.MediaType;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.accept.ContentNegotiationManager;
+import org.springframework.web.accept.ContentNegotiationManagerFactoryBean;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
@@ -38,14 +45,42 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 @EnableTransactionManagement
 public class AppConfig extends WebMvcConfigurerAdapter{
 
-	@Bean
-	public UrlBasedViewResolver setupViewResolver() {
+
+    @Bean(name="jspViewResolver")
+	public UrlBasedViewResolver urlBasedViewResolver() {
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
 		resolver.setPrefix("/views/");
 		resolver.setSuffix(".jsp");
 		resolver.setViewClass(JstlView.class);
 		return resolver;
 	}
+    
+    
+	
+//	ContentNegotiatingViewResolver contentNegotiatingViewResolver(){
+//		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+//		resolver.setContentNegotiationManager(contentNegotiationManager());
+//		
+//		return resolver;
+//	}
+//
+//	private ContentNegotiationManager contentNegotiationManager() {
+//		ContentNegotiationManager manager = new ContentNegotiationManagerFactoryBean().getObject();
+//		return manager;
+//	}
+	
+    @Override
+    public void configureContentNegotiation(
+            ContentNegotiationConfigurer configurer) {
+        // Simple strategy: only path extension is taken into account
+        configurer.favorPathExtension(true).
+            ignoreAcceptHeader(false).
+            useJaf(false).
+            defaultContentType(MediaType.TEXT_HTML).
+            mediaType("html", MediaType.TEXT_HTML).
+            mediaType("xml", MediaType.APPLICATION_XML).
+            mediaType("json", MediaType.APPLICATION_JSON);
+    }
 
 	@Bean
 	@Scope("singleton")

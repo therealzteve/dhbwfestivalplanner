@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.helper.UserHelper;
 import com.model.Event;
@@ -103,13 +106,12 @@ public class EventController {
 	}
 
 	@RequestMapping("/display")
-	public String display(
+	public @ResponseBody Event display(
 			Model model,
-			@RequestParam(value = "id", required = true, defaultValue = "-1") int id,
-			@RequestParam(value = "mode", required = false, defaultValue = "display") String mode) {
+			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
 
 		if (id == -1) {
-			return "error";
+			return null;
 		}
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -118,10 +120,9 @@ public class EventController {
 		session.close();
 
 		model.addAttribute("event", event);
-		if ("edit".equals(mode)) {
-			return "event/edit";
-		}
-		return "event/display";
+		Hibernate.initialize(event);
+		
+		return event;
 	}
 
 }
