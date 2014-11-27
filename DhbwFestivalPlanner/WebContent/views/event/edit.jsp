@@ -24,6 +24,7 @@
     <div id="content">
         <div id="whitewrapper">
             <form method="post" id="eventdata">
+            <input type="text" id="id" hidden="hidden">
                 <label for="name">Name der Veranstaltung:</label>
                 <input type="text" id="name">
                 <br>
