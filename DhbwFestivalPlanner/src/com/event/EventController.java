@@ -159,6 +159,9 @@ public class EventController {
 			session.getTransaction().commit();
 			session.close();
 
+			if(event == null){
+				return "event/guestViewError";
+			}
 			model.addAttribute("event", event);
 
 		}else{
