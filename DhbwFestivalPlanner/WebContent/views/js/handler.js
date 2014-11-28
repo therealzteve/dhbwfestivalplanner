@@ -1,81 +1,54 @@
 function showlogin(element) {
-    document.getElementsByClassName("actualtab")[0].classList.remove("actualtab");
-    element.classList.add("actualtab");
-    loginform.style.display = "block";
-    registerform.style.display = "none";
+	document.getElementsByClassName("actualtab")[0].classList
+			.remove("actualtab");
+	element.classList.add("actualtab");
+	loginform.style.display = "block";
+	registerform.style.display = "none";
 
 }
 
 function showregister(element) {
-    document.getElementsByClassName("actualtab")[0].classList.remove("actualtab");
-    element.classList.add("actualtab");
-    loginform.style.display = "none";
-    registerform.style.display = "block";
+	document.getElementsByClassName("actualtab")[0].classList
+			.remove("actualtab");
+	element.classList.add("actualtab");
+	loginform.style.display = "none";
+	registerform.style.display = "block";
 }
 
 function changedesign(element) {
-    debugger;
-    if (element.id=="design1") {
-    bilddesign.src= "../style/images/FrauBallons.jpg";
-    }  else if (element.id=="design2") {
-    bilddesign.src= "../style/images/Hase.jpg";
-    } else if (element.id=="design3") {
-    bilddesign.src= "../style/images/LustigeBrille.jpg";}
-    else {
-        alert("Kein Bild vorhanden");
-    }
+	debugger;
+	if (element.id == "design1") {
+		bilddesign.src = "../style/images/FrauBallons.jpg";
+	} else if (element.id == "design2") {
+		bilddesign.src = "../style/images/Hase.jpg";
+	} else if (element.id == "design3") {
+		bilddesign.src = "../style/images/LustigeBrille.jpg";
+	} else {
+		alert("Kein Bild vorhanden");
+	}
 }
-/*ab hier von yvonne*/
-function fetchguests(url){
-	$.getJSON( url, function(data){
-		var itemsZ = "";
-		var itemsV = "";
-		for ( var i in data.guests ) {
-			if(guests.confirmed==true)
-				itemsZ+=( "<li id='guest" + data.guests[i].id + "'>" + data.guests[i].name + "</li>" );
+/* ab hier von yvonne */
+function fetchguests(url) {
+	var itemsZ = "";
+	var itemsV = "";
+	$.getJSON(url, function(data) {
+
+		for (var i = 0; i < data.guests.length; i++) {
+			if (data.guests[i].confirmed == true)
+				itemsZ += ("<li id='guest" + data.guests[i].id + "'>"
+						+ data.guests[i].name + "</li>");
 			else
-				itemsV+=( "<li id='guest" + data.guests[i].id + "'>" + data.guests[i].name + "</li>" );// was ist mit den abgesagten?
-		};
-		})
-
-		document.getElementById("#zgaeste").innerHTML=itemsZ;
-	document.getElementById("#vgaeste").innerHTML=itemsV;
-
-}
-		
+				itemsV += ("<li id='guest" + data.guests[i].id + "'>"
+						+ data.guests[i].name + "</li>");// was ist mit den
+															// abgesagten?
+		}
+		document.getElementById("zgaeste").innerHTML = itemsZ;
+		document.getElementById("vgaeste").innerHTML = itemsV;
+	});
 
 
-
-
-/*function login() {
-	var name='Test';
-	var pw=1234;
-	if (document.getElementsByName("username")[0].value==name){
-		if(document.getElementsByName("password")[0].value==pw){
-		window.alert("Login erfolgreich!");}
-	}
-	else{
-    document.getElementById("loginerror").removeAttribute("hidden");}
 
 }
 
-function register() {
-	var name='Test';
-	var pw=1234;
-	if (document.getElementsByName("username")[1].value==name){
-		if(document.getElementsByName("password")[0].value==pw){
-			document.getElementById("userexists").removeAttribute("hidden");}
-	}
-	else{
-	    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	    if (re.test(email)){
-	    	window.alert("Eine Bestätigungsemail wurde versendet!");
-	    }
-	    else{
-	    	document.getElementById("emailvalidation").removeAttribute("hidden");}
-	    }
-	}*/
 
-
-    
 
