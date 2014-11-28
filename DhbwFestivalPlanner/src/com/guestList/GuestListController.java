@@ -39,7 +39,7 @@ public class GuestListController {
 
 	/**
 	 * Aktualisiert die Gaesteliste der Veranstaltung
-	 * 
+	 *
 	 * @param model
 	 * @param id
 	 * @param guestList
@@ -56,7 +56,7 @@ public class GuestListController {
 		List<Guest> dirtyGuests = new ArrayList<Guest>();
 		Event currentEvent = getEvent(id);
 		// END INITIALISIERUNG
-		
+
 		// Fuer alle Gaeste in der neuen Gaesteliste
 		for (Guest guestToCheck : guestList) {
 
@@ -85,7 +85,7 @@ public class GuestListController {
 	/**
 	 * Ueberprueft ob ein Gast schon in der Gaesteliste ist, wenn er geaendert
 	 * wurde kommt er in die dirtyList
-	 * 
+	 *
 	 * @param currentGuests
 	 * @param dirtyGuests
 	 * @param guest
@@ -93,7 +93,7 @@ public class GuestListController {
 	 */
 	protected boolean checkIfExistingGuest(List<Guest> currentGuests,
 			List<Guest> dirtyGuests, Guest guest) {
-		
+
 		// Pruefen welche bestehenden Gaeste abgeaendert wurden
 		for (Guest guestInGuestList : currentGuests) {
 
@@ -116,7 +116,7 @@ public class GuestListController {
 	/**
 	 * Aktualisiert und fuegt die geaenderten Gaeste der Datenbank hinzu und
 	 * loescht die Gaeste, die entfernt wurden
-	 * 
+	 *
 	 * @param dirtyList
 	 * @param currentGuestList
 	 */

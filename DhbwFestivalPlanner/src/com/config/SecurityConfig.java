@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.passwordParameter("password").defaultSuccessUrl("/")
 		.and().logout().logoutSuccessUrl("/login?logout")
 		.and().csrf().disable();
-	    
+
 
 	}
 	

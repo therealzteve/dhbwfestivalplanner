@@ -13,7 +13,7 @@ public class RandomString {
     for (char ch = 'a'; ch <= 'z'; ++ch)
       tmp.append(ch);
     symbols = tmp.toString().toCharArray();
-  }   
+  }
 
   private final Random random = new Random();
 
@@ -26,7 +26,7 @@ public class RandomString {
   }
 
   public String nextString() {
-    for (int idx = 0; idx < buf.length; ++idx) 
+    for (int idx = 0; idx < buf.length; ++idx)
       buf[idx] = symbols[random.nextInt(symbols.length)];
     return new String(buf);
   }

@@ -12,12 +12,12 @@
 
 
 	<tiles:insertTemplate   template="/views/style/template/main.jsp">
-		
+
 		<%-- Page Title: --%>
 		<tiles:putAttribute name="pageTitle" value="Deine Events:"></tiles:putAttribute>
-		
-		
-		
+
+
+
 		<%-- Body of List Page --%>
 		<tiles:putAttribute name="content">
 			<p>
@@ -37,5 +37,5 @@
 			</table>
 			</p>
 		</tiles:putAttribute>
-		
+
 	</tiles:insertTemplate>

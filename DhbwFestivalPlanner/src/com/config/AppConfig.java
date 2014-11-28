@@ -54,13 +54,13 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 		resolver.setViewClass(JstlView.class);
 		return resolver;
 	}
-    
-    
-	
+
+
+
 //	ContentNegotiatingViewResolver contentNegotiatingViewResolver(){
 //		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
 //		resolver.setContentNegotiationManager(contentNegotiationManager());
-//		
+//
 //		return resolver;
 //	}
 //
@@ -68,7 +68,7 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 //		ContentNegotiationManager manager = new ContentNegotiationManagerFactoryBean().getObject();
 //		return manager;
 //	}
-	
+
     @Override
     public void configureContentNegotiation(
             ContentNegotiationConfigurer configurer) {
@@ -176,14 +176,14 @@ public class AppConfig extends WebMvcConfigurerAdapter{
     	registry.addResourceHandler("style/**").addResourceLocations("/views/style/").setCachePeriod(31556926);
        // registry.addResourceHandler("/js/**").addResourceLocations("/views/").setCachePeriod(31556926);
     }
-    
+
 
     @Bean
     TilesConfigurer tilesConfigurer(){
     	TilesConfigurer tc = new TilesConfigurer();
     	return tc;
     }
-    
+
     @Bean
     MailSender mailSender(){
     	JavaMailSenderImpl sender = new JavaMailSenderImpl();
@@ -191,13 +191,13 @@ public class AppConfig extends WebMvcConfigurerAdapter{
     	sender.setPort(23);
     	sender.setPassword("1234");
     	sender.setUsername("username");
-    	
+
     	Properties p = new Properties();
     	p.setProperty("mail.transport.protocol", "smtp");
     	p.setProperty("mail.smtp.auth", "true");
     	p.setProperty("mail.smtp.starttls.enable", "true");
     	sender.setJavaMailProperties(p);
-    	
+
     	return sender;
 
     }

@@ -14,17 +14,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "Guests")
 public class Guest {
-	
+
 	@Id
 	int id;
-	
+
 	String name, email;
-	
+
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name= "Event_ID")
 	Event event;
-	
+
 	boolean receivesEmail, confirmed;
 
 	public int getId() {
@@ -74,7 +74,7 @@ public class Guest {
 	public void setConfirmed(boolean confirmed) {
 		this.confirmed = confirmed;
 	}
-	
+
 	/**
 	 * Compares 2 guests without the id
 	 * @param g

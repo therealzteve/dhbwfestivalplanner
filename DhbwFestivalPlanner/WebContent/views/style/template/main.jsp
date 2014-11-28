@@ -11,6 +11,6 @@
  <div id="toolbar">Hier kommt die Login Logout Toolbar hin</div>
 
 	<h1><tiles:insertAttribute name="pageTitle"></tiles:insertAttribute></h1>
-	<tiles:insertAttribute name="content"></tiles:insertAttribute>    
+	<tiles:insertAttribute name="content"></tiles:insertAttribute>
 </body>
 </html>

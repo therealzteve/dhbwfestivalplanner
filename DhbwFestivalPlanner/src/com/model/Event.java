@@ -36,11 +36,11 @@ public class Event implements Serializable{
 	
 	
 	private String title, address, city;
-	
+
 	@OneToMany(mappedBy="event", fetch= FetchType.EAGER)
 	private List<Guest> guests;
 
-	
+
 	int plz = -1;
 	
 	@ManyToOne

@@ -21,62 +21,21 @@
                 </div>
 
 
-                <div id="gaesteliste" class="gaestel">
+ <div id="gaesteliste" class="gaestel">
 
                     Zugesagt:
                     <ul id="zgaeste">
-
-                        <li class="dummy">test2
-                        </li>
-                        <li class="dummy">test3
-                        </li>
-                        <li class="dummy">test2
-                        </li>
-                        <li class="dummy">test3
-                        </li>
-                        <li class="dummy">test2
-                        </li>
-                        <li class="dummy">test3
-                        </li>
-                        <li class="dummy">test2
-                        </li>
-                        <li class="dummy">test3
-                        </li>
-                        <li class="dummy">test2
-                        </li>
-                        <li class="dummy">test3
-                        </li>
                     </ul>
                 </div>
                 <div id="vgaesteliste" class="gaestel">Vielleicht:
                     <ul id="vgaeste">
-                        <li class="dummy">test2
-                        </li>
-                        <li class="dummy">test3
-                        </li>
-                        <li class="dummy">test2
-                        </li>
-                        <li class="dummy">test3
-                        </li>
-                        <li class="dummy">test2
-                        </li>
-                        <li class="dummy">test3
-                        </li>
-                        <li class="dummy">test2
-                        </li>
-                        <li class="dummy">test3
-                        </li>
-                        <li class="dummy">test2
-                        </li>
-                        <li class="dummy">test3
-                        </li>
                     </ul>
                 </div>
 
             </div>
-            <div id="rightside">
+             <div id="rightside">
                 <div id="yeah">
-                    <a class="icons" href="../event/edit" target="_blank" id="createevent">
+                    <a class="icons" href="<c:url value="/event/edit"></c:url>" target="_blank" id="createevent">
                         <i class="fa fa-plus fontawicons"></i> NEUE PARTY</a>
                     <div class="clear"></div>
                 </div>
@@ -87,10 +46,10 @@
                     <ul id="navi">
                         <li id="vlistenheader" class="dummy">Deine Veranstaltungen:</li>
                         <c:forEach items="${events}" var="event">
-                        <li class="dummy"><a href="../event/display?id=${event.id}">${event.name}</a>
+                        <li class="dummy"><a href="<c:url value="/event/display?id=${event.id}"></c:url>" onclick="fetchguests(<c:url value="guestList/show?id=${event.id}"></c:url>)">${event.name}</a>
                             <ul>
                                 <!-- steht für veranstaltungsseite bearbeiten-->
-                                <li class="dropdo"><a href="../event/edit?id=${event.id}" target="_blank" ><i class="fa fa-pencil"></i></a>
+                                <li class="dropdo"><a href="<c:url value="/event/edit?id=${event.id}"></c:url>" target="_blank" ><i class="fa fa-pencil"></i></a>
                                 </li>
                                 <!-- steht für veranstaltung absagen/löschen-->
                                 <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
@@ -98,7 +57,6 @@
                             </ul>
                         </li>
                         </c:forEach>
-                       
                     </ul>
                 </div>
             </div>

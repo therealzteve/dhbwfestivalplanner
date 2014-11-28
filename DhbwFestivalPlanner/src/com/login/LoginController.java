@@ -69,16 +69,16 @@ public class LoginController {
 
 	/**
 	 * Handles registration post request, adds user to database etc.
-	 * 
+	 *
 	 * @param model
 	 * @param username
 	 * @param password
 	 * @param email
 	 * @param name
-	 * @param regSuccess 
+	 * @param regSuccess
 	 * @return
 	 */
-	
+
 	//regSuccess funktioniert leider noch nicht
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(
@@ -124,7 +124,7 @@ public class LoginController {
 		}
 
 		model.addAttribute("regSuccess", true);
-		
+
 		// Redirect to main page
 		return "login/index";
 	}
@@ -171,7 +171,7 @@ public class LoginController {
 
 	/**
 	 * Sends an E-Mail to client with unlock code
-	 * 
+	 *
 	 * @param u
 	 */
 	protected void sendUnlockEmail(User u) {

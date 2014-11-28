@@ -18,7 +18,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 public class WebAppInitializer implements WebApplicationInitializer {
-	
+
 	public void onStartup(ServletContext servletContext)
 			throws ServletException {
 		
@@ -32,7 +32,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
 				new DispatcherServlet(ctx));
 		dynamic.addMapping("/");
 		dynamic.setLoadOnStartup(1);
-		
+
 		
 
 	}

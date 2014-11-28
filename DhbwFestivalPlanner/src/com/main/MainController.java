@@ -22,10 +22,10 @@ public class MainController {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@RequestMapping("/")
 	public String main(Model model){
-		
+
 		// Aktueller User bestimmen
 		User user = UserHelper.getCurrentUser();
 
@@ -39,7 +39,7 @@ public class MainController {
 
 		// Event Liste fuer JSP Seite
 		model.addAttribute("events", ev);
-		
+
 		return "mainpage/mainOverview";
 	}
 }

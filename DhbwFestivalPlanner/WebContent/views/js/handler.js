@@ -13,9 +13,41 @@ function showregister(element) {
     registerform.style.display = "block";
 }
 
+function changedesign(element) {
+    debugger;
+    if (element.id=="design1") {
+    bilddesign.src= "../style/images/FrauBallons.jpg";
+    }  else if (element.id=="design2") {
+    bilddesign.src= "../style/images/Hase.jpg";
+    } else if (element.id=="design3") {
+    bilddesign.src= "../style/images/LustigeBrille.jpg";}
+    else {
+        alert("Kein Bild vorhanden");
+    }
+}
 /*ab hier von yvonne*/
+function fetchguests(url){
+	$.getJSON( url, function(data){
+		var itemsZ = "";
+		var itemsV = "";
+		for ( var i in data.guests ) {
+			if(guests.confirmed==true)
+				itemsZ+=( "<li id='guest" + data.guests[i].id + "'>" + data.guests[i].name + "</li>" );
+			else
+				itemsV+=( "<li id='guest" + data.guests[i].id + "'>" + data.guests[i].name + "</li>" );// was ist mit den abgesagten?
+		};
+		})
 
-function login() {
+		document.getElementById("#zgaeste").innerHTML=itemsZ;
+	document.getElementById("#vgaeste").innerHTML=itemsV;
+
+}
+		
+
+
+
+
+/*function login() {
 	var name='Test';
 	var pw=1234;
 	if (document.getElementsByName("username")[0].value==name){
@@ -42,6 +74,8 @@ function register() {
 	    else{
 	    	document.getElementById("emailvalidation").removeAttribute("hidden");}
 	    }
-	}
+	}*/
+
+
     
 
