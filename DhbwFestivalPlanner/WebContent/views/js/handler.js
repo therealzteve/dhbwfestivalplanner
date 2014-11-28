@@ -26,33 +26,56 @@ function changedesign(element) {
     }
 }
 /*ab hier von yvonne*/
+function fetchguests(url){
+	$.getJSON( url, function(data){
+		var itemsZ = "";
+		var itemsV = "";
+		for ( var i in data.guests ) {
+			if(guests.confirmed==true)
+				itemsZ+=( "<li id='guest" + data.guests[i].id + "'>" + data.guests[i].name + "</li>" );
+			else
+				itemsV+=( "<li id='guest" + data.guests[i].id + "'>" + data.guests[i].name + "</li>" );// was ist mit den abgesagten?
+		};
+		})
 
-function login() {
-    var name = 'Test';
-    var pw = 1234;
-    if (document.getElementsByName("username")[0].value == name) {
-        if (document.getElementsByName("password")[0].value == pw) {
-            window.alert("Login erfolgreich!");
-        }
-    } else {
-        document.getElementById("loginerror").removeAttribute("hidden");
-    }
+		document.getElementById("#zgaeste").innerHTML=itemsZ;
+	document.getElementById("#vgaeste").innerHTML=itemsV;
+
+}
+		
+
+
+
+
+/*function login() {
+	var name='Test';
+	var pw=1234;
+	if (document.getElementsByName("username")[0].value==name){
+		if(document.getElementsByName("password")[0].value==pw){
+		window.alert("Login erfolgreich!");}
+	}
+	else{
+    document.getElementById("loginerror").removeAttribute("hidden");}
 
 }
 
 function register() {
-    var name = 'Test';
-    var pw = 1234;
-    if (document.getElementsByName("username")[1].value == name) {
-        if (document.getElementsByName("password")[0].value == pw) {
-            document.getElementById("userexists").removeAttribute("hidden");
-        }
-    } else {
-        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (re.test(email)) {
-            window.alert("Eine Bestätigungsemail wurde versendet!");
-        } else {
-            document.getElementById("emailvalidation").removeAttribute("hidden");
-        }
-    }
-}
+	var name='Test';
+	var pw=1234;
+	if (document.getElementsByName("username")[1].value==name){
+		if(document.getElementsByName("password")[0].value==pw){
+			document.getElementById("userexists").removeAttribute("hidden");}
+	}
+	else{
+	    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	    if (re.test(email)){
+	    	window.alert("Eine Bestätigungsemail wurde versendet!");
+	    }
+	    else{
+	    	document.getElementById("emailvalidation").removeAttribute("hidden");}
+	    }
+	}*/
+
+
+    
+
