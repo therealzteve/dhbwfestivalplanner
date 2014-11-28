@@ -8,7 +8,11 @@
 
     <!-- Angabe der 'StyleSheet'-Datei die hier verwendet wird -->
     <link rel="stylesheet" href="../style/creator.css">
+    <link rel="stylesheet" href="../style/jquery.datetimepicker.css">
      <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+         <script type="text/javascript" src="../js/handler.js"></script>
+         <script type="text/javascript" src="../js/jquery-2.1.1.js"></script>
+         <script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
 
     <title>Festival Planner: Party bearbeiten</title>
 </head>
@@ -24,39 +28,63 @@
     </div>
     <div id="content">
         <div id="whitewrapper">
+        <div id=leftside>
             <form method="post" id="eventdata" action="<c:url value="/event/save" />">
             <input type="hidden" id="id" value="${event.id}">
-                <label for="name">Name der Veranstaltung:</label>
-                <input type="text" id="name">
+                <label for="title">Name der Veranstaltung:</label>
+                <input type="text" id="title">
                 <br>
-                <label for="datum">Datum:</label>
-                <input type="date" id="date">
+                <label for="date">Datum:</label>
+                <input type="text" id="date" onfocus="pickDate()">
                 <br>
-                <label for="hour">Uhrzeit:</label>
-                <input type="time" id="hour">
+                <label for="time">Uhrzeit:</label>
+                <input type="text" id="time" onfocus="pickTime()">
                 <br>
                 <label>Adresse:</label>
                 <br>
-                <label for="anschrift">Name:</label>
-                <input type="text" id="anschrift">
+                <label for="address">Name:</label>
+                <input type="text" id="address">
                 <br>
-                <label for="strasse">Straße:</label>
-                <input type="text" id="strasse">
+                <label for="address">Adresse:</label>
+                <input type="text" id="address">
                 <br>
-                <label for="hausnummer">Hausnummer:</label>
+                <!--  <label for="hausnummer">Hausnummer:</label>
                 <input type="text" id="hausnummer">
-                <br>
-                <label for="ort">Ort:</label>
-                <input type="text" id="ort">
+                
+                <br>-->
+                <label for="city">Ort:</label>
+                <input type="text" id="city">
                 <br>
                 <label for="plz">Postleitzahl:</label>
                 <input type="text" id="plz">
                 <br>
                 <input type="submit" value="Abbrechen">
                 <input type="submit" value="Los geht's">
-            </form>
+                </div>
+                
+                            <div id="rightside">
+                <h1>Party Homepage: </h1>
+                Wähle ein passendes Design für deine Veranstaltungsseite:
+                <br>
+                <label for="design1">Design 1:</label>
+                <input type="radio" checked="checked" id="design1" onchange="changedesign(this)" name="designw">
+                <br>
+                <label for="design2">Design 2:</label>
+                <input type="radio" id="design2" onchange="changedesign(this)" name="designw">
+                <br>
+                <label for="design3">Design 3:</label>
+                <input type="radio" id="design3" onchange="changedesign(this)" name="designw">
+                <br>
+                <label for="design4">Design 4:</label>
+                <input type="radio" id="design4" onchange="changedesign(this)" name="designw">
+              
+
+
+                    <img src="../style/images/FrauBallons.jpg" id="bilddesign">
+                    
+            </div>
+           </form>
         </div>
     </div>
 </body>
-
 </html>

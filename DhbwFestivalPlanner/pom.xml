@@ -86,6 +86,70 @@
   		<artifactId>spring-context-support</artifactId>
   		<version>4.0.7.RELEASE</version>
   	</dependency>
+  	<dependency>
+  		<groupId>info.cukes</groupId>
+  		<artifactId>cucumber-core</artifactId>
+  		<version>1.2.0</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>info.cukes</groupId>
+  		<artifactId>cucumber-java</artifactId>
+  		<version>1.2.0</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>info.cukes</groupId>
+  		<artifactId>cucumber-junit</artifactId>
+  		<version>1.2.0</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>info.cukes</groupId>
+  		<artifactId>cucumber-jvm-deps</artifactId>
+  		<version>1.0.3</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>info.cukes</groupId>
+  		<artifactId>gherkin-jvm-deps</artifactId>
+  		<version>1.0.2</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>info.cukes</groupId>
+  		<artifactId>gherkin</artifactId>
+  		<version>2.12.2</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>info.cukes</groupId>
+  		<artifactId>cucumber-html</artifactId>
+  		<version>0.2.3</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.11</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.seleniumhq.selenium</groupId>
+  		<artifactId>selenium-firefox-driver</artifactId>
+  		<version>2.44.0</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.seleniumhq.selenium</groupId>
+  		<artifactId>selenium-server</artifactId>
+  		<version>2.44.0</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.seleniumhq.webdriver</groupId>
+  		<artifactId>webdriver-selenium</artifactId>
+  		<version>0.9.7376</version>
+  	</dependency>
   </dependencies>
   <dependencyManagement>
   	<dependencies>
