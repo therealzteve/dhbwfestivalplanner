@@ -12,7 +12,7 @@
 
     features = {"src/"},
 
-    format = {"pretty",
+    plugin = {"pretty",
 
     "html:target/cucumber-html-report",
 

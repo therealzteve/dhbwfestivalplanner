@@ -76,6 +76,9 @@
                 <br>
                 <textarea id="beschreibung" >Füge hier einen Beschreibungstext für deine Gäste ein!</textarea>
                         <br>
+                        <c:if test="${error}">
+                    	<div class="errordiv infodiv" id="editerror" >Bitte fülle alle Felder aus!</br></div>
+                    </c:if>
                 <input type="submit" value="Abbrechen" onclick="javascript:window.close()">
                 <input type="submit" value="Los geht's" onclick="javascript:window.close()">
                 </div>

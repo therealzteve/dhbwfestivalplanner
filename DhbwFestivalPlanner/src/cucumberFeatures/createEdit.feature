@@ -14,14 +14,14 @@ Then The event should be displayed again with the updated Information
 
 Scenario: Submit the event formular with required fields filled in
 Given I am logged in
-and I filled all required fields
+And I filled all required fields
 When I submit the formular
 Then the system should create the event
-and I should see the main menu of the event
+And I should see the main menu of the event
 
 Scenario: Submit the event formular with required not fields filled in
 Given I am logged in
-and I did not fill all required fields
+And I did not fill all required fields
 When I submit the formular
 Then I should see the formular again
-and I should get a hint which fields are not valid
+And I should get a hint which fields are not valid
