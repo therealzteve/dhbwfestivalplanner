@@ -70,13 +70,13 @@ html {
     overflow-y:auto;
     overflow-x:hidden;
 }
-#rightside {
+#rightside, #inputs {
       width: 45%;
     height: 100%;
     float: right;
     padding: 10px;
 }
-#leftside {
+#leftside, #labels {
     float: left;
     width: 45%;
     height: 100%;
