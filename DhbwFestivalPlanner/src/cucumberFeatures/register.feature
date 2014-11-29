@@ -7,5 +7,4 @@ When I click Register
 And I fill out the required Information
 And click submit
 Then I return to the Login form
-And my Account is unlocked
-And I am able to Login now
+And my Account is unlocked so I am able to Login now
