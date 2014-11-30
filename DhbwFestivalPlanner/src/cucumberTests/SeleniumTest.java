@@ -77,17 +77,17 @@ driver = new FirefoxDriver();
 	
 	//REGISTER
 	
-	/*   public void clickRegister(){
+	   public void clickRegister(){
         driver.findElement(By.xpath("//div[@onclick='showregister(this)']")).click();
     }
     
     public void fillOutRegister(){
         driver.findElement(By.name("email")).clear();
-        driver.findElement(By.name("email")).sendKeys("test@test.com");
+        driver.findElement(By.name("email")).sendKeys("test3@test.com");
         driver.findElement(By.cssSelector("#registerform > form > input[name=\"username\"]")).clear();
-        driver.findElement(By.cssSelector("#registerform > form > input[name=\"username\"]")).sendKeys("ich");
+        driver.findElement(By.cssSelector("#registerform > form > input[name=\"username\"]")).sendKeys("Test3");
         driver.findElement(By.cssSelector("#registerform > form > input[name=\"password\"]")).clear();
-        driver.findElement(By.cssSelector("#registerform > form > input[name=\"password\"]")).sendKeys("meinpasswort");
+        driver.findElement(By.cssSelector("#registerform > form > input[name=\"password\"]")).sendKeys("test");
         
     }
     public void submitRegister(){
@@ -99,13 +99,13 @@ driver = new FirefoxDriver();
     }
     public void firstLoginRegister(){
         driver.findElement(By.name("username")).clear();
-        driver.findElement(By.name("username")).sendKeys("ich");
+        driver.findElement(By.name("username")).sendKeys("Test3");
         driver.findElement(By.name("password")).clear();
-        driver.findElement(By.name("password")).sendKeys("meinpasswort");
+        driver.findElement(By.name("password")).sendKeys("test");
         driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
           assertEquals("Deine Events:", driver.getTitle());
 
-    }*/
+    }
     
     //DISPLAY
     

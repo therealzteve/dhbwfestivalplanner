@@ -63,7 +63,7 @@ public class StepDefs {
 	
 	//REGISTER
 	
-	/*@Given("^I am on the Homepage$")
+	@Given("^I am on the Homepage$")
 	public void i_am_on_the_Homepage() throws Throwable {
 	    setUpWebDriver();
 	}
@@ -94,7 +94,7 @@ public class StepDefs {
 	public void my_Account_is_unlocked_so_I_am_able_to_Login_now() throws Throwable {
 		script.firstLoginRegister();
 	  
-	}*/
+	}
 	
 	//DISPLAY
 	
