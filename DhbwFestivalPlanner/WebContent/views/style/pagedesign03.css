@@ -38,13 +38,11 @@ html {
     height:20px;
     top:0;
     left:0;
-    background-color:rgba(253,
-    192,
-    53,
-    0.55);
+    background-color:rgba(69, 116, 203, 0.55);
     position:fixed;
 }
 #content {
+    color: white;
     padding:50px 0px 20px 0px;
     width:100%;
     height:100%;
@@ -54,10 +52,7 @@ html {
 #logobox {
     display:inline-block;
     margin:0px auto;
-    background-color:rgba(250,
-    247,
-    247,
-    0.95);
+    background-color:rgba(247, 250, 248, 0.95);
     border-bottom-left-radius:15px;
     border-bottom-right-radius:15px;
     text-transform:uppercase;
@@ -86,8 +81,8 @@ top: 10px;
     height:492px;
     padding:10px;
     margin: 30px;
-    background-color: rgba(255, 220, 30, 0.56);
-    border:1px solid black;
+    background-color: rgba(0,0,0, 0.4);
+    border:1px solid rgba(255, 255, 255, 0.62);
     border-radius: 5px;
 }
 #buttons {
@@ -96,9 +91,10 @@ top: 10px;
     width:40%;
     height:90%;
     margin-top: 20px;
+    color:white;
 }
-#guestl {
-    background-color: rgba(255, 220, 30, 0.56);
+#zguestl {
+    background-color: rgba(0, 0, 0, 0.4);
     display:inline-block;
     width:45%;
     height:auto;
@@ -106,38 +102,36 @@ top: 10px;
     padding:10px;
     padding-right: 5px;
     border-radius:5px;
-    border:1px solid black;
+    border:1px solid rgba(255, 255, 255, 0.62);
     margin: 20px;
     margin-right: 10px;
 }
-#zgaeste {
+#zzgaeste {
     list-style-type:none;
-    border-bottom:1px solid black;
+    border-bottom:1px solid rgba(255, 255, 255, 0.62);
     height:200px;
     overflow-y:auto;
     overflow-x:hidden
 }
-#vgaeste {
+#vzgaeste {
     height:200px;
     list-style-type:none;
     overflow-y:auto;
     overflow-x:hidden
 }
 .button {
-    background-color:rgba(255,
-    212,
-    30,
-    0.65);
+    background-color:rgba(0,0,0,0.4);
     margin:4px;
     padding:2px;
-    border:1px solid black;
+    color: white;
+    border:1px solid rgba(255, 255, 255, 0.62);
     width:20%;
     height:40px;
     font-family:"Novitolight";
     text-transform:uppercase;
     font-size:30px;
     text-decoration:none;
-    color:black;
+    color:white;
     border-radius:5px;
 }
 .heading {
@@ -147,6 +141,7 @@ top: 10px;
 }
 
 #imbutton {
+    color: white;
     margin-bottom: 20px;
     margin-top: 90%;
 }

@@ -97,7 +97,7 @@ top: 10px;
     height:90%;
     margin-top: 20px;
 }
-#guestl {
+#zguestl {
     background-color: rgba(255, 220, 30, 0.56);
     display:inline-block;
     width:45%;
@@ -110,14 +110,14 @@ top: 10px;
     margin: 20px;
     margin-right: 10px;
 }
-#zgaeste {
+#zzgaeste {
     list-style-type:none;
     border-bottom:1px solid black;
     height:200px;
     overflow-y:auto;
     overflow-x:hidden
 }
-#vgaeste {
+#vzgaeste {
     height:200px;
     list-style-type:none;
     overflow-y:auto;
