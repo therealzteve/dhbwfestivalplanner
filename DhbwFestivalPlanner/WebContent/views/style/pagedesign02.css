@@ -76,11 +76,13 @@ html {
     width:30%;
     height:100%;
     float:right;
-    padding:10px;
+    padding-right:20px;
+    position: relative;
+top: 10px;
 }
 #leftside {
     float:left;
-    width:60%%;
+    width:60%;
     height:492px;
     padding:10px;
     margin: 30px;
