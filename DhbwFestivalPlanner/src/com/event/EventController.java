@@ -39,7 +39,7 @@ public class EventController {
 			@RequestParam(value = "id", required = false, defaultValue = "-1") int id,
 			@RequestParam(value = "title", required = false) String title,
 			@RequestParam(value = "address", required = false) String address,
-			@RequestParam(value = "plz", required = false) int plz,
+			@RequestParam(value = "plz", required = false, defaultValue="0") int plz,
 			@RequestParam(value = "city", required = false) String city)
 			//@RequestParam(value = "date", required = false) Date date,
 			//@RequestParam(value = "time", required = false) Date time)

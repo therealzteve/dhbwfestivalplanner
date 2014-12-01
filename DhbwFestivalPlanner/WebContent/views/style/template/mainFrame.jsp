@@ -16,7 +16,7 @@
 <body>
     <div id="header">
         <a class="icons" href="#" id="postfachbutton">g</a>
-        <a class="icons" href="#" id="ausloggenbutton">L</a>
+        <a class="icons" href="<c:url value="/logout"></c:url>" id="ausloggenbutton">L</a>
         <a class="icons" href="#" id="einstellungsbutton">Y</a>
         <div class="icons" id="headerplatzhalter"></div>
         <center>

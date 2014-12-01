@@ -26,40 +26,64 @@
             <div id=leftside>
                 <form method="post" id="eventdata">
                     <h1>Allgemeines: </h1>
-                    <label for="name">Name der Veranstaltung:</label>
-                    <input type="text" value="${event.name}" id="name">
-                    <br>
-                    <label for="datum">Datum:</label>
-                    <input type="date" id="date">
-                    <br>
-                    <label for="hour">Uhrzeit:</label>
-                    <input type="time" id="hour">
-                    <br>
-                    <label>Adresse:</label>
-                    <br>
-                    <label for="anschrift">Name:</label>
-                    <input type="text" id="anschrift">
-                    <br>
-                    <label for="strasse">Straße:</label>
-                    <input type="text" id="strasse">
-                    <br>
-                    <label for="hausnummer">Hausnummer:</label>
-                    <input type="text" id="hausnummer">
-                    <br>
-                    <label for="ort">Ort:</label>
-                    <input type="text" id="ort">
-                    <br>
-                    <label for="plz">Postleitzahl:</label>
-                    <input type="text" id="plz">
-                    <br>
-                    <label for="beschreibung">Beschreibung:</label>
-                    <textarea id="beschreibung" placeholder="Füge hier einen Beschreibungstext für deine Gäste ein!">
+                    <div id="labels">
+                        <label for="name">Name der Veranstaltung:</label>
+                        <br>
+                        <label for="datum">Datum:</label>
+                        <br>
+                        <label for="hour">Uhrzeit:</label>
+                        <br>
+                        <br>
+                        <label>Adresse</label>
+                        <br>
+                        <label for="anschrift">Name:</label>
+                        <br>
+                        <label for="strasse">Straße:</label>
+                        <br>
+                        <label for="hausnummer">Hausnummer:</label>
+                        <br>
+                        <label for="ort">Ort:</label>
+                        <br>
+                        <label for="plz">Postleitzahl:</label>
+                        <br>
+                        <label for="beschreibung">Beschreibung:</label>
+                        <br>
+                    </div>
+                    <div id="inputs">
 
-                    </textarea>
-                    <br>
-                    <input type="submit" value="Abbrechen">
-                    <input type="submit" value="Los geht's">
+                        <input type="text" value="${event.name}" id="name">
+                        <br>
 
+                        <input type="date" id="date">
+                        <br>
+
+                        <input type="time" id="hour">
+                        <br>
+
+                        <br>
+
+                        <input type="text" id="anschrift">
+                        <br>
+
+                        <input type="text" id="strasse">
+                        <br>
+
+                        <input type="text" id="hausnummer">
+                        <br>
+
+                        <input type="text" id="ort">
+                        <br>
+
+                        <input type="text" id="plz">
+                        <br>
+
+                        <textarea id="beschreibung" placeholder="Füge hier einen Beschreibungstext für deine Gäste ein!">
+
+                        </textarea>
+                        <br>
+                        <input type="submit" value="Abbrechen">
+                        <input type="submit" value="Los geht's">
+                    </div>
 
             </div>
             <div id="rightside">

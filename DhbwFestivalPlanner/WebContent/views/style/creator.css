@@ -70,13 +70,13 @@ html {
     overflow-y:auto;
     overflow-x:hidden;
 }
-#rightside {
+#rightside, #inputs {
       width: 45%;
     height: 100%;
     float: right;
     padding: 10px;
 }
-#leftside {
+#leftside, #labels {
     float: left;
     width: 45%;
     height: 100%;
@@ -85,4 +85,12 @@ html {
 #bilddesign {
     height: auto;
     width: 100%;
+}
+#beschreibung{
+	font-family:"Muli";
+	font-size: 10pt;
+	width: 50%;
+	height:60px;
+	margin-top: 2px;
+	margin-bottom: 2px;
 }
