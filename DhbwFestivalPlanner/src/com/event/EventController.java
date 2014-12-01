@@ -40,9 +40,9 @@ public class EventController {
 			@RequestParam(value = "title", required = false) String title,
 			@RequestParam(value = "address", required = false) String address,
 			@RequestParam(value = "plz", required = false, defaultValue="0") int plz,
-			@RequestParam(value = "city", required = false) String city)
-			//@RequestParam(value = "date", required = false) Date date,
-			//@RequestParam(value = "time", required = false) Date time)
+			@RequestParam(value = "city", required = false) String city,
+			@RequestParam(value = "date", required = false) Date date,
+			@RequestParam(value = "time", required = false) Date time)
 			throws Exception {
 		Session session = sessionFactory.openSession();
 		User user = UserHelper.getCurrentUser();
@@ -147,7 +147,7 @@ public class EventController {
 		return "event/edit";
 	}
 	
-	@RequestMapping("/guestView")
+	@RequestMapping(value = {"/guestView", "/guestview"})
 	public String guestView(
 			Model model,
 			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
