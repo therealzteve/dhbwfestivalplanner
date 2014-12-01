@@ -103,7 +103,7 @@ public class EventController {
 
 	@RequestMapping("/list")
 	public String list(Model model) {
-
+ 
 		// Aktueller User bestimmen
 		User user = UserHelper.getCurrentUser();
 
