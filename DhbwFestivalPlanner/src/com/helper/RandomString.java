@@ -23,7 +23,7 @@ public class RandomString {
     if (length < 1)
       throw new IllegalArgumentException("length < 1: " + length);
     buf = new char[length];
-  }
+  } 
 
   public String nextString() {
     for (int idx = 0; idx < buf.length; ++idx)

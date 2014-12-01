@@ -23,9 +23,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @Table(name = "veranstalter")
 public class User implements Serializable, UserDetails {
-
+ 
 	@Id
-	@Column(name = "ID")
+	@Column(name = "ID") 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 

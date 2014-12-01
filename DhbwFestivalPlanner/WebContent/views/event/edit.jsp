@@ -42,10 +42,13 @@
 							for="beschreibung">Beschreibung:</label> <br>
 					</div>
 					<div id="inputs">
-						<input type="text" name="title" id="title" value="${event.title}"> <br> <input
-							type="text" name="date" id="date" value="${event.date}" placeholder="dd.mm.yyyy"
+						<input type="text" name="title" id="title" value="${event.title}"> <br> 
+							<%-- Geaendert damit formatiertes Datum und Uhrzeit angezeigt wird, deswegen nicht
+							event.date sondern nur date --%>
+							<input
+							type="text" name="date" id="date" value="${date}" placeholder="dd.mm.yyyy"
 							onfocus="pickDate()"> <br> <input type="text"
-							name="time" id="time" placeholder="hh:mm" value="${event.time}" onfocus="pickTime()"> <br>
+							name="time" id="time" placeholder="hh:mm" value="${time}" onfocus="pickTime()"> <br>
 
 						<input type="text" name="veranstalter" id="veranstalter" value="${event.name}"> <br> <input
 							type="text" name="address" id="address" value="${event.address}"> <br>

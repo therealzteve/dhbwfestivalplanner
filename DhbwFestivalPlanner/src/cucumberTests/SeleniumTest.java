@@ -1,14 +1,14 @@
 package cucumberTests;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.*;
-
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
-
+ 
 public class SeleniumTest {
 
     private WebDriver driver;
@@ -135,7 +135,7 @@ driver = new FirefoxDriver();
         driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
           assertEquals("Deine Events:", driver.getTitle());
 
-    }
+    } 
     
     //DISPLAY
     
