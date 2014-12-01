@@ -54,8 +54,8 @@
                 
                 <br>-->
 
-						<input type="text" name="plz" id="plz" value="${event.plz}"> <br> <input type="text"
-							name="city" id="city" value="${event.city}"> <br>
+						<input type="text" name="plz" id="plz" value="${event.plz}"> <br> 
+						<input type="text" name="city" id="city" value="${event.city}"> <br>
 						<textarea id="beschreibung">Füge hier einen Beschreibungstext für deine Gäste ein!</textarea>
 						<br>
 						<c:if test="${error}">
