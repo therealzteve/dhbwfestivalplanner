@@ -95,6 +95,38 @@ public class StepDefs {
 		script.firstLoginRegister();
 	  
 	}*/
+	@Given("^I am on the Homepage$")
+	public void i_am_on_the_Homepage() throws Throwable {
+	    setUpWebDriver();
+	}
+
+	@When("^I click Register$")
+	public void i_click_Register() throws Throwable {
+	    script.clickRegister();
+	}
+
+	@When("^I fill out the required Information$")
+	public void i_fill_out_the_required_Information() throws Throwable {
+	    script.fillOutRegister();
+
+	}
+
+	@When("^click submit$")
+	public void click_submit() throws Throwable {
+	    script.submitRegister();
+	}
+
+	@Then("^I return to the Login form$")
+	public void i_return_to_the_Login_form() throws Throwable {
+		script.returnToLoginRegister();
+	    
+	}
+
+	@Then("^my Account is unlocked so I am able to Login now$")
+	public void my_Account_is_unlocked_so_I_am_able_to_Login_now() throws Throwable {
+		script.firstLoginRegister();
+	  
+	}
 	
 	//DISPLAY
 	
