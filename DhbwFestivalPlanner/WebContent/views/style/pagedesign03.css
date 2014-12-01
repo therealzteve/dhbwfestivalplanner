@@ -21,7 +21,7 @@
     -o-box-sizing:border-box;
 }
 body {
-    background-image:url('DhbwFestivalPlanner/WebContent/views/style/images/LustigeBrille.jpg');
+    background-image:url('images/LustigeBrille.jpg');
     background-size:cover;
     background-position:0% 20%;
     color:black;
@@ -81,30 +81,15 @@ html {
 
     display: inline-block;
     float: right;
-    width: 45%;
+    width: 35%;
     height: 100%;
     padding: 10px;
 }
 
-.gaestel {
-          background-color: rgba(255, 255, 255, 0.71);
-    -moz-border-radius: 15px;
-    border-radius: 5px;
-    border-top-left-radius: 0px;
-    display: block;
-    padding: 5px;
-    position: relative;
-    height: 200px;
-       overflow-y: auto;
-    overflow-x: hidden
-}
-}
-
-
 
 #guestl {
-        display: block;
-   width: 45%;
+        display: inline-block;
+   width: 35%;
     height: 100%;
     float: left;
     padding: 10px;
