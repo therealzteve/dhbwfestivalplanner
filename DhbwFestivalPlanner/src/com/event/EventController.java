@@ -1,5 +1,8 @@
 package com.event;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -41,9 +44,23 @@ public class EventController {
 			@RequestParam(value = "address", required = false) String address,
 			@RequestParam(value = "plz", required = false, defaultValue="0") int plz,
 			@RequestParam(value = "city", required = false) String city,
-			@RequestParam(value = "date", required = false) Date date,
-			@RequestParam(value = "time", required = false) Date time)
+			@RequestParam(value = "date", required = false) String date,
+			@RequestParam(value = "time", required = false) String time)
 			throws Exception {
+		
+		Date parsedDate = null;
+		try {
+			parsedDate = parseDate(date);
+		} catch (Exception e) {
+			Event event = getEvent(id);
+
+			//TODO Return current values
+			
+			model.addAttribute("event", event);
+			return "event/edit";
+		}
+		
+		
 		Session session = sessionFactory.openSession();
 		User user = UserHelper.getCurrentUser();
 
@@ -71,7 +88,7 @@ public class EventController {
 		event.setAddress(address);
 		event.setCity(city);
 		event.setPlz(plz);
-		//event.setDate(date);
+		event.setDate(parsedDate);
 		//event.setTime(time);
 
 		// Save event in database
@@ -131,11 +148,7 @@ public class EventController {
 			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
 
 		if (id != -1) {
-			Session session = sessionFactory.openSession();
-			session.beginTransaction();
-			Event event = (Event) session.get(Event.class, id);
-			session.getTransaction().commit();
-			session.close();
+			Event event = getEvent(id);
 
 			model.addAttribute("event", event);
 
@@ -146,6 +159,7 @@ public class EventController {
 		
 		return "event/edit";
 	}
+	
 	
 	@RequestMapping(value = {"/guestView", "/guestview"})
 	public String guestView(
@@ -172,4 +186,18 @@ public class EventController {
 		return "event/guestView";
 	}
 
+	private Date parseDate(String date) throws ParseException{
+		DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
+		Date parsedDate  = df.parse(date);
+		return parsedDate;
+	}
+	
+	private Event getEvent(int id){
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Event event = (Event) session.get(Event.class, id);
+		session.getTransaction().commit();
+		session.close();
+		return event;
+	}
 }

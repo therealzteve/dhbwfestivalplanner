@@ -25,7 +25,7 @@ public class Guest {
 	@JoinColumn(name= "Event_ID")
 	Event event;
 
-	boolean receivesEmail, confirmed;
+	boolean receivesEmail, confirmed, receivedInvitation;
 
 	public int getId() {
 		return id;
@@ -88,5 +88,13 @@ public class Guest {
 			return true;
 		}
 		return false;
+	}
+
+	public boolean isReceivedInvitation() {
+		return receivedInvitation;
+	}
+
+	public void setReceivedInvitation(boolean receivedInvitation) {
+		this.receivedInvitation = receivedInvitation;
 	}
 }

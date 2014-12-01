@@ -36,12 +36,16 @@ public class Event implements Serializable{
 	
 	
 	private String title, address, city;
+	
+
 
 	@OneToMany(mappedBy="event", fetch= FetchType.EAGER)
 	private List<Guest> guests;
 
 
 	int plz = -1;
+	private int design = -1;
+
 	
 	@ManyToOne
 	@JoinColumn(name= "Veranstalter_ID")
@@ -132,5 +136,12 @@ public class Event implements Serializable{
 
 	public void setGuests(List<Guest> guests) {
 		this.guests = guests;
+	}
+	public int getDesign() {
+		return design;
+	}
+
+	public void setDesign(int design) {
+		this.design = design;
 	}
 }
