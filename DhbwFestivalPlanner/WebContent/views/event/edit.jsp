@@ -65,7 +65,8 @@
 						</c:if>
 						<input type="submit" value="Abbrechen"
 							onclick="javascript:window.close()"> <input type="submit"
-							value="Los geht's">
+							value="Los geht's" onsubmit="sendEdit()">
+							<div id="aftersend"></div>
 					</div>
 				</div>
 

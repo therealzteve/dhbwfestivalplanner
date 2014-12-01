@@ -50,6 +50,12 @@ function fetchguests(url) {
 
 }
 
+function sendEdit(){
+	document.getElementById("aftersend").innerHTML = "Änderungen erfolgreich übertragen! Bitte schließe das Fenster." +
+			"<br> <input type='submit' value='Fenster schließen' onsubmit='javascript:window.close()>';
+	
+}
+
 function pickDate(){
 	$('#date').datetimepicker({
 	 lang:'de',
