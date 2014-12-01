@@ -26,37 +26,45 @@ body {
     background-position:0% 20%;
     color:black;
     font-family:"Muli";
+    min-width: 1000px;
 }
 body,
 html {
     width:100%;
     height:100%;
 }
-
 #header {
     width:100%;
-    height:40px;
+    height:20px;
     top:0;
     left:0;
-    background-color:rgba(253, 192, 53, 0.55);
+    background-color:rgba(253,
+    192,
+    53,
+    0.55);
     position:fixed;
 }
 #content {
-    padding: 50px 0px 20px 0px;
+    padding:50px 0px 20px 0px;
     width:100%;
-    height: 100%;
+    height:100%;
+    overflow-y:auto;
+    overflow-x:auto;
 }
 #logobox {
     display:inline-block;
     margin:0px auto;
-    background-color:rgba(250,  247, 247, 0.95);
+    background-color:rgba(250,
+    247,
+    247,
+    0.95);
     border-bottom-left-radius:15px;
-    border-bottom-right-radius: 15px;
-        text-transform:uppercase;
+    border-bottom-right-radius:15px;
+    text-transform:uppercase;
     font-family:"Novitolight";
     text-align:center;
-    font-size: 55px;
-    padding: 0 15px;
+    font-size:30px;
+    padding:0 15px;
 }
 #headerLogo {
     text-transform:uppercase;
@@ -65,34 +73,98 @@ html {
     font-size:3.5em;
 }
 #rightside {
-      width: 45%;
-    height: 100%;
-    float: right;
-    padding: 10px;
+    width:30%;
+    height:100%;
+    float:right;
+    padding:10px;
 }
 #leftside {
-    float: left;
-    width: 45%;
-    height: 100%;
-    padding: 10px;
+    float:left;
+    width:60%%;
+    height:492px;
+    padding:10px;
+    margin: 30px;
+    background-color: rgba(255, 220, 30, 0.56);
+    border:1px solid black;
+    border-radius: 5px;
 }
-
 #buttons {
-
-    display: inline-block;
-    float: right;
-    width: 35%;
-    height: 100%;
-    padding: 10px;
+    display:inline-block;
+    float:right;
+    width:40%;
+    height:90%;
+    margin-top: 20px;
+}
+#guestl {
+    background-color: rgba(255, 220, 30, 0.56);
+    display:inline-block;
+    width:45%;
+    height:auto;
+    float:left;
+    padding:10px;
+    padding-right: 5px;
+    border-radius:5px;
+    border:1px solid black;
+    margin: 20px;
+    margin-right: 10px;
+}
+#zgaeste {
+    list-style-type:none;
+    border-bottom:1px solid black;
+    height:200px;
+    overflow-y:auto;
+    overflow-x:hidden
+}
+#vgaeste {
+    height:200px;
+    list-style-type:none;
+    overflow-y:auto;
+    overflow-x:hidden
+}
+.button {
+    background-color:rgba(255,
+    212,
+    30,
+    0.65);
+    margin:4px;
+    padding:2px;
+    border:1px solid black;
+    width:20%;
+    height:40px;
+    font-family:"Novitolight";
+    text-transform:uppercase;
+    font-size:30px;
+    text-decoration:none;
+    color:black;
+    border-radius:5px;
+}
+.heading {
+    font-family: "Novitolight";
+    text-transform: uppercase;
+    font-size: 30px;
 }
 
+#imbutton {
+    margin-bottom: 20px;
+    margin-top: 90%;
+}
 
-#guestl {
-        display: inline-block;
-   width: 35%;
-    height: 100%;
-    float: left;
+#titel {
     padding: 10px;
-    border-radius: 0px;
-    border-bottom: 1px solid black
+    margin: 5px;
+    text-transform: uppercase;
+    font-family: "Novitolight";
+    font-size: 50px;
+}
+
+#beschreibung {
+    	font-family:"Muli";
+	font-size: 12pt;
+	width: 100%;
+	height:250px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+    overflow-y:auto;
+    overflow-x:hidden
+
 }
