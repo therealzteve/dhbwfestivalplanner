@@ -38,10 +38,7 @@ html {
     height:20px;
     top:0;
     left:0;
-    background-color:rgba(253,
-    192,
-    53,
-    0.55);
+    background-color:rgba(147, 92, 3, 0.55);
     position:fixed;
 }
 #content {
@@ -73,10 +70,10 @@ html {
     font-size:3.5em;
 }
 #rightside {
-    width:30%;
+    width:35%;
     height:100%;
+    margin-right: 10px;
     float:right;
-    padding-right:20px;
     position: relative;
 top: 10px;
 }
@@ -85,17 +82,21 @@ top: 10px;
     width:60%;
     height:auto;
     padding:10px;
-    margin: 30px;
+    margin-top: 30px;
+    margin-left: 10px;
     background-color: rgba(255, 218, 244, 0.65);
     border:1px solid black;
     border-radius: 5px;
 }
 #buttons {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
     display:inline-block;
     float:right;
     width:40%;
     height:90%;
     margin-top: 20px;
+    border: 1px solid black;
 }
 #guestl {
     display:inline-block;
@@ -122,10 +123,11 @@ top: 10px;
     margin:4px;
     padding:2px;
     border:1px solid black;
-    width:20%;
-    height:40px;
+    width:40%;
+    height:auto;
     font-family:"Novitolight";
     text-transform:uppercase;
+    text-align: center;
     font-size:30px;
     text-decoration:none;
     color:black;
