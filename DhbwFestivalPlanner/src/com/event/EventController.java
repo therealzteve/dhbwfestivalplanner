@@ -63,6 +63,7 @@ public class EventController {
 			fillEventData(event, title, name, address, city, plz);
 
 			model.addAttribute("event", event);
+			model.addAttribute("dateInvalid",true);
 			return "event/edit";
 		}
 
