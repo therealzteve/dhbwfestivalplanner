@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html><!--   PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">-->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -26,40 +26,62 @@
         </center>
 
     </div>
-    <div id="content">
+     <div id="content">
         <div id="whitewrapper">
-        <div id=leftside>
+            <div id=leftside>
+                <form method="post" id="eventdata">
+                    <h1>Allgemeines: </h1>
+                    <div id="labels">
             <form method="post" id="eventdata" action="<c:url value="/event/save" />">
             <input type="hidden" id="id" value="${event.id}">
                 <label for="title">Name der Veranstaltung:</label>
-                <input type="text" id="title">
                 <br>
                 <label for="date">Datum:</label>
-                <input type="text" id="date" onfocus="pickDate()">
                 <br>
                 <label for="time">Uhrzeit:</label>
-                <input type="text" id="time" onfocus="pickTime()">
                 <br>
-                <label>Adresse:</label>
-                <br>
-                <label for="address">Name:</label>
-                <input type="text" id="address">
+                <label for="veranstalter">Name:</label>
                 <br>
                 <label for="address">Adresse:</label>
+                <br>
+                <label for="plz">Postleitzahl:</label>
+                <br>
+                <label for="city">Ort:</label>
+                <br>
+                <label for="beschreibung">Beschreibung:</label>
+                        <br>
+                 </div>
+                    <div id="inputs">
+                <input type="text" id="title">
+                <br>
+                <input type="text" id="date" placeholder="dd.mm.yyyy" onfocus="pickDate()">
+                <br>
+                <input type="text" id="time" placeholder="hh:mm" onfocus="pickTime()">
+                <br>
+                
+                <input type="text" id="veranstalter">
+                <br>
+                
                 <input type="text" id="address">
                 <br>
                 <!--  <label for="hausnummer">Hausnummer:</label>
                 <input type="text" id="hausnummer">
                 
                 <br>-->
-                <label for="city">Ort:</label>
-                <input type="text" id="city">
-                <br>
-                <label for="plz">Postleitzahl:</label>
+                
                 <input type="text" id="plz">
                 <br>
-                <input type="submit" value="Abbrechen">
-                <input type="submit" value="Los geht's">
+                
+                <input type="text" id="city">
+                <br>
+                <textarea id="beschreibung" >Füge hier einen Beschreibungstext für deine Gäste ein!</textarea>
+                        <br>
+                        <c:if test="${error}">
+                    	<div class="errordiv infodiv" id="editerror" >Bitte fülle alle Felder aus!</br></div>
+                    </c:if>
+                <input type="submit" value="Abbrechen" onclick="javascript:window.close()">
+                <input type="submit" value="Los geht's" onclick="javascript:window.close()">
+                </div>
                 </div>
                 
                             <div id="rightside">

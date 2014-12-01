@@ -86,3 +86,11 @@ html {
     height: auto;
     width: 100%;
 }
+#beschreibung{
+	font-family:"Muli";
+	font-size: 10pt;
+	width: 50%;
+	height:60px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
