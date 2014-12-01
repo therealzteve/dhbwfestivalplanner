@@ -33,7 +33,7 @@
 				<div id=leftside>
 					<h1>Allgemeines:</h1>
 					<div id="labels">
-						<input type="hidden" id="id" value="${event.id}"> <label
+						<input type="hidden"  name="id" id="id" value="${event.id}"> <label
 							for="title">Name der Veranstaltung:</label> <br> <label
 							for="date">Datum:</label> <br> <label for="time">Uhrzeit:</label>
 						<br> <label for="veranstalter">Name:</label> <br> <label
@@ -42,20 +42,20 @@
 							for="beschreibung">Beschreibung:</label> <br>
 					</div>
 					<div id="inputs">
-						<input type="text" id="title"> <br> <input
-							type="text" id="date" placeholder="dd.mm.yyyy"
+						<input type="text" name="title" id="title" value="${event.title}"> <br> <input
+							type="text" name="date" id="date" value="${event.date}" placeholder="dd.mm.yyyy"
 							onfocus="pickDate()"> <br> <input type="text"
-							id="time" placeholder="hh:mm" onfocus="pickTime()"> <br>
+							name="time" id="time" placeholder="hh:mm" value="${event.time}" onfocus="pickTime()"> <br>
 
-						<input type="text" id="veranstalter"> <br> <input
-							type="text" id="address"> <br>
+						<input type="text" name="veranstalter" id="veranstalter" value="${event.veranstalter}"> <br> <input
+							type="text" name="address" id="address" value="${event.address}"> <br>
 						<!--  <label for="hausnummer">Hausnummer:</label>
                 <input type="text" id="hausnummer">
                 
                 <br>-->
 
-						<input type="text" id="plz"> <br> <input type="text"
-							id="city"> <br>
+						<input type="text" name="plz" id="plz" value="${event.plz}"> <br> <input type="text"
+							name="city" id="city" value="${event.city}"> <br>
 						<textarea id="beschreibung">Füge hier einen Beschreibungstext für deine Gäste ein!</textarea>
 						<br>
 						<c:if test="${error}">
