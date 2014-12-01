@@ -83,10 +83,10 @@ top: 10px;
 #leftside {
     float:left;
     width:60%;
-    height:492px;
+    height:auto;
     padding:10px;
     margin: 30px;
-    background-color: rgba(255, 220, 30, 0.56);
+    background-color: rgba(255, 218, 244, 0.65);
     border:1px solid black;
     border-radius: 5px;
 }
@@ -98,21 +98,15 @@ top: 10px;
     margin-top: 20px;
 }
 #guestl {
-    background-color: rgba(255, 220, 30, 0.56);
     display:inline-block;
-    width:45%;
     height:auto;
+    width: 800px;
     float:left;
-    padding:10px;
-    padding-right: 5px;
-    border-radius:5px;
-    border:1px solid black;
-    margin: 20px;
-    margin-right: 10px;
+    padding:15px;
+    margin-top: 20px;
 }
 #zgaeste {
     list-style-type:none;
-    border-bottom:1px solid black;
     height:200px;
     overflow-y:auto;
     overflow-x:hidden
@@ -124,10 +118,7 @@ top: 10px;
     overflow-x:hidden
 }
 .button {
-    background-color:rgba(255,
-    212,
-    30,
-    0.65);
+    background-color:rgba(255, 218, 244, 0.65);
     margin:4px;
     padding:2px;
     border:1px solid black;
@@ -169,4 +160,17 @@ top: 10px;
     overflow-y:auto;
     overflow-x:hidden
 
+}
+
+#vgaestelist {
+
+    display: inline-block;
+padding-left: 20px;
+    width:30%;
+}
+
+#gaestelist {
+    display: inline-block;
+float: left;
+    width:30%;
 }
