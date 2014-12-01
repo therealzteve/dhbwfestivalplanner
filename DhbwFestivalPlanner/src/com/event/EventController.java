@@ -3,6 +3,7 @@ package com.event;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.helper.UserHelper;
 import com.model.Event;
@@ -36,64 +36,54 @@ public class EventController {
 		return "event/create";
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/save", method = RequestMethod.POST) 
 	public String save(
 			Model model,
 			@RequestParam(value = "id", required = false, defaultValue = "-1") int id,
 			@RequestParam(value = "title", required = false) String title,
+			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
-			@RequestParam(value = "plz", required = false, defaultValue="0") int plz,
+			@RequestParam(value = "plz", required = false, defaultValue = "0") int plz,
 			@RequestParam(value = "city", required = false) String city,
 			@RequestParam(value = "date", required = false) String date,
 			@RequestParam(value = "time", required = false) String time)
 			throws Exception {
 		
-		Date parsedDate = null;
-		try {
-			parsedDate = parseDate(date);
-		} catch (Exception e) {
-			Event event = getEvent(id);
-
-			//TODO Return current values
-			
-			model.addAttribute("event", event);
-			return "event/edit";
-		}
-		
-		
-		Session session = sessionFactory.openSession();
 		User user = UserHelper.getCurrentUser();
 
-		Event event = null;
-		if (id != -1) {
-			event = (Event) session.get(Event.class, id);
+		Date parsedDate = null;
+		Date parsedTime = null;
+		try {
+			parsedDate = parseDate(date);
+			parsedTime = parseTime(time);
 
-			// This should not technically happen, otherwise the user changed
-			// violently the form.
-			if (event.getCreator().getId() != user.getId()) {
-				throw new Exception(
-						"A user tried to change an event which is not his own. Access denied.");
-			}
+		} catch (Exception e) {
 
-		} else {
+			Event event = getEvent(id, user, false);
+			fillEventData(event, title, name, address, city, plz);
 
-			event = new Event();
+			model.addAttribute("event", event);
+			model.addAttribute("dateInvalid",true);
+			return "event/edit";
+		}
 
+		Event event = getEvent(id, user, false);
+
+		if (event == null) {
+			throw new Exception("Event with id: " + id
+					+ " not found. Cancelling request.");
 		}
 
 		// Set event data
-		event.setName("the new event");
+		fillEventData(event, title, name, address, city, plz);
 		event.setCreator(user);
-		event.setTitle(title);
-		event.setAddress(address);
-		event.setCity(city);
-		event.setPlz(plz);
 		event.setDate(parsedDate);
-		//event.setTime(time);
+		event.setTime(parsedTime);
 
 		// Save event in database
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(event);
+		session.saveOrUpdate(event);
 		session.getTransaction().commit();
 
 		model.addAttribute("event", event);
@@ -103,7 +93,7 @@ public class EventController {
 
 	@RequestMapping("/list")
 	public String list(Model model) {
- 
+
 		// Aktueller User bestimmen
 		User user = UserHelper.getCurrentUser();
 
@@ -127,77 +117,124 @@ public class EventController {
 			Model model,
 			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
 
+		Event event = getEvent(id, UserHelper.getCurrentUser(), false);
+
 		if (id == -1) {
 			return null;
 		}
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Event event = (Event) session.get(Event.class, id);
-		session.getTransaction().commit();
-		session.close();
-
 		model.addAttribute("event", event);
 		Hibernate.initialize(event);
-		
+
 		return event;
 	}
-	
+
 	@RequestMapping("/edit")
 	public String edit(
 			Model model,
 			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
 
-		if (id != -1) {
-			Event event = getEvent(id);
+		Event event = getEvent(id, UserHelper.getCurrentUser(), false);
 
-			model.addAttribute("event", event);
-
-		}else{
-			model.addAttribute("event",new Event());
-		}
-		
-		
+		model.addAttribute("event", event);
+		model.addAttribute("time", formatTime(event.getTime()));
+		model.addAttribute("date", formatDate(event.getDate()));
+ 
 		return "event/edit";
 	}
-	
-	
-	@RequestMapping(value = {"/guestView", "/guestview"})
+
+	@RequestMapping(value = { "/guestView", "/guestview" })
 	public String guestView(
 			Model model,
 			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
 
 		if (id != -1) {
-			Session session = sessionFactory.openSession();
-			session.beginTransaction();
-			Event event = (Event) session.get(Event.class, id);
-			session.getTransaction().commit();
-			session.close();
-
-			if(event == null){
+			Event event = getEvent(id, null, true);
+			if (event == null) {
 				return "event/guestViewError";
 			}
 			model.addAttribute("event", event);
-
-		}else{
+		} else {
 			return "event/guestViewError";
 		}
-		
-		
+
 		return "event/guestView";
 	}
 
-	private Date parseDate(String date) throws ParseException{
+	private Event getOrCreateEvent(Session session, int id, User user,
+			boolean guest) {
+		Event event;
+		if (id != -1) {
+			event = (Event) session.get(Event.class, id);
+
+			// If given user is not the owner of the event, return null for
+			// security reasons
+			if (guest == false && event != null
+					&& event.getCreator().getId() != user.getId()) {
+				return null;
+			}
+		} else {
+			event = new Event();
+		}
+		return event;
+	}
+
+	private void fillEventData(Event event, String title, String name,
+			String address, String city, int plz) {
+		event.setTitle(title);
+		event.setName("Testort");
+		event.setAddress(address);
+		event.setCity(city);
+		event.setPlz(plz);
+	}
+
+	private Date parseDate(String date) throws ParseException {
 		DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
-		Date parsedDate  = df.parse(date);
+		Date parsedDate = df.parse(date);
 		return parsedDate;
 	}
-	
-	private Event getEvent(int id){
+
+	private Date parseTime(String time) throws ParseException {
+		String[] parsedTime = time.split(":");
+		int hours = Integer.valueOf(parsedTime[0]);
+		int minutes = Integer.valueOf(parsedTime[1]);
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.HOUR_OF_DAY, hours);
+		c.set(Calendar.MINUTE, minutes);
+		return c.getTime();
+	}
+
+	private Event getEvent(int id, User user, boolean guest) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Event event = (Event) session.get(Event.class, id);
+		Event event = getOrCreateEvent(session, id, user, guest);
 		session.getTransaction().commit();
 		session.close();
 		return event;
+	}
+
+	private String formatTime(Date date) {
+		if (date == null) {
+			return "";
+		}
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		String hours = "" + c.get(Calendar.HOUR_OF_DAY);
+		String minutes = "" + c.get(Calendar.MINUTE);
+		
+		//Add leading zero
+		if(minutes.length() == 1){
+			minutes = "0"+ minutes;
+		}
+		return hours + ":" + minutes;
+	}
+
+	private String formatDate(Date date) {
+		if (date == null) {
+			return "";
+		}
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		SimpleDateFormat df = new SimpleDateFormat("dd.mm.yyyy");
+		return df.format(date);
 	}
 }

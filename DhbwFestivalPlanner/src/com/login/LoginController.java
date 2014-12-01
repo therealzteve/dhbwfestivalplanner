@@ -25,10 +25,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.helper.RandomString;
-import com.model.User;
+import com.model.User; 
 
 @Controller
-public class LoginController {
+public class LoginController { 
 
 	@Autowired
 	private SessionFactory sessionFactory;
