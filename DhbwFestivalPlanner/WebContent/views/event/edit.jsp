@@ -28,7 +28,7 @@
 	</div>
 	<div id="content">
 		<div id="whitewrapper">
-			<form method="post" id="eventdata" action="sendEdit('<c:url value="/event/save?id=${event.id}" />')">
+			<form method="post" id="eventdata" action="sendEdit('<c:url value="/event/save?id=${event.id}" ></c:url>')">
 				<div id=leftside>
 					<h1>Allgemeines:</h1>
 					<div id="labels">
