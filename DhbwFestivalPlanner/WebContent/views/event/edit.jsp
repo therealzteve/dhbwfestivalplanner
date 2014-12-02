@@ -28,8 +28,7 @@
 	</div>
 	<div id="content">
 		<div id="whitewrapper">
-			<form method="post" id="eventdata"
-				action="<c:url value="/event/save" />">
+			<form method="post" id="eventdata" action="sendEdit('<c:url value="/event/save?id=${event.id}" />')">
 				<div id=leftside>
 					<h1>Allgemeines:</h1>
 					<div id="labels">
@@ -59,7 +58,7 @@
 
 						<input type="text" name="plz" id="plz" value="${event.plz}"> <br> 
 						<input type="text" name="city" id="city" value="${event.city}"> <br>
-						<textarea id="beschreibung">Füge hier einen Beschreibungstext für deine Gäste ein!</textarea>
+						<textarea id="beschreibung" placeholder="Füge hier einen Beschreibungstext für deine Gäste ein!"></textarea>
 						<br>
 						<c:if test="${error}">
 							<div class="errordiv infodiv" id="editerror">
@@ -68,7 +67,7 @@
 						</c:if>
 						<input type="submit" value="Abbrechen"
 							onclick="javascript:window.close()"> <input type="submit"
-							value="Los geht's" onsubmit="sendEdit()">
+							value="Los geht's">
 							<div id="aftersend"></div>
 					</div>
 				</div>

@@ -50,9 +50,15 @@ function fetchguests(url) {
 
 }
 
-function sendEdit(){
-	document.getElementById("aftersend").innerHTML = "Änderungen erfolgreich übertragen! Bitte schließe das Fenster." +
-			"<br> <input type='submit' value='Fenster schließen' onsubmit='javascript:window.close()'>";
+function sendEdit(url){
+	$.post( url, function( data ) {
+		$( "#eventdata" ).serialize();
+		})
+	.done(function(){document.getElementById("aftersend").innerHTML = "Änderungen erfolgreich übertragen! Bitte schließe das Fenster." +
+			"<br> <input type='submit' value='Fenster schließen' onsubmit='javascript:window.close()'>";})
+	.fail(function() {
+		document.getElementById("aftersend").innerHTML = "Es ist ein Fehler aufgetreten!";
+});
 	
 }
 
