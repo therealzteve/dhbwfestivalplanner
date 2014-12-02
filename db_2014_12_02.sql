@@ -35,10 +35,11 @@ CREATE TABLE `event` (
   `date` datetime NOT NULL,
   `time` datetime DEFAULT NULL,
   `design` int(11) NOT NULL DEFAULT '1',
+  `description` longtext,
   PRIMARY KEY (`ID`),
   KEY `fk_Event_Veranstalter_idx` (`Veranstalter_ID`),
   CONSTRAINT `fk_Event_Veranstalter` FOREIGN KEY (`Veranstalter_ID`) REFERENCES `veranstalter` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +48,7 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES (1,'TestEvent',1,NULL,NULL,-1,'','0000-00-00 00:00:00',NULL,1),(2,'MegaEvent',1,NULL,NULL,-1,'','0000-00-00 00:00:00',NULL,1),(3,'Testort',6,'Test3','rerwgerw',123456,'ergerwg','2014-01-17 00:12:00','2014-12-01 15:00:42',1);
+INSERT INTO `event` VALUES (1,'TestEvent',1,NULL,NULL,-1,'','0000-00-00 00:00:00',NULL,1,NULL),(2,'MegaEvent',1,NULL,NULL,-1,'','0000-00-00 00:00:00',NULL,1,NULL),(3,'Testort',6,'Test3','rerwgerw',123456,'ergerwg','2014-01-17 00:12:00','2014-12-01 15:00:42',1,NULL),(4,'Testort',6,'Meine neue Party','Teststraße 1',76139,'Karlsruhe','2014-01-02 00:12:00','2014-12-02 16:00:12',0,'');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,4 +155,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-02 11:01:57
+-- Dump completed on 2014-12-02 16:04:52
