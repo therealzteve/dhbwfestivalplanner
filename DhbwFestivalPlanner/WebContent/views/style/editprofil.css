@@ -1,0 +1,123 @@
+@font-face{font-family:'Novito';src:url('Fonds/Novito.otf') format('opentype');
+ font-weight:normal;
+ font-style:normal;
+
+}
+@font-face{font-family:'Novitolight';src:url('fonts/Novitolight.otf') format('opentype');
+ font-weight:normal;
+ font-style:normal
+}
+@font-face{font-family:'Icons';src:url('fonts/sosaIcons.ttf') format('truetype');
+ font-weight:normal;
+ font-style:normal
+}
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+}
+body {
+    background-image:url('images/FrauBallons.jpg');
+    background-size:cover;
+    background-position:0% 20%;
+    color:black;
+    font-family:"Muli";
+}
+body,
+html {
+    width:100%;
+    height:100%;
+}
+#headeri {
+    width:100%;
+    height:20px;
+    top:0;
+    left:0;
+    background-color:rgba(253,
+    192,
+    53,
+    0.55);
+    position:fixed;
+}
+#contenti {
+    padding:50px 10px 20px 10px;
+    width:100%;
+    height:100%;
+    }
+#logoboxi {
+    display:inline-block;
+    margin:0px auto;
+    background-color:rgba(250,
+    247,
+    247,
+    0.95);
+    border-bottom-left-radius:15px;
+    border-bottom-right-radius:15px;
+    text-transform:uppercase;
+    font-family:"Novitolight";
+    text-align:center;
+    font-size:30px;
+    padding:0 15px;
+}
+#headerLogoi {
+    text-transform:uppercase;
+    font-family:"Novitolight";
+    text-align:center;
+    font-size:3.5em;
+}
+
+
+#labelsi {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#changes {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#placeholdershiat {
+    opacity: 0;
+}
+
+#editprofilheader {
+    font-family: "Novitolight";
+    font-size: 60px;
+    text-transform: uppercase;
+
+}
+#whity {
+    background-color:rgba(255, 255, 255, 0.53);
+    */ -moz-border-radius:15px;
+    border-radius:5px;
+    display:block;
+    margin: 30px;
+    margin-top: 30px;
+    padding:5px;
+    position:relative;
+    height:90%;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+
+
+.changeheader {
+     font-family: "Novitolight";
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+#placeholder01 {
+    opacity: 0;
+}
+
+#placeholder02 {
+    opacity: 0;
+    visibility: hidden;
+}
