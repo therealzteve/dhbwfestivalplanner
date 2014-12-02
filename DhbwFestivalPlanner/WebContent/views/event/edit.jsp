@@ -50,7 +50,7 @@
 							onfocus="pickDate()"> <br> <input type="text"
 							name="time" id="time" placeholder="hh:mm" value="${time}" onfocus="pickTime()"> <br>
 
-						<input type="text" name="veranstalter" id="veranstalter" value="${event.name}"> <br> <input
+						<input type="text" name="name" id="name" value="${event.name}"> <br> <input
 							type="text" name="address" id="address" value="${event.address}"> <br>
 						<!--  <label for="hausnummer">Hausnummer:</label>
                 <input type="text" id="hausnummer">
