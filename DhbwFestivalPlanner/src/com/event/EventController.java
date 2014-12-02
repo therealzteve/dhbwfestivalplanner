@@ -46,7 +46,9 @@ public class EventController {
 			@RequestParam(value = "plz", required = false, defaultValue = "0") int plz,
 			@RequestParam(value = "city", required = false) String city,
 			@RequestParam(value = "date", required = false) String date,
-			@RequestParam(value = "time", required = false) String time)
+			@RequestParam(value = "time", required = false) String time,
+			@RequestParam(value = "design", required = false, defaultValue = "0") int design
+			)
 			throws Exception {
 		
 		User user = UserHelper.getCurrentUser();
@@ -60,7 +62,7 @@ public class EventController {
 		} catch (Exception e) {
 
 			Event event = getEvent(id, user, false);
-			fillEventData(event, title, name, address, city, plz);
+			fillEventData(event, title, name, address, city, plz,design);
 
 			model.addAttribute("event", event);
 			model.addAttribute("dateInvalid",true);
@@ -75,7 +77,7 @@ public class EventController {
 		}
 
 		// Set event data
-		fillEventData(event, title, name, address, city, plz);
+		fillEventData(event, title, name, address, city, plz,design);
 		event.setCreator(user);
 		event.setDate(parsedDate);
 		event.setTime(parsedTime);
@@ -179,12 +181,13 @@ public class EventController {
 	}
 
 	private void fillEventData(Event event, String title, String name,
-			String address, String city, int plz) {
+			String address, String city, int plz, int design) {
 		event.setTitle(title);
 		event.setName("Testort");
 		event.setAddress(address);
 		event.setCity(city);
 		event.setPlz(plz);
+		event.setDesign(design);
 	}
 
 	private Date parseDate(String date) throws ParseException {

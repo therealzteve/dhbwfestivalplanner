@@ -43,9 +43,8 @@ public class Event implements Serializable{
 	private List<Guest> guests;
 
 
-	int plz = -1;
+	private int plz = -1;
 	private int design = -1;
-
 	
 	@ManyToOne
 	@JoinColumn(name= "Veranstalter_ID")
