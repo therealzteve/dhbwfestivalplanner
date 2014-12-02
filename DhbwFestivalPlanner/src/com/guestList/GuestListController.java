@@ -81,6 +81,15 @@ public class GuestListController {
 
 		return "guestList/show";
 	}
+	
+	
+	@RequestMapping(value = "/invite")
+	public String invite(@RequestParam(value = "id", required = true) int id){
+		Event event = getEvent(id);
+		
+		
+		return "";
+	}
 
 	/**
 	 * Ueberprueft ob ein Gast schon in der Gaesteliste ist, wenn er geaendert

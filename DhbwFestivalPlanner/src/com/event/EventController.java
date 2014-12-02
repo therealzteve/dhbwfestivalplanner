@@ -36,21 +36,21 @@ public class EventController {
 		return "event/create";
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST) 
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(
 			Model model,
-			@RequestParam(value = "id", required = false, defaultValue = "-1") int id,
+			@RequestParam(value = "id", required = false, defaultValue = "0") int id,
 			@RequestParam(value = "title", required = false) String title,
+			@RequestParam(value = "description", required = false, defaultValue = "") String description,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "address", required = false) String address,
 			@RequestParam(value = "plz", required = false, defaultValue = "0") int plz,
 			@RequestParam(value = "city", required = false) String city,
 			@RequestParam(value = "date", required = false) String date,
 			@RequestParam(value = "time", required = false) String time,
-			@RequestParam(value = "design", required = false, defaultValue = "0") int design
-			)
+			@RequestParam(value = "design", required = false, defaultValue = "0") int design)
 			throws Exception {
-		
+
 		User user = UserHelper.getCurrentUser();
 
 		Date parsedDate = null;
@@ -60,12 +60,14 @@ public class EventController {
 			parsedTime = parseTime(time);
 
 		} catch (Exception e) {
+			// Invalid dates were tried to be parsed, return error
 
 			Event event = getEvent(id, user, false);
-			fillEventData(event, title, name, address, city, plz,design);
+			fillEventData(event, title, description, name, address, city, plz,
+					design);
 
 			model.addAttribute("event", event);
-			model.addAttribute("dateInvalid",true);
+			model.addAttribute("dateInvalid", true);
 			return "event/edit";
 		}
 
@@ -77,7 +79,8 @@ public class EventController {
 		}
 
 		// Set event data
-		fillEventData(event, title, name, address, city, plz,design);
+		fillEventData(event, title, description, name, address, city, plz,
+				design);
 		event.setCreator(user);
 		event.setDate(parsedDate);
 		event.setTime(parsedTime);
@@ -117,11 +120,11 @@ public class EventController {
 	@RequestMapping("/display")
 	public @ResponseBody Event display(
 			Model model,
-			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
+			@RequestParam(value = "id", required = true, defaultValue = "0") int id) {
 
 		Event event = getEvent(id, UserHelper.getCurrentUser(), false);
 
-		if (id == -1) {
+		if (id == 0) {
 			return null;
 		}
 		model.addAttribute("event", event);
@@ -133,23 +136,23 @@ public class EventController {
 	@RequestMapping("/edit")
 	public String edit(
 			Model model,
-			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
+			@RequestParam(value = "id", required = true, defaultValue = "0") int id) {
 
 		Event event = getEvent(id, UserHelper.getCurrentUser(), false);
 
 		model.addAttribute("event", event);
 		model.addAttribute("time", formatTime(event.getTime()));
 		model.addAttribute("date", formatDate(event.getDate()));
- 
+
 		return "event/edit";
 	}
 
 	@RequestMapping(value = { "/guestView", "/guestview" })
 	public String guestView(
 			Model model,
-			@RequestParam(value = "id", required = true, defaultValue = "-1") int id) {
+			@RequestParam(value = "id", required = true, defaultValue = "0") int id) {
 
-		if (id != -1) {
+		if (id != 0) {
 			Event event = getEvent(id, null, true);
 			if (event == null) {
 				return "event/guestViewError";
@@ -165,7 +168,7 @@ public class EventController {
 	private Event getOrCreateEvent(Session session, int id, User user,
 			boolean guest) {
 		Event event;
-		if (id != -1) {
+		if (id != 0) {
 			event = (Event) session.get(Event.class, id);
 
 			// If given user is not the owner of the event, return null for
@@ -180,9 +183,10 @@ public class EventController {
 		return event;
 	}
 
-	private void fillEventData(Event event, String title, String name,
-			String address, String city, int plz, int design) {
+	private void fillEventData(Event event, String title, String description,
+			String name, String address, String city, int plz, int design) {
 		event.setTitle(title);
+		event.setDescription(description);
 		event.setName("Testort");
 		event.setAddress(address);
 		event.setCity(city);
@@ -223,10 +227,10 @@ public class EventController {
 		c.setTime(date);
 		String hours = "" + c.get(Calendar.HOUR_OF_DAY);
 		String minutes = "" + c.get(Calendar.MINUTE);
-		
-		//Add leading zero
-		if(minutes.length() == 1){
-			minutes = "0"+ minutes;
+
+		// Add leading zero
+		if (minutes.length() == 1) {
+			minutes = "0" + minutes;
 		}
 		return hours + ":" + minutes;
 	}

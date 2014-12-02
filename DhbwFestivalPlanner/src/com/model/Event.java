@@ -30,12 +30,12 @@ public class Event implements Serializable{
 	
 	@Id
 	@Column(name = "ID")
-	private int id;
+	private int id = 0;
 
 	private String name;
 	
 	
-	private String title, address, city;
+	private String title, address, city, description;
 	
 
 
@@ -142,5 +142,13 @@ public class Event implements Serializable{
 
 	public void setDesign(int design) {
 		this.design = design;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
