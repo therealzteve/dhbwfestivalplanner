@@ -63,9 +63,27 @@
                 </div>
             </div>
             <div id="buttons">
-                <a href="#" id="like" class="button">I like it!</a><br>
-                <a href="#" id="zusage" class="button">Zusagen</a><br>
-                <a href="#" id="absage" class="button">Absagen :( </a><br>
+                <br>
+                <center> <a href="#" id="like" class="button"><i class="fa fa-heart-o"></i>
+I like it!</a>
+                    <br>15 Leute mögen das.
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <a href="#" id="mail" class="button"><i class="fa fa-envelope-o"></i>
+Nachricht </a>
+                    <div id="imbutton"><a href="#" id="zusage" class="button"><i class="fa fa-check"></i>
+Zusagen </a>
+                        <br>
+                        <br>
+                        <a href="#" id="absage" class="button"><i class="fa fa-meh-o"></i>
+                    Absagen </a>
+                        <br>
+                </center>
+                </div>
+                <br>
             </div>
         </div>
     </div>
