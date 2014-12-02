@@ -1,6 +1,6 @@
 package com.messages;
 
-public class Messages {
+public class MessagesController {
 	public void display(){
 		
 	}

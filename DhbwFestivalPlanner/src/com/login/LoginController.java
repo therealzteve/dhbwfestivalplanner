@@ -107,7 +107,7 @@ public class LoginController {
 		user.setName(name);
 		user.setCode(rs.nextString());
 		user.setBirth(new Date());
-		user.setIsEnabled(false);
+		user.setIsEnabled(true);
 
 		// Save user
 		Session session = sessionFactory.openSession();
