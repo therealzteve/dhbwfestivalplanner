@@ -108,9 +108,13 @@ public class GuestListController {
 				recipientsGuests.add(g);
 			}
 		}
-		sendInvitationMail((String[]) recipients.toArray(), event.getTitle(), id);
-		
-		updateInvitedGuests(recipientsGuests);
+		if(recipients.size() >0){
+			String[] recipientsArray = new String[recipients.size()];
+			recipientsArray = recipients.toArray(recipientsArray);
+			sendInvitationMail(recipientsArray, event.getTitle(), id);
+			
+			updateInvitedGuests(recipientsGuests);
+		}
 		return "";
 	}
 
