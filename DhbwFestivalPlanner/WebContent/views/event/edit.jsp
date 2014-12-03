@@ -12,9 +12,10 @@
 <link rel="stylesheet" href="../style/jquery.datetimepicker.css">
 <link href='http://fonts.googleapis.com/css?family=Muli:400,300'
 	rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="../js/handler.js"></script>
+
 <script type="text/javascript" src="../js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="../js/handler.js"></script>
 
 <title>Festival Planner: Party bearbeiten</title>
 </head>
@@ -28,7 +29,7 @@
 	</div>
 	<div id="content">
 		<div id="whitewrapper">
-			<form method="post" id="eventdata" action="sendEdit('<c:url value="/event/save?id=${event.id}" ></c:url>')">
+			<form method="post" id="eventdata">
 				<div id=leftside>
 					<h1>Allgemeines:</h1>
 					<div id="labels">
@@ -58,16 +59,17 @@
 
 						<input type="text" name="plz" id="plz" value="${event.plz}"> <br> 
 						<input type="text" name="city" id="city" value="${event.city}"> <br>
-						<textarea id="beschreibung" placeholder="Füge hier einen Beschreibungstext für deine Gäste ein!"></textarea>
+						<textarea id="beschreibung" name="description" placeholder="Füge hier einen Beschreibungstext für deine Gäste ein!" >${event.description}</textarea>
 						<br>
 						<c:if test="${error}">
 							<div class="errordiv infodiv" id="editerror">
 								Bitte fülle alle Felder aus!</br>
 							</div>
 						</c:if>
-						<input type="submit" value="Abbrechen"
-							onclick="javascript:window.close()"> <input type="submit"
-							value="Los geht's">
+						<input type="button" value="Abbrechen"
+							onclick="javascript:window.close()"> 
+							<input type="button"
+							value="Los geht's" onclick="sendEdit('<c:url value="/event/save?id=${event.id}" ></c:url>')">
 							<div id="aftersend"></div>
 					</div>
 				</div>

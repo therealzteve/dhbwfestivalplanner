@@ -46,6 +46,7 @@
                     <ul id="navi">
                         <li id="vlistenheader" class="dummy">Deine Veranstaltungen:</li>
                         <c:forEach items="${events}" var="event">
+                        *
                         <li class="dummy"><a href="#" onclick="fetchguests('<c:url value="event/display?id=${event.id}"></c:url>')">${event.title}</a>
                             <ul>
                                 <!-- steht für veranstaltungsseite bearbeiten-->

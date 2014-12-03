@@ -51,11 +51,11 @@ function fetchguests(url) {
 }
 
 function sendEdit(url){
-	$.post( url, function( data ) {
-		$( "#eventdata" ).serialize();
-		})
-	.done(function(){document.getElementById("aftersend").innerHTML = "Änderungen erfolgreich übertragen! Bitte schließe das Fenster." +
-			"<br> <input type='submit' value='Fenster schließen' onsubmit='javascript:window.close()'>";})
+	$.post( url,
+		$( "#eventdata" ).serialize()
+		)
+	.done(function(){document.getElementById("aftersend").innerHTML = "&Auml;nderungen erfolgreich &uuml;bertragen! Bitte schlie&szlig;e das Fenster." +
+			"<br> <input type='button' value='Fenster schlie&szlig;en' onclick='javascript:window.close()'>";})
 	.fail(function() {
 		document.getElementById("aftersend").innerHTML = "Es ist ein Fehler aufgetreten!";
 });
@@ -88,3 +88,4 @@ $('#time').datetimepicker({
 	  format:'H:i'
 	});}
 
+$(document).ready(function(){pickDate();pickTime();})
