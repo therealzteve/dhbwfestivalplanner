@@ -79,13 +79,12 @@
 					Wähle ein passendes Design für deine Veranstaltungsseite: <br>
 					<label for="design1">Design 1:</label> <input type="radio"
 						checked="checked" id="design1" onchange="changedesign(this)"
-						name="designw"> <br> <label for="design2">Design
+						name="design" value="1"> <br> <label for="design2">Design
 						2:</label> <input type="radio" id="design2" onchange="changedesign(this)"
-						name="designw"> <br> <label for="design3">Design
+						name="design" value="2"> <br> <label for="design3">Design
 						3:</label> <input type="radio" id="design3" onchange="changedesign(this)"
-						name="designw"> <br> <label for="design4">Design
-						4:</label> <input type="radio" id="design4" onchange="changedesign(this)"
-						name="designw"> <img src="../style/images/FrauBallons.jpg"
+						name="design" value="3"> <br> <label for="design4">Design
+						<img src="../style/images/FrauBallons.jpg"
 						id="bilddesign">
 
 				</div>

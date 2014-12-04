@@ -16,7 +16,7 @@ function showregister(element) {
 }
 
 function changedesign(element) {
-	debugger;
+
 	if (element.id == "design1") {
 		bilddesign.src = "../style/images/FrauBallons.jpg";
 	} else if (element.id == "design2") {

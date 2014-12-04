@@ -8,17 +8,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Festival Planner</title>
     <meta name="eventpage" content="Die individuelle Veranstaltungsseite einer Party.">
+        <link href='<c:url value="/style/fonts/fontAwesome/css/font-awesome.min.css"></c:url>' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <c:if test="${event.design==1}">
-    <link rel="stylesheet" href='../style/pagedesign01.css'>
-    <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'></c:if>
+    <link rel="stylesheet" href='<c:url value="/style/pagedesign01.css"></c:url>'>
+    </c:if>
         <c:if test="${event.design==2}">
-    <link rel="stylesheet" href='../style/pagedesign02.css'>
+    <link rel="stylesheet" href='<c:url value="/style/pagedesign02.css"></c:url>'>
     </c:if>
         <c:if test="${event.design==3}">
-    <link rel="stylesheet" href='../style/pagedesign03.css'>
+    <link rel="stylesheet" href='<c:url value="/style/pagedesign03.css"></c:url>'>
     </c:if>
-    <script type="text/javascript" src="<c:url   />/js/Handler.js"></script>
-             <script type="text/javascript" src='<c:url value="js/jquery-2.1.1.js"></c:url>'></script>
+                 <script type="text/javascript" src='<c:url value="/js/jquery-2.1.1.js"></c:url>'></script>
+    <script type="text/javascript" src='<c:url value="/js/handler.js"></c:url>'></script>
+
 </head>
 
 <body>
@@ -32,32 +35,35 @@
     </div>
 
     <div id="content">
-        <h1 id="titel">${event.title}</h1>
+
 
         <div id="leftside">
-            ${event.date}, ${event.time}
-            <br>${event.veranstalter}
+        <center>
+                <h1 id="titel">${event.title}</h1>
+                </center>
+          ${event.date}, ${event.time} 
+            <br>${event.name}
             <br>${event.address}
             <br>${event.plz} ${event.city}
             <br>
             <br>
 
             <div id="beschreibung">
-                ${event.beschreibung}
+                ${event.description}
             </div>
         </div>
         <div id="rightside">
-            <div id="guestl">
-                <div id="gaestelist">
+            <div id="zguestl">
+                <div id="zgaestelist">
 
                     Zugesagt:
-                    <ul id="zgaeste">
+                    <ul id="zzgaeste">
 
                     </ul>
                 </div>
-                <div id="vgaestelist">
+                <div id="vzgaestelist">
                     Vielleicht:
-                    <ul id="vgaeste">
+                    <ul id="vzgaeste">
                        
                     </ul>
                 </div>

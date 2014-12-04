@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -34,6 +35,7 @@ public class MainController {
 		session.beginTransaction();
 		Criteria crit = session.createCriteria(Event.class);
 		crit.add(Restrictions.eq("creator", user));
+		crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		List<Event> ev = crit.list();
 		session.getTransaction().commit();
 
