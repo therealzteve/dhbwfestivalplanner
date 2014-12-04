@@ -21,7 +21,7 @@
     -o-box-sizing:border-box;
 }
 body {
-    background-image:url('images/Glaeser.jpg');
+    background-image:url('images/Skyline.jpg');
     background-size:cover;
     background-position:0% 20%;
     color:black;
@@ -38,7 +38,7 @@ html {
     height:20px;
     top:0;
     left:0;
-    background-color:rgba(157, 98, 17, 0.55);
+    background-color:rgba(253, 245, 34, 0.53);
     position:fixed;
 }
 #content {
@@ -81,7 +81,6 @@ top: 10px;
     padding:10px;
     margin: 30px;
     background-color: rgba(255, 255, 255, 0.56);
-    border:1px solid black;
     border-radius: 5px;
 }
 #buttons {
@@ -100,13 +99,12 @@ top: 10px;
     padding:10px;
     padding-right: 5px;
     border-radius:5px;
-    border:1px solid black;
     margin: 20px;
     margin-right: 10px;
 }
 #zzgaeste {
     list-style-type:none;
-    border-bottom:1px solid black;
+    border-bottom:1px solid grey;
     height:200px;
     overflow-y:auto;
     overflow-x:hidden
@@ -118,10 +116,9 @@ top: 10px;
     overflow-x:hidden
 }
 .button {
-    background-color:rgba(255, 255, 255,0.50);
+    background-color:rgba(248, 255, 63, 0.69);
     margin:4px;
     padding:2px;
-    border:1px solid black;
     width:20%;
     height:40px;
     font-family:"Novitolight";

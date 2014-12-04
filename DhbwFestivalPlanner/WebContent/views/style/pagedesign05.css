@@ -21,7 +21,7 @@
     -o-box-sizing:border-box;
 }
 body {
-    background-image:url('images/Glaeser.jpg');
+    background-image:url('images/Hochzeit.jpg');
     background-size:cover;
     background-position:0% 20%;
     color:black;
@@ -38,7 +38,7 @@ html {
     height:20px;
     top:0;
     left:0;
-    background-color:rgba(157, 98, 17, 0.55);
+    background-color:rgba(242, 29, 70, 0.44);
     position:fixed;
 }
 #content {
