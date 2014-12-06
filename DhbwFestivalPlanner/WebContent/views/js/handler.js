@@ -22,7 +22,15 @@ function changedesign(element) {
 	} else if (element.id == "design2") {
 		bilddesign.src = "../style/images/Hase.jpg";
 	} else if (element.id == "design3") {
-		bilddesign.src = "../style/images/LustigeBrille.jpg";
+		bilddesign.src = "../style/images/Glaeser.jpg";
+	} else if (element.id == "design4") {
+		bilddesign.src = "../style/images/GraffittiJunge.jpg";} 
+	else if (element.id == "design5") {
+			bilddesign.src = "../style/images/Hochzeit.jpg";} 
+	else if (element.id == "design6") {
+				bilddesign.src = "../style/images/Skyline.jpg";} 
+	else if (element.id == "design7") {
+					bilddesign.src = "../style/images/abendszene.jpg";
 	} else {
 		alert("Kein Bild vorhanden");
 	}
@@ -44,6 +52,8 @@ function fetchguests(url) {
 		}
 		document.getElementById("zgaeste").innerHTML = itemsZ;
 		document.getElementById("vgaeste").innerHTML = itemsV;
+		document.getElementById("zzgaeste").innerHTML = itemsZ;
+		document.getElementById("vzgaeste").innerHTML = itemsV;
 	});
 
 

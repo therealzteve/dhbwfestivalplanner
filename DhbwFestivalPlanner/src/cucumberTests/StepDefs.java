@@ -94,37 +94,11 @@ public class StepDefs {
 	    setUpWebDriver();
 	}
 
-	@When("^I click Register$")
-	public void i_click_Register() throws Throwable {
-	    script.clickRegister();
-	}
 
-	@When("^I fill out the required Information$")
-	public void i_fill_out_the_required_Information() throws Throwable {
-	    script.fillOutRegister();
-
-	}
-
-	@When("^click submit$")
-	public void click_submit() throws Throwable {
-	    script.submitRegister();
-	}
-
-	@Then("^I return to the Login form$")
-	public void i_return_to_the_Login_form() throws Throwable {
-		script.returnToLoginRegister();
-	    
-	}
-
-	@Then("^my Account is unlocked so I am able to Login now$")
-	public void my_Account_is_unlocked_so_I_am_able_to_Login_now() throws Throwable {
-		script.firstLoginRegister();
-	  
-	}
 	
 	//DISPLAY
 	
-	/*@Given("^that the User is logged in$")
+	@Given("^that the User is logged in$")
 	public void that_the_User_is_logged_in() throws Throwable {
 		setUpWebDriver();
 	    script.logInUser();
@@ -159,7 +133,7 @@ public class StepDefs {
 	@Then("^he should be displayed the event page$")
 	public void he_should_be_displayed_the_event_page() throws Throwable {
 	    script.displayGuestView();
-	}*/
+	}
 	
 	//CREATE/EDIT
 	

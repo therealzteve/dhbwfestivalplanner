@@ -84,35 +84,6 @@ driver = new FirefoxDriver();
     
     public void fillOutRegister(){
         driver.findElement(By.name("email")).clear();
-        driver.findElement(By.name("email")).sendKeys("test@test.com");
-        driver.findElement(By.cssSelector("#registerform > form > input[name=\"username\"]")).clear();
-        driver.findElement(By.cssSelector("#registerform > form > input[name=\"username\"]")).sendKeys("ich");
-        driver.findElement(By.cssSelector("#registerform > form > input[name=\"password\"]")).clear();
-        driver.findElement(By.cssSelector("#registerform > form > input[name=\"password\"]")).sendKeys("meinpasswort");
-        
-    }
-    public void submitRegister(){
-    	driver.findElement(By.cssSelector("#registerform > form > input[type=\"submit\"]")).click();
-    }
-    public void returnToLoginRegister(){
-		driver.findElement(By.cssSelector("div.tab.actualtab")).click();
-	      assertEquals("Login", driver.findElement(By.cssSelector("div.tab.actualtab")).getText());
-    }
-    public void firstLoginRegister(){
-        driver.findElement(By.name("username")).clear();
-        driver.findElement(By.name("username")).sendKeys("ich");
-        driver.findElement(By.name("password")).clear();
-        driver.findElement(By.name("password")).sendKeys("meinpasswort");
-        driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-          assertEquals("Deine Events:", driver.getTitle());
-
-    }*/
-	   public void clickRegister(){
-        driver.findElement(By.xpath("//div[@onclick='showregister(this)']")).click();
-    }
-    
-    public void fillOutRegister(){
-        driver.findElement(By.name("email")).clear();
         driver.findElement(By.name("email")).sendKeys("test3@test.com");
         driver.findElement(By.cssSelector("#registerform > form > input[name=\"username\"]")).clear();
         driver.findElement(By.cssSelector("#registerform > form > input[name=\"username\"]")).sendKeys("Test3");
@@ -135,11 +106,11 @@ driver = new FirefoxDriver();
         driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
           assertEquals("Deine Events:", driver.getTitle());
 
-    } 
-    
+    } */
+
     //DISPLAY
     
-	/*public void logInUser() {
+	public void logInUser() {
 		driver.findElement(By.name("username")).clear();
         driver.findElement(By.name("username")).sendKeys("Test3");
         driver.findElement(By.name("password")).clear();
@@ -148,24 +119,24 @@ driver = new FirefoxDriver();
 		
 	}
 	public void isEventCreated(){
-		assertTrue(driver.findElement(By.linkText("the new event")).isDisplayed());
+		driver.findElement(By.linkText("The new event")).isDisplayed();
 
 	}
 	public void clickEvent(){
-		driver.findElement(By.linkText("the new event")).click();
+		driver.findElement(By.linkText("The new event")).click();
 	}
 	public void showInfos(){
-		assertTrue(driver.findElement(By.id("guest1")).isDisplayed());
+		driver.findElement(By.id("guest1")).isDisplayed();
 	}
 	public void notLoggedIn(){
 		assertEquals("Festival Planner", driver.getTitle());
 	}
 	public void followGuestLink(){
-		driver.get("http://localhost:8080/DhbwFestivalPlanner/guestview?id=3");
+		driver.get("http://localhost:8080/DhbwFestivalPlanner/event/guestView?id=3");
 	}
 	public void displayGuestView(){
-		assertEquals("the new event", driver.getTitle());
-	}*/
+		assertEquals("THE NEW EVENT", driver.findElement(By.id("titel")).getText());
+	}
     
     //CREATE/EDIT
     
@@ -187,7 +158,7 @@ driver = new FirefoxDriver();
     	assertEquals("Festival Planner: Party bearbeiten", driver.getTitle());
     }
     public void clickPen(){
-    	driver.findElement(By.linkText("the new event")).click();
+    	driver.findElement(By.linkText("The new event")).click();
     	driver.findElement(By.cssSelector("i.fa.fa-pencil")).click();
     	driver.get(baseUrl + "/event/edit?id=3");
     }
@@ -224,13 +195,13 @@ driver = new FirefoxDriver();
     }
     public void addEvent(){
     	driver.get("http://localhost:8080/DhbwFestivalPlanner");
-    	assertTrue(driver.findElement(By.xpath("(//a[contains(text(),'Silvesterparty an der DH')])")).isDisplayed());
+    	driver.findElement(By.xpath("(//a[contains(text(),'Silvesterparty an der DH')])"));
     }
     public void checkOverview(){
     	driver.get("http://localhost:8080/DhbwFestivalPlanner");
     	assertEquals("Deine Events:", driver.getTitle());
     }
     public void showHints(){
-    	assertTrue(driver.findElement(By.xpath("(//div[contains(text(),'Bitte fülle alle Felder aus!')])")).isDisplayed());
+    	driver.findElement(By.xpath("(//div[contains(text(),'Bitte fülle alle Felder aus!')])"));
     }*/
 }

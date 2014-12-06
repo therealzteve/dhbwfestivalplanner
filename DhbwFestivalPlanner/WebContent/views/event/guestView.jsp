@@ -19,9 +19,25 @@
         <c:if test="${event.design==3}">
     <link rel="stylesheet" href='<c:url value="/style/pagedesign03.css"></c:url>'>
     </c:if>
+        <c:if test="${event.design==4}">
+    <link rel="stylesheet" href='<c:url value="/style/pagedesign04.css"></c:url>'>
+    </c:if>
+        <c:if test="${event.design==5}">
+    <link rel="stylesheet" href='<c:url value="/style/pagedesign05.css"></c:url>'>
+    </c:if>
+        <c:if test="${event.design==6}">
+    <link rel="stylesheet" href='<c:url value="/style/pagedesign06.css"></c:url>'>
+    </c:if>
+            <c:if test="${event.design==7}">
+    <link rel="stylesheet" href='<c:url value="/style/pagedesign07.css"></c:url>'>
+    </c:if>
                  <script type="text/javascript" src='<c:url value="/js/jquery-2.1.1.js"></c:url>'></script>
     <script type="text/javascript" src='<c:url value="/js/handler.js"></c:url>'></script>
-
+<script type="text/javascript">
+window.addEventListener('load',
+	function(){fetchguests('<c:url value="event/display?id=${event.id}"></c:url>');}
+	);
+</script>
 </head>
 
 <body>
@@ -94,6 +110,5 @@ Zusagen </a>
         </div>
     </div>
 </body>
-<script type="text/javascript">
-$(document).ready(fetchguests);</script>
+
 </html>
