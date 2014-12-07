@@ -85,7 +85,7 @@
 						3:</label> <input type="radio" id="design3" onchange="changedesign(this)"
 						name="design" value="3"> <br> 
 						<label for="design4">Design 4:</label> <input type="radio"
-						checked="checked" id="design4" onchange="changedesign(this)"
+						id="design4" onchange="changedesign(this)"
 						name="design" value="4"> <br> <label for="design5">Design
 						5:</label> <input type="radio" id="design5" onchange="changedesign(this)"
 						name="design" value="5"> <br> <label for="design6">Design
