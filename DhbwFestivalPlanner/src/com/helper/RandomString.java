@@ -23,11 +23,23 @@ public class RandomString {
     if (length < 1)
       throw new IllegalArgumentException("length < 1: " + length);
     buf = new char[length];
-  } 
+  }
 
   public String nextString() {
     for (int idx = 0; idx < buf.length; ++idx)
       buf[idx] = symbols[random.nextInt(symbols.length)];
     return new String(buf);
   }
+
+
+// zum Testen
+public int resultStringLength(){
+	return this.buf.length;
+}
+public String resultString(){
+	String result="";
+	for (char c : buf)
+		result+=c;
+	return result;
+}
 }
