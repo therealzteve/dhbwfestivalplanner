@@ -21,7 +21,7 @@
         <div class="icons" id="headerplatzhalter"></div>
         <center>
             <div id="logobox">
-                Festival Planner
+                Festival Planner 
             </div>
         </center>
 
