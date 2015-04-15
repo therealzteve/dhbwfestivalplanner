@@ -89,10 +89,10 @@ public class StepDefs {
 		script.firstLoginRegister();
 	  
 	}*/
-	@Given("^I am on the Homepage$")
+	/*@Given("^I am on the Homepage$")
 	public void i_am_on_the_Homepage() throws Throwable {
 	    setUpWebDriver();
-	}
+	}*/
 
 
 	
@@ -210,6 +210,7 @@ public class StepDefs {
 	    script.showHints();
 	}*/
 
+	
 	@After
     public void tearDown() throws Exception {
 
