@@ -7,6 +7,9 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+
 
  
 public class SeleniumTest {
@@ -18,7 +21,8 @@ public class SeleniumTest {
 
     public void setUp() throws Exception {
 
-driver = new FirefoxDriver();
+    	driver = new  InternetExplorerDriver ();
+    	
 
     baseUrl = "http://localhost:8080/DhbwFestivalPlanner/";
     
