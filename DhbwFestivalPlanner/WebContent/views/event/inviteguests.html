@@ -11,6 +11,7 @@
     <link href="../style/fonts/fontAwesome/css/font-awesome.min.css" rel='stylesheet'>
     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="<c:url   />/js/Handler.js"></script>
+    <script type="text/javascript" src="../js/handler.js"></script>
 </head>
 
 <body>
@@ -83,7 +84,7 @@
                 </div>
             </div>
             <div id="right">
-                <form id="namemaileingeben">
+                <form id="namemaileingeben"  onsubmit=" return validateEmail('emailgast')">
                     <div id="labelseingaben">
                         <label for="gastname">Name:</label>
                         <br><br>
@@ -95,7 +96,7 @@
                     <div id="eingaben">
                         <input type="text" id="gastname">
                         <br><br>
-                        <input type="email" id="emailgast">
+                        <input id="emailgast">
                         <br><br>
                         <label for="emailgast" id="checkboxschrift">Gast soll einen Link auf die Einladungsseite bekommen</label>
                         <br><br>
