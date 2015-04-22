@@ -1,3 +1,5 @@
+var guestList="{guests:[";
+
 function showlogin(element) {
 	document.getElementsByClassName("actualtab")[0].classList
 			.remove("actualtab");
@@ -99,16 +101,44 @@ $('#time').datetimepicker({
 	});}
 
 function validateEmail(id) 
-{//return false;
+{
 	var email = document.getElementById(id);
-	console.log(email.value);
-	//alert("defgtzhujkl");
+	
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if (!filter.test(email.value)) {
-        alert('Please provide a valid email address');
+        alert('Bitte gib eine gültige Emailadresse ein!');
         //email.focus;
         return false;
 }}
+
+function validateName(id){
+	var name = document.getElementById(id);
+	if (name.value == null || name.value == "") {
+		alert('Bitte gib einen Namen ein!');
+		return false;
+}}
+
+function addGuest(){
+	validateName('gastname');
+	validateEmail('emailgast');
+	guestList += ("{Name: "+gastname.value+", Email:"+emailgast.value+"},");
+
+	 var node = document.createElement("li");  // Create a <li> node
+	 var button = document.createElement("button");
+	 node.className = "dummy";
+	 var textnode = document.createTextNode(gastname.value+", "+emailgast.value);         // Create a text node
+	 var buttontext = document.createTextNode("Entfernen");
+	 node.appendChild(textnode);
+	 button.appendChild(buttontext);
+	 node.appendChild(button);
+	 document.getElementById("zgaestea").appendChild(node);     // Append <li> to <ul> with id="myList"
+	console.log(guestList);
+}
+
+function saveGuests(){
+	guestList +="]}";
+	$.post( "urlhierrein", guestlist);
+}
 
 $(document).ready(function(){pickDate();pickTime();})
 

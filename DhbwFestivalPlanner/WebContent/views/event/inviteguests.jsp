@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <!-- das hier soll ein kleines popup fenster werden/-->
@@ -7,12 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Festival Planner</title>
     <meta name="eventpage" content="Die individuelle Veranstaltungsseite einer Party.">
-    <link rel="stylesheet" href='../style/inviteguests.css'>
+    <link rel="stylesheet" href='<c:url value="/style/inviteguests.css"></c:url>'>
     <link href="../style/fonts/fontAwesome/css/font-awesome.min.css" rel='stylesheet'>
     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="../js/jquery-2.2.1.js"></script>
-    <script type="text/javascript" src="<c:url   />/js/Handler.js"></script>
-    <script type="text/javascript" src="../js/handler.js"></script>
+    
+     <script type="text/javascript" src='<c:url value="/js/jquery-2.2.1.js"></c:url>'></script>
+     <script type="text/javascript" src='<c:url value="/js/handler.js"></c:url>'></script>
 </head>
 
 <body>
