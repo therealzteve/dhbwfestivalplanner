@@ -1,4 +1,4 @@
-var guestList="{guests:[";
+var guestList;
 
 function showlogin(element) {
 	document.getElementsByClassName("actualtab")[0].classList
@@ -54,8 +54,8 @@ function fetchguests(url) {
 		}
 		document.getElementById("zgaeste").innerHTML = itemsZ;
 		document.getElementById("vgaeste").innerHTML = itemsV;
-		document.getElementById("zzgaeste").innerHTML = itemsZ;
-		document.getElementById("vzgaeste").innerHTML = itemsV;
+//		document.getElementById("zzgaeste").innerHTML = itemsZ;
+//		document.getElementById("vzgaeste").innerHTML = itemsV;
 	});
 
 
@@ -109,37 +109,72 @@ function validateEmail(id)
         alert('Bitte gib eine gültige Emailadresse ein!');
         //email.focus;
         return false;
-}}
+}
+return true;    
+}
 
 function validateName(id){
 	var name = document.getElementById(id);
 	if (name.value == null || name.value == "") {
 		alert('Bitte gib einen Namen ein!');
 		return false;
-}}
+}
+return true;	
+}
+
+function isDuplicate(name,email){
+	/*magic*/
+	return false;
+}
 
 function addGuest(){
-	validateName('gastname');
-	validateEmail('emailgast');
-	guestList += ("{Name: "+gastname.value+", Email:"+emailgast.value+"},");
-
-	 var node = document.createElement("li");  // Create a <li> node
-	 var button = document.createElement("button");
-	 node.className = "dummy";
-	 var textnode = document.createTextNode(gastname.value+", "+emailgast.value);         // Create a text node
-	 var buttontext = document.createTextNode("Entfernen");
-	 node.appendChild(textnode);
-	 button.appendChild(buttontext);
-	 node.appendChild(button);
-	 document.getElementById("zgaestea").appendChild(node);     // Append <li> to <ul> with id="myList"
-	console.log(guestList);
+	
+	if(validateName('gastname') && 	validateEmail('emailgast') && !isDuplicate($("#id").val(),$("#emailgast").val())){
+		
+		var guest = {};
+		guest.name = $("#gastname").val();
+		guest.email = $("#emailgast").val();
+		
+		guestList.guestList.items.push(guest);
+		
+		 var node = document.createElement("li");  // Create a <li> node
+		 var button = document.createElement("button");
+		 node.className = "dummy";
+		 var textnode = document.createTextNode(gastname.value+", "+emailgast.value);         // Create a text node
+		 var buttontext = document.createTextNode("Entfernen");
+		 node.appendChild(textnode);
+		 button.appendChild(buttontext);
+		 node.appendChild(button);
+		 document.getElementById("zgaestea").appendChild(node);     // Append <li> to <ul> with id="myList"
+		console.log(guestList);
+	}
+	
 }
 
-function saveGuests(){
-	guestList +="]}";
-	$.post( "urlhierrein", guestlist);
+ saveGuests = function(){
+	//guestList +="]}";
+	
+	//var guestList = {};
+	guestList.id = $("#eventid").val();
+	 alert($.toDictionary(guestList));
+	 
+	 $.ajax({
+		  url:"/DhbwFestivalPlanner/guestList/save",
+		  type:"POST",
+		  data: JSON.stringify(guestList),
+		  contentType:"application/json; charset=utf-8",
+		  dataType:"json",
+		  success: function(){
+		  }
+		});
+	 
 }
 
-$(document).ready(function(){pickDate();pickTime();})
+$(document).ready(
+		function(){pickDate();pickTime();
+		guestList = {};
+		guestList.guestList = {};
+		guestList.guestList.items = [];
+});
 
 

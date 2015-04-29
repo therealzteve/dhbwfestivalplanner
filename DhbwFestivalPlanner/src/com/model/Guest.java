@@ -18,7 +18,7 @@ public class Guest {
 	@Id
 	int id;
 
-	String name, email;
+	String name, email, eventCode;
 
 	@JsonIgnore
 	@ManyToOne
@@ -96,5 +96,13 @@ public class Guest {
 
 	public void setReceivedInvitation(boolean receivedInvitation) {
 		this.receivedInvitation = receivedInvitation;
+	}
+
+	public String getEventCode() {
+		return eventCode;
+	}
+
+	public void setEventCode(String eventCode) {
+		this.eventCode = eventCode;
 	}
 }

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.helper.UserHelper;
 import com.model.Event;
+import com.model.Guest;
 import com.model.User;
 
 @Controller
@@ -150,19 +151,45 @@ public class EventController {
 	@RequestMapping(value = { "/guestView", "/guestview" })
 	public String guestView(
 			Model model,
-			@RequestParam(value = "id", required = true, defaultValue = "0") int id) {
+			@RequestParam(value = "id", required = true, defaultValue = "0") int id,
+			@RequestParam(value = "gid", required = true, defaultValue = "0") int gid,
+			@RequestParam(value = "gcode", required = true, defaultValue = "0") String gcode
+			) {
 
 		if (id != 0) {
 			Event event = getEvent(id, null, true);
-			if (event == null) {
+			Guest g = new Guest();
+			g.setId(gid);
+			g.setEventCode(gcode);
+			
+			if (isValidGuestEvent(event,g)) {
 				return "event/guestViewError";
 			}
+			
 			model.addAttribute("event", event);
-		} else {
-			return "event/guestViewError";
-		}
+		} 
 
 		return "event/guestView";
+	}
+	
+	
+	
+	/**
+	 * Checks if a guest is allowed to see an event.
+	 * @param event
+	 * @param guest
+	 * @return
+	 */
+	private boolean isValidGuestEvent(Event event, Guest guest) {
+		if (event != null) {
+			for (Guest g : event.getGuests()) {
+				if (g.getId() == guest.getId()
+						&& g.getEventCode().equals(guest.getEventCode())) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	private Event getOrCreateEvent(Session session, int id, User user,
@@ -218,6 +245,8 @@ public class EventController {
 		session.close();
 		return event;
 	}
+	
+
 
 	private String formatTime(Date date) {
 		if (date == null) {

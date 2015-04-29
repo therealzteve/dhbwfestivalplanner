@@ -14,7 +14,9 @@
     <link href="../style/fonts/fontAwesome/css/font-awesome.min.css" rel='stylesheet'>
     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     
-     <script type="text/javascript" src='<c:url value="/js/jquery-2.2.1.js"></c:url>'></script>
+     <script type="text/javascript" src='<c:url value="/js/jquery-2.1.1.js"></c:url>'></script>
+     <script type="text/javascript" src='<c:url value="/js/jquery.datetimepicker.js"></c:url>'></script>
+     <script type="text/javascript" src='<c:url value="/js/jquery.toDictionary.js"></c:url>'></script>
      <script type="text/javascript" src='<c:url value="/js/handler.js"></c:url>'></script>
 </head>
 
@@ -41,7 +43,6 @@
                 </div>
             </div>
             <div id="right">
-                <form id="namemaileingeben"  onsubmit="return addGuest()">
                     <div id="labelseingaben">
                         <label for="gastname">Name:</label>
                         <br><br>
@@ -51,6 +52,7 @@
                         <br><br>
                     </div>
                     <div id="eingaben">
+                    	<input type="hidden" id="eventid" value="${eventId}" />
                         <input type="text" id="gastname">
                         <br><br>
                         <input id="emailgast">
@@ -59,12 +61,11 @@
                         <br><br>
                     </div>
                     <div id="absenden">
-                    <input type="submit" id="senden" value="hinzufügen"><br>
+                    <input type="button" id="senden" value="hinzuf&uuml;gen" onclick="addGuest()"><br>
                     </div>
-                </form>
                 <div id="platzhalterjo"></div>
                 <div id="sendforumlar">
-                <input class="testmal" type="submit" value="Speichern und Senden">
+                <input class="testmal" type="button" id="saveList" value="Speichern und Senden" onclick="saveGuests()">
                 </div>
             </div>
         </div>
