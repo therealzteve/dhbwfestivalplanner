@@ -153,7 +153,11 @@ float:right;
 display: none;
 }
 
+.dummy > button{
+	float:right;}
+
 .dummy:hover > button{
+
 display: inline-block;}
 .gaestela {
          background-color: rgba(255, 255, 255, 0.71);

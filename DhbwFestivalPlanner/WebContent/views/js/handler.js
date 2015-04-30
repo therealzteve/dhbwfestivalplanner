@@ -122,8 +122,18 @@ function validateName(id){
 return true;	
 }
 
-function isDuplicate(name,email){
-	/*magic*/
+function isDuplicate(){
+		for(var i = 0; i < guestList.guestList.items.length; i++) {
+		    if (guestList.guestList.items[i].name == $("#gastname").val()) {
+		    	if (guestList.guestList.items[i].email == $("#emailgast").val()) {
+		    		alert("Du hast diesen Gast bereits eingeladen!")
+		    		return true;
+		    		break;
+		    	}
+		        
+		    }
+		
+	}
 	return false;
 }
 
@@ -139,6 +149,7 @@ function addGuest(){
 		
 		 var node = document.createElement("li");  // Create a <li> node
 		 var button = document.createElement("button");
+		 button.setAttribute("onclick", "removeGuest(event)");
 		 node.className = "dummy";
 		 var textnode = document.createTextNode(gastname.value+", "+emailgast.value);         // Create a text node
 		 var buttontext = document.createTextNode("Entfernen");
@@ -149,6 +160,27 @@ function addGuest(){
 		console.log(guestList);
 	}
 	
+}
+
+function removeGuest(event){
+	var node = event.target.parentNode;
+	var text = node.innerHTML;
+	//console.log(text);
+	var name = text.substr(0, text.indexOf(',')); 
+	//console.log(name);
+	var offset = text.indexOf(',')+2;
+	var email = text.substr(offset, text.indexOf('<')-offset);
+	//console.log(email);
+	for(var i = 0; i < guestList.guestList.items.length; i++) {
+	    if (guestList.guestList.items[i].name == name) {
+	    	if (guestList.guestList.items[i].email == email) {
+	    		guestList.guestList.items.splice(i, 1);
+	    		break;
+	    	}  
+	    }
+}
+	//console.log(guestList);
+	document.getElementById("zgaestea").removeChild(node);
 }
 
  saveGuests = function(){
