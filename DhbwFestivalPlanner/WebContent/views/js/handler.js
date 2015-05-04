@@ -38,10 +38,10 @@ function changedesign(element) {
 	}
 }
 /* ab hier von yvonne */
-function fetchguests(url) {
+function fetchguests(id) {
 	var itemsZ = "";
 	var itemsV = "";
-	$.getJSON(url, function(data) {
+	$.getJSON("event/display?id="+id, function(data) {
 
 		for (var i = 0; i < data.guests.length; i++) {
 			if (data.guests[i].confirmed == true)
@@ -56,6 +56,8 @@ function fetchguests(url) {
 		document.getElementById("vgaeste").innerHTML = itemsV;
 //		document.getElementById("zzgaeste").innerHTML = itemsZ;
 //		document.getElementById("vzgaeste").innerHTML = itemsV;
+		
+		$("#teiln").attr("href","guestList/show?id="+id);
 	});
 
 
@@ -122,10 +124,10 @@ function validateName(id){
 return true;	
 }
 
-function isDuplicate(){
+function isDuplicate(gastname, email){
 		for(var i = 0; i < guestList.guestList.items.length; i++) {
-		    if (guestList.guestList.items[i].name == $("#gastname").val()) {
-		    	if (guestList.guestList.items[i].email == $("#emailgast").val()) {
+		    if (guestList.guestList.items[i].name == gastname) {
+		    	if (guestList.guestList.items[i].email == email) {
 		    		alert("Du hast diesen Gast bereits eingeladen!")
 		    		return true;
 		    		break;
@@ -139,7 +141,7 @@ function isDuplicate(){
 
 function addGuest(){
 	
-	if(validateName('gastname') && 	validateEmail('emailgast') && !isDuplicate($("#id").val(),$("#emailgast").val())){
+	if(validateName('gastname') && 	validateEmail('emailgast') && !isDuplicate($("#gastname").val(),$("#emailgast").val())){
 		
 		var guest = {};
 		guest.name = $("#gastname").val();
@@ -157,7 +159,6 @@ function addGuest(){
 		 button.appendChild(buttontext);
 		 node.appendChild(button);
 		 document.getElementById("zgaestea").appendChild(node);     // Append <li> to <ul> with id="myList"
-		console.log(guestList);
 	}
 	
 }

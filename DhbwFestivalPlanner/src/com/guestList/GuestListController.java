@@ -96,7 +96,7 @@ public class GuestListController {
 		// Dirty guests gegen Datenbank abgleichen und uebrige Gaeste entfernen
 		updateDatabase(dirtyGuests, currentGuestList);
 
-		return "guestList/inviteguests";
+		return "event/inviteguests";
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class GuestListController {
 	 * @param guest the guest which should receive the email
 	 */
 	private void sendInvitationMail(Event event, Guest guest) {
-		if (guest.isReceivesEmail() && !guest.isReceivedInvitation()) {
+		if (!guest.isReceivedInvitation()) {
 
 			RandomString randomString = new RandomString(40);
 			guest.setEventCode(randomString.nextString());

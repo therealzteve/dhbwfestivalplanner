@@ -47,7 +47,7 @@
                         <li id="vlistenheader" class="dummy">Deine Veranstaltungen:</li>
                         <c:forEach items="${events}" var="event">
                         
-                        <li class="dummy"><a href="#" onclick="fetchguests('<c:url value="event/display?id=${event.id}"></c:url>')">${event.title}</a>
+                        <li class="dummy"><a href="#" onclick="fetchguests(${event.id})">${event.title}</a>
                             <ul>
                                 <!-- steht für veranstaltungsseite bearbeiten-->
                                 <li class="dropdo"><a href="<c:url value="/event/edit?id=${event.id}"></c:url>" target="_blank" ><i class="fa fa-pencil"></i></a>

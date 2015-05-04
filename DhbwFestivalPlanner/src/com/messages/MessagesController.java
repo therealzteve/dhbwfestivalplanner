@@ -26,10 +26,9 @@ public class MessagesController {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-
 	@Autowired
 	private MailSender mailSender;
-	
+
 	@RequestMapping("/send")
 	public String send(
 			Model model,
@@ -52,7 +51,7 @@ public class MessagesController {
 		SimpleMailMessage mail = new SimpleMailMessage();
 		List<String> recipients = getMessageRecipients(event);
 		mail.setTo((String[]) recipients.toArray());
-		mail.setText(message);
+		mail.setText(createMessageText(message, event));
 		mail.setFrom("noreply@dhbwfestivalplanner.de");
 		mailSender.send(mail);
 	}
@@ -82,5 +81,19 @@ public class MessagesController {
 			return event;
 		}
 		return null;
+	}
+
+	private String createMessageText(String userMessage, Event event) {
+		String message = "Sie haben eine Nachricht von: "
+				+ event.getCreator().getName()
+				+ " zum Event: "
+				+ event.getName()
+				+ "\n \n "
+				+ userMessage
+				+ "\n Bitte antworten Sie nicht direkt auf diese Email."
+				+ " Den Veranstalter können Sie unter dieser Adresse erreichen: "
+				+ event.getCreator().getEmail();
+
+		return message;
 	}
 }
