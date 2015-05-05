@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.factory.EventFactory;
 import com.helper.RandomString;
 import com.model.Event;
 import com.model.Guest;
@@ -33,6 +34,8 @@ public class GuestListController {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	EventFactory eventFactory = new EventFactory();
 
 	/**
 	 * Zeigt das Gaestelisten Formular an
@@ -46,9 +49,7 @@ public class GuestListController {
 			@RequestParam(value = "id", required = true) int id) {
 		model.addAttribute("eventId",id );
 		
-		GuestList guestList = new GuestList();
-		guestList.setItems(getEvent(id).getGuests());
-		model.addAttribute("guestList", guestList);
+		model.addAttribute("guestList", eventFactory.getEvent(id,false).getGuests());
 
 		return "event/inviteguests";
 	}
@@ -67,11 +68,12 @@ public class GuestListController {
 			@RequestBody GuestListIdWrapper guestListIdWrapper) {
 
 		// INITIALISIERUNG
-		List<Guest> internalGuestList = guestListIdWrapper.getGuestList().getItems();
+		List<Guest> internalGuestList = guestListIdWrapper.getGuests();
 		int id = guestListIdWrapper.getId();
-		List<Guest> currentGuestList = getEvent(id).getGuests();
+		Event currentEvent = eventFactory.getEvent(id,false);
+		List<Guest> currentGuestList = currentEvent.getGuests();
 		List<Guest> dirtyGuests = new ArrayList<Guest>();
-		Event currentEvent = getEvent(id);
+		
 		// END INITIALISIERUNG
 
 		// Fuer alle Gaeste in der neuen Gaesteliste
@@ -107,7 +109,7 @@ public class GuestListController {
 	 */
 	@RequestMapping(value = "/invite")
 	public String invite(@RequestParam(value = "id", required = true) int id) {
-		Event event = getEvent(id);
+		Event event = eventFactory.getEvent(id,false);
 
 		for (Guest g : event.getGuests()) {
 			sendInvitationMail(event, g);
@@ -215,20 +217,7 @@ public class GuestListController {
 		session.close();
 	}
 
-	/**
-	 * Holt das aktuelle event anhand der ID aus der Datenbank
-	 * 
-	 * @param id
-	 * @return
-	 */
-	protected Event getEvent(int id) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Event event = (Event) session.get(Event.class, id);
-		session.getTransaction().commit();
-		session.close();
-		return event;
-	}
+
 	
 
 }

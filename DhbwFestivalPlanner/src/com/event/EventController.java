@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.factory.EventFactory;
 import com.helper.UserHelper;
 import com.model.Event;
 import com.model.Guest;
@@ -31,6 +32,8 @@ public class EventController {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+
+	private EventFactory eventFactory = new EventFactory();
 
 	@RequestMapping("/create")
 	public String create(Model model) {
@@ -63,7 +66,7 @@ public class EventController {
 		} catch (Exception e) {
 			// Invalid dates were tried to be parsed, return error
 
-			Event event = getEvent(id, user, false);
+			Event event = eventFactory.getEvent(id, false);
 			fillEventData(event, title, description, name, address, city, plz,
 					design);
 
@@ -72,7 +75,7 @@ public class EventController {
 			return "event/edit";
 		}
 
-		Event event = getEvent(id, user, false);
+		Event event = eventFactory.getEvent(id, false);
 
 		if (event == null) {
 			throw new Exception("Event with id: " + id
@@ -123,7 +126,7 @@ public class EventController {
 			Model model,
 			@RequestParam(value = "id", required = true, defaultValue = "0") int id) {
 
-		Event event = getEvent(id, UserHelper.getCurrentUser(), false);
+		Event event = eventFactory.getEvent(id, false);
 
 		if (id == 0) {
 			return null;
@@ -139,7 +142,7 @@ public class EventController {
 			Model model,
 			@RequestParam(value = "id", required = true, defaultValue = "0") int id) {
 
-		Event event = getEvent(id, UserHelper.getCurrentUser(), false);
+		Event event = eventFactory.getEvent(id, false);
 
 		model.addAttribute("event", event);
 		model.addAttribute("time", formatTime(event.getTime()));
@@ -153,29 +156,27 @@ public class EventController {
 			Model model,
 			@RequestParam(value = "id", required = true, defaultValue = "0") int id,
 			@RequestParam(value = "gid", required = true, defaultValue = "0") int gid,
-			@RequestParam(value = "gcode", required = true, defaultValue = "0") String gcode
-			) {
+			@RequestParam(value = "gcode", required = true, defaultValue = "0") String gcode) {
 
 		if (id != 0) {
-			Event event = getEvent(id, null, true);
+			Event event = eventFactory.getEvent(id, true);
 			Guest g = new Guest();
 			g.setId(gid);
 			g.setEventCode(gcode);
-			
-			if (isValidGuestEvent(event,g)) {
+
+			if (isValidGuestEvent(event, g)) {
 				return "event/guestViewError";
 			}
-			
+
 			model.addAttribute("event", event);
-		} 
+		}
 
 		return "event/guestView";
 	}
-	
-	
-	
+
 	/**
 	 * Checks if a guest is allowed to see an event.
+	 * 
 	 * @param event
 	 * @param guest
 	 * @return
@@ -190,24 +191,6 @@ public class EventController {
 			}
 		}
 		return false;
-	}
-
-	private Event getOrCreateEvent(Session session, int id, User user,
-			boolean guest) {
-		Event event;
-		if (id != 0) {
-			event = (Event) session.get(Event.class, id);
-
-			// If given user is not the owner of the event, return null for
-			// security reasons
-			if (guest == false && event != null
-					&& event.getCreator().getId() != user.getId()) {
-				return null;
-			}
-		} else {
-			event = new Event();
-		}
-		return event;
 	}
 
 	private void fillEventData(Event event, String title, String description,
@@ -236,17 +219,6 @@ public class EventController {
 		c.set(Calendar.MINUTE, minutes);
 		return c.getTime();
 	}
-
-	private Event getEvent(int id, User user, boolean guest) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Event event = getOrCreateEvent(session, id, user, guest);
-		session.getTransaction().commit();
-		session.close();
-		return event;
-	}
-	
-
 
 	private String formatTime(Date date) {
 		if (date == null) {

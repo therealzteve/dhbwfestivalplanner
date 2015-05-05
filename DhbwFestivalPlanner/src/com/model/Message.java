@@ -2,11 +2,9 @@ package com.model;
 
 
 public class Message {
-	String content;
+	private String content;
 	
-	User veranstalter;
-	Message vorgaenger;
-	Guest guest;
+	private Event event;
 	
 	public String getContent() {
 		return content;
@@ -14,23 +12,13 @@ public class Message {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public User getVeranstalter() {
-		return veranstalter;
+	
+	public Event getEvent() {
+		return event;
 	}
-	public void setVeranstalter(User veranstalter) {
-		this.veranstalter = veranstalter;
+	public void setEvent(Event event) {
+		this.event = event;
 	}
-	public Message getVorgaenger() {
-		return vorgaenger;
-	}
-	public void setVorgaenger(Message vorgaenger) {
-		this.vorgaenger = vorgaenger;
-	}
-	public Guest getGuest() {
-		return guest;
-	}
-	public void setGuest(Guest guest) {
-		this.guest = guest;
-	}
+
 	
 }

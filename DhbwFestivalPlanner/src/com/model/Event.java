@@ -42,6 +42,8 @@ public class Event implements Serializable{
 	@OneToMany(mappedBy="event", fetch= FetchType.EAGER)
 	private List<Guest> guests;
 
+	@OneToMany(mappedBy="event", fetch= FetchType.EAGER)
+	private List<Message> messages;
 
 	private int plz = -1;
 	private int design = -1;
@@ -150,5 +152,13 @@ public class Event implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
 	}
 }
