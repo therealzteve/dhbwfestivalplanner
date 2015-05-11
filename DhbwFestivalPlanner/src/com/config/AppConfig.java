@@ -1,13 +1,10 @@
 package com.config;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -29,15 +26,40 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 
 import com.factory.EventFactory;
 
-
 @Configuration
 @ComponentScan("com")
 @EnableWebMvc
 @EnableTransactionManagement
-public class AppConfig extends WebMvcConfigurerAdapter{ 
+public class AppConfig extends WebMvcConfigurerAdapter {
+	private PropertyFactory propertyFactory = new PropertyFactory();
 
- 
-    @Bean(name="jspViewResolver")
+	@Override
+	public void configureContentNegotiation(
+			ContentNegotiationConfigurer configurer) {
+		// Simple strategy: only path extension is taken into account
+		configurer.favorPathExtension(true).ignoreAcceptHeader(false)
+				.useJaf(false).defaultContentType(MediaType.TEXT_HTML)
+				.mediaType("html", MediaType.TEXT_HTML)
+				.mediaType("xml", MediaType.APPLICATION_XML)
+				.mediaType("json", MediaType.APPLICATION_JSON);
+	}
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("js/**").addResourceLocations("/views/js/")
+				.setCachePeriod(31556926);
+		registry.addResourceHandler("style/**")
+				.addResourceLocations("/views/style/").setCachePeriod(31556926);
+	}
+
+	
+	/*
+	 * 
+	 *  Configure Spring beans:
+	 * 
+	 */
+	
+	@Bean(name = "jspViewResolver")
 	public UrlBasedViewResolver urlBasedViewResolver() {
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
 		resolver.setPrefix("/views/");
@@ -46,64 +68,34 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 		return resolver;
 	}
 
-
-
-//	ContentNegotiatingViewResolver contentNegotiatingViewResolver(){
-//		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
-//		resolver.setContentNegotiationManager(contentNegotiationManager());
-//
-//		return resolver;
-//	}
-//
-//	private ContentNegotiationManager contentNegotiationManager() {
-//		ContentNegotiationManager manager = new ContentNegotiationManagerFactoryBean().getObject();
-//		return manager;
-//	}
-
-    @Override
-    public void configureContentNegotiation(
-            ContentNegotiationConfigurer configurer) {
-        // Simple strategy: only path extension is taken into account
-        configurer.favorPathExtension(true).
-            ignoreAcceptHeader(false).
-            useJaf(false).
-            defaultContentType(MediaType.TEXT_HTML).
-            mediaType("html", MediaType.TEXT_HTML).
-            mediaType("xml", MediaType.APPLICATION_XML).
-            mediaType("json", MediaType.APPLICATION_JSON);
-    }
-
 	@Bean
 	@Scope("singleton")
-	public LocalSessionFactoryBean sessionFactory() {
+	public LocalSessionFactoryBean sessionFactory() throws IOException {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
-		
-		
 		DataSource ds = new DataSource();
-		
-		
+
 		try {
-			Properties prop = getProperties();
-			
+			Properties prop = propertyFactory.getDbProperties();
+
 			ds.setUrl(prop.getProperty("url"));
 			ds.setDriverClassName(prop.getProperty("driver"));
 			ds.setUsername(prop.getProperty("username"));
 			ds.setPassword(prop.getProperty("password"));
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		sessionFactory.setDataSource(ds);
 		sessionFactory.setPackagesToScan("com");
-		sessionFactory.setHibernateProperties(hibernateProperties());
+		sessionFactory.setHibernateProperties(propertyFactory
+				.getHibernateProperties());
 
 		return sessionFactory;
 	}
 
 	@Bean
-	@Autowired
 	public HibernateTransactionManager transactionManager(
 			SessionFactory sessionFactory) {
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
@@ -117,85 +109,33 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
-	Properties hibernateProperties() {
-		return new Properties() {
-			{
-				setProperty("hibernate.dialect",
-						"org.hibernate.dialect.MySQLDialect");
-			}
-		};
+	@Bean
+	TilesConfigurer tilesConfigurer() {
+		TilesConfigurer tc = new TilesConfigurer();
+		return tc;
 	}
-	// @Bean
-	// public EventService eventService() {
-	// EventServiceImpl eventServiceImpl = new EventServiceImpl();
-	// eventServiceImpl.setSessionFactory(sessionFactory());
-	// return new EventServiceImpl();
-	// }
 
-	// @Bean
-	// @Scope(value = "singleton")
-	// public SessionFactory sessionFactory(){
-	// org.hibernate.cfg.Configuration configuration = new
-	// org.hibernate.cfg.Configuration().configure();
-	// StandardServiceRegistryBuilder builder = new
-	// StandardServiceRegistryBuilder().
-	// applySettings(configuration.getProperties());
-	// SessionFactory factory =
-	// configuration.buildSessionFactory(builder.build());
-	// return factory;
-	// }
-	
-	private Properties getProperties() throws IOException{
-		String result = "";
-		Properties prop = new Properties();
-		String propFileName = "com/config/config.properties";
-		 
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-		if (inputStream == null) {
-		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-		}
-		prop.load(inputStream);
+	@Bean
+	MailSender mailSender() {
+		JavaMailSenderImpl sender = new JavaMailSenderImpl();
+		sender.setHost("localhost");
+		sender.setPort(23);
+		sender.setPassword("1234");
+		sender.setUsername("username");
 
-		 
-		return prop;
+		Properties p = new Properties();
+		p.setProperty("mail.transport.protocol", "smtp");
+		p.setProperty("mail.smtp.auth", "true");
+		p.setProperty("mail.smtp.starttls.enable", "true");
+		sender.setJavaMailProperties(p);
+
+		return sender;
+
 	}
-	
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("js/**").addResourceLocations("/views/js/").setCachePeriod(31556926);
-    	registry.addResourceHandler("style/**").addResourceLocations("/views/style/").setCachePeriod(31556926);
-       // registry.addResourceHandler("/js/**").addResourceLocations("/views/").setCachePeriod(31556926);
-    }
-
-
-    @Bean
-    TilesConfigurer tilesConfigurer(){
-    	TilesConfigurer tc = new TilesConfigurer();
-    	return tc;
-    }
-
-    @Bean
-    MailSender mailSender(){
-    	JavaMailSenderImpl sender = new JavaMailSenderImpl();
-    	sender.setHost("localhost");
-    	sender.setPort(23);
-    	sender.setPassword("1234");
-    	sender.setUsername("username");
-
-    	Properties p = new Properties();
-    	p.setProperty("mail.transport.protocol", "smtp");
-    	p.setProperty("mail.smtp.auth", "true");
-    	p.setProperty("mail.smtp.starttls.enable", "true");
-    	sender.setJavaMailProperties(p);
-
-    	return sender;
-
-    }
-
-    @Bean
-    EventFactory eventFactory(){
-    	EventFactory eventFactory = new EventFactory();
-    	return eventFactory;
-    }
+	@Bean
+	EventFactory eventFactory() {
+		EventFactory eventFactory = new EventFactory();
+		return eventFactory;
+	}
 }
