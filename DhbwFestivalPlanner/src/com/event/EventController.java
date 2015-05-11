@@ -33,7 +33,8 @@ public class EventController {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	private EventFactory eventFactory = new EventFactory();
+	@Autowired
+	private EventFactory eventFactory;
 
 	@RequestMapping("/create")
 	public String create(Model model) {
@@ -244,5 +245,13 @@ public class EventController {
 		c.setTime(date);
 		SimpleDateFormat df = new SimpleDateFormat("dd.mm.yyyy");
 		return df.format(date);
+	}
+
+	public EventFactory getEventFactory() {
+		return eventFactory;
+	}
+
+	public void setEventFactory(EventFactory eventFactory) {
+		this.eventFactory = eventFactory;
 	}
 }

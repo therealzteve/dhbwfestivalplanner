@@ -51,4 +51,12 @@ public class EventFactory {
 		return false;
 	}
 
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 }

@@ -27,6 +27,8 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 
+import com.factory.EventFactory;
+
 
 @Configuration
 @ComponentScan("com")
@@ -191,4 +193,9 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 
     }
 
+    @Bean
+    EventFactory eventFactory(){
+    	EventFactory eventFactory = new EventFactory();
+    	return eventFactory;
+    }
 }

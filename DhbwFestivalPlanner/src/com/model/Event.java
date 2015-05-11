@@ -42,7 +42,7 @@ public class Event implements Serializable{
 	@OneToMany(mappedBy="event", fetch= FetchType.EAGER)
 	private List<Guest> guests;
 
-	@OneToMany(mappedBy="event", fetch= FetchType.EAGER)
+	@OneToMany
 	private List<Message> messages;
 
 	private int plz = -1;
