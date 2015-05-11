@@ -3,8 +3,7 @@ package com.messages;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.event.EventUtils;
-import org.hibernate.Session;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
@@ -14,10 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.helper.UserHelper;
+import com.factory.EventFactory;
 import com.model.Event;
 import com.model.Guest;
-import com.model.User;
 
 @Controller
 @RequestMapping("/message")
@@ -27,6 +25,9 @@ public class MessagesController {
 	private SessionFactory sessionFactory;
 
 	@Autowired
+	private EventFactory eventFactory;
+	
+	@Autowired
 	private MailSender mailSender;
 
 	@RequestMapping("/send")
@@ -34,7 +35,7 @@ public class MessagesController {
 			Model model,
 			@RequestParam(value = "id", required = false, defaultValue = "0") int id,
 			@RequestParam(value = "message", required = false, defaultValue = "") String message) {
-		Event event = getEvent(id, UserHelper.getCurrentUser());
+		Event event = eventFactory.getEvent(id, false);
 		if (event != null) {
 			sendMessage(event, message);
 			return "message/success";
@@ -71,17 +72,7 @@ public class MessagesController {
 		}
 	}
 
-	private Event getEvent(int id, User user) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Event event = (Event) session.get(Event.class, id);
-		session.getTransaction().commit();
-		session.close();
-		if (event.getCreator().getId() == user.getId()) {
-			return event;
-		}
-		return null;
-	}
+	
 
 	private String createMessageText(String userMessage, Event event) {
 		String message = "Sie haben eine Nachricht von: "

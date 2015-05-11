@@ -25,6 +25,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 
 import com.factory.EventFactory;
+import com.factory.SurveyFactory;
 
 @Configuration
 @ComponentScan("com")
@@ -137,5 +138,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	EventFactory eventFactory() {
 		EventFactory eventFactory = new EventFactory();
 		return eventFactory;
+	}
+	
+	@Bean
+	SurveyFactory surveyFactory() {
+		SurveyFactory surveyFactory = new SurveyFactory();
+		return surveyFactory;
 	}
 }
