@@ -35,7 +35,8 @@ public class GuestListController {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	EventFactory eventFactory = new EventFactory();
+	@Autowired
+	EventFactory eventFactory;
 
 	/**
 	 * Zeigt das Gaestelisten Formular an
@@ -215,6 +216,14 @@ public class GuestListController {
 		}
 		session.getTransaction().commit();
 		session.close();
+	}
+
+	public EventFactory getEventFactory() {
+		return eventFactory;
+	}
+
+	public void setEventFactory(EventFactory eventFactory) {
+		this.eventFactory = eventFactory;
 	}
 
 

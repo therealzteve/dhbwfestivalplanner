@@ -43,6 +43,7 @@ public class Event implements Serializable{
 	private List<Guest> guests;
 
 	@OneToMany
+	@JsonIgnore
 	private List<Message> messages;
 
 	private int plz = -1;

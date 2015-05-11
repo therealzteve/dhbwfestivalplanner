@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="<c:url value="/style/mainpage.css" />" >
     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="<c:url value="/style/fonts/fontAwesome/css/font-awesome.min.css" />" rel='stylesheet'>
+     <script type="text/javascript" src='<c:url value="js/jquery-2.1.1.js"></c:url>'></script>
      <script type="text/javascript" src='<c:url value="js/handler.js"></c:url>'></script>
-         <script type="text/javascript" src='<c:url value="js/jquery-2.1.1.js"></c:url>'></script>
 <title>	<tiles:insertAttribute name="pageTitle"></tiles:insertAttribute></title>
 </head>
 <body>
