@@ -12,12 +12,12 @@ public class Option {
 
 	@Id
 	@Column(name = "ID")
-	int id;
+	private int id;
 	
-	int value;
+	private int value;
 	
 	@ManyToOne
-	Survey survey;
+	private Survey survey;
 
 	public int getId() {
 		return id;
@@ -41,5 +41,9 @@ public class Option {
 
 	public void setSurvey(Survey survey) {
 		this.survey = survey;
+	}
+
+	public void increaseValue() {
+		value++;
 	}
 }

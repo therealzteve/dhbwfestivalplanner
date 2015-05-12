@@ -22,15 +22,14 @@ public class SurveyController {
 
 	@Autowired
 	SessionFactory sessionFactory;
-	
+
 	@Autowired
 	SurveyFactory surveyFactory;
 
-
-
 	@RequestMapping("/display")
 	@ResponseBody
-	public Survey getSurvey(Model model, @RequestParam("survey") int surveyId, @RequestParam("event") int eventId) {
+	public Survey getSurvey(Model model, @RequestParam("survey") int surveyId,
+			@RequestParam("event") int eventId) {
 		Survey survey = surveyFactory.getSurvey(surveyId, eventId);
 		return survey;
 	}
@@ -48,18 +47,29 @@ public class SurveyController {
 		return "survey/edit";
 	}
 
-	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(Model model, Survey survey){
-		
-		//TODO validation
-		
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String save(Model model, Survey survey) {
+
+		// TODO validation
+
 		// Save survey in database
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.saveOrUpdate(survey);
 		session.getTransaction().commit();
-		
+
 		return "survey/saved";
+	}
+
+	@RequestMapping(value = "/increaseOption")
+	public String increaseOption(Model model,
+			@RequestParam("event") int eventId,
+			@RequestParam("survey") int surveyId,
+			@RequestParam("option") int optionId) {
+		
+		Survey survey = surveyFactory.getSurvey(surveyId, eventId);
+		survey.increaseOption(optionId);
+		return "test";
 	}
 
 }

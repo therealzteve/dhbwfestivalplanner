@@ -48,4 +48,18 @@ public class Survey {
 		this.event = event;
 	}
 	
+	public void increaseOption(int optionID){
+		Option option = getOptionById(optionID);
+		option.increaseValue();
+	}
+	
+	private Option getOptionById(int optionID){
+		for(Option option : this.options){
+			if(option.getId() == optionID){
+				return option;
+			}
+		}
+		return null;
+	}
+	
 }
