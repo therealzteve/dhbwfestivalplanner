@@ -3,6 +3,8 @@ package com.config;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.persistence.EntityManager;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
@@ -73,7 +75,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	@Scope("singleton")
 	public LocalSessionFactoryBean sessionFactory() throws IOException {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-
+		
+		
 		DataSource ds = new DataSource();
 
 		try {
@@ -87,7 +90,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		sessionFactory.setDataSource(ds);
 		sessionFactory.setPackagesToScan("com");
 		sessionFactory.setHibernateProperties(propertyFactory
@@ -104,6 +106,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 		return txManager;
 	}
+	
 
 	@Bean
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {

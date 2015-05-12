@@ -30,6 +30,7 @@ public class Event implements Serializable{
 	
 	@Id
 	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id = 0;
 
 	private String name;
