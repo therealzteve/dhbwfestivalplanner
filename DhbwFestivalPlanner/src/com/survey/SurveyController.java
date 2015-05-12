@@ -69,7 +69,7 @@ public class SurveyController {
 		
 		Survey survey = surveyFactory.getSurvey(surveyId, eventId);
 		survey.increaseOption(optionId);
-		return "test";
+		return "survey/optAck";
 	}
 
 }
