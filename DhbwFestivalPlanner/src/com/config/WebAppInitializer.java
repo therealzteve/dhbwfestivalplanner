@@ -16,11 +16,6 @@ public class WebAppInitializer implements WebApplicationInitializer {
 	public void onStartup(ServletContext servletContext)
 			throws ServletException {
 		
-//		try {
-//			DatabaseResetter.resetDatabase(servletContext.getRealPath("/META-INF/sql/import.sql"));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 		
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 		ctx.register(AppConfig.class);
