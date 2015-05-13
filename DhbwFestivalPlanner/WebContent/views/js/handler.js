@@ -192,7 +192,7 @@ saveGuests = function() {
 
 	// var guestList = {};
 	guestList.id = $("#eventid").val();
-	alert($.toDictionary(guestList));
+	alert($.toDictionary(guestList)+"Gäste wurden Gespeichert!");
 
 	$.ajax({
 		url : "/DhbwFestivalPlanner/guestList/save",
