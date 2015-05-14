@@ -16,7 +16,7 @@ And he clicks on the Guest Panel
 And the user forgets to fill the name
 Then he gets an alert that the name is required
 
-Scenario: Require Name
+Scenario: Validate Email
 Given that the User is logged in
 And the Event is created
 When the user clicks on the Events title

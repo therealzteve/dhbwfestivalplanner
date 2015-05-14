@@ -107,7 +107,7 @@ function validateEmail(id) {
 
 	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	if (!filter.test(email.value)) {
-		alert('Bitte gib eine gültige Emailadresse ein!');
+		alert('Bitte gib eine g&uuml;ltige Emailadresse ein!');
 		// email.focus;
 		return false;
 	}

@@ -27,8 +27,8 @@ public class SeleniumTest {
     private boolean acceptNextAlert = true;
 
     public void setUp() throws Exception {
-    	//System.setProperty("webdriver.ie.driver", "C:/Users/Yvonne/Downloads/IEDriverServer_x64_2.45.0/IEDriverServer.exe");
-    	driver = new  FirefoxDriver ();
+    	System.setProperty("webdriver.chrome.driver", "C:/Users/Yvonne/Downloads/chromedriver_win32/chromedriver.exe");
+    	driver = new  ChromeDriver ();
     	
 
     baseUrl = "http://localhost:8080/DhbwFestivalPlanner/";
@@ -130,11 +130,11 @@ public class SeleniumTest {
 		
 	}
 	public void isEventCreated(){
-		driver.findElement(By.linkText("sample")).isDisplayed();
+		driver.findElement(By.cssSelector("li.dummy:nth-child(2) > a:nth-child(1)")).isDisplayed();
 
 	}
 	public void clickEvent(){
-		driver.findElement(By.linkText("sample")).click();
+		driver.findElement(By.cssSelector("li.dummy:nth-child(2) > a:nth-child(1)")).click();
 	}
 	public void showInfos(){
 		driver.findElement(By.id("guest1")).isDisplayed();
@@ -144,7 +144,7 @@ public class SeleniumTest {
 		driver.get("http://localhost:8080/DhbwFestivalPlanner/event/guestView?id=1");
 	}
 	public void displayGuestView(){
-		assertEquals("SAMPLE", driver.findElement(By.id("titel")).getText());
+		assertEquals("UPDATED SAMPLE", driver.findElement(By.id("titel")).getText());
 	}
     
     //CREATE/EDIT
@@ -159,8 +159,8 @@ public class SeleniumTest {
     	assertEquals("Festival Planner: Party bearbeiten", driver.getTitle());
     }
     public void clickPen(){
-    	driver.findElement(By.linkText("sample")).click();
-    	driver.findElement(By.cssSelector("i.fa.fa-pencil")).click();
+    	driver.findElement(By.cssSelector("li.dummy:nth-child(2) > a:nth-child(1)")).click();
+    	//driver.findElement(By.cssSelector("i.fa.fa-pencil")).click(); //hat derzeit probleme
     	driver.get(baseUrl + "/event/edit?id=1");
     }
     public void edit(){
@@ -169,6 +169,7 @@ public class SeleniumTest {
         submitCreate();
     }
     public void updatePage(){
+    	driver.get(baseUrl);
     	driver.get(baseUrl);
     	driver.findElement(By.linkText("updated sample"));
     }
@@ -201,9 +202,11 @@ public class SeleniumTest {
     }
 
     public void showHints(){
-    	driver.findElement(By.xpath("(//div[contains(text(),'Bitte fülle alle Felder aus!')])"));
+    	driver.findElement(By.id("editerror"));
     }
 
+    //INVITE
+    
 	public void clickGuestPanel() {
 		driver.findElement(By.id("teiln")).click();
 		driver.get(baseUrl + "/guestList/show?id=1");
@@ -283,7 +286,7 @@ public class SeleniumTest {
 
 	public void alertMail() {
 		assertTrue(isAlertPresent());
-		assertTrue(closeAlertAndGetItsText().equals("Bitte gib eine gültige Emailadresse ein!"));
+		assertTrue(closeAlertAndGetItsText().equals("Bitte gib eine g&uuml;ltige Emailadresse ein!"));
 		
 	}
 }
