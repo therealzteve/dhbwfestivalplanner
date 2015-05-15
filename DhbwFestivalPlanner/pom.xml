@@ -154,6 +154,11 @@
   		<artifactId>webdriver-firefox</artifactId>
   		<version>0.9.7376</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-test</artifactId>
+  		<version>4.0.7.RELEASE</version>
+  	</dependency>
   </dependencies>
   <dependencyManagement>
   	<dependencies>
