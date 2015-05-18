@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration()
 @ContextConfiguration(classes  = {com.config.security.SecurityConfig.class ,com.config.AppConfig.class  })
-public class FactoryTester {
+public class EventTester {
 	
 	@Autowired
     private WebApplicationContext wac;
