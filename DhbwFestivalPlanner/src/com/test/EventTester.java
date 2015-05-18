@@ -6,18 +6,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.model.User;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration()
@@ -35,20 +39,24 @@ public class EventTester {
     @Before
     public void setup() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).addFilters(springSecurityFilterChain).build();
-        login();
-    }
-    
-    public void login() throws Exception{
-
     }
 
     @Test
-    public void getAccount() throws Exception {
-    	//this.mockMvc.perform(post("/register").requestAttr("username", "t").requestAttr("password", "t").requestAttr("email", "test@test.de"));
-    	HttpSession session = this.mockMvc.perform(post("/login").param("username", "t").param("password", "t")).andReturn().getRequest().getSession();
-        this.mockMvc.perform(get("/event/display?id=1").session((MockHttpSession)session).accept("application/json")).andExpect(status().isOk());
-//            .andExpect(content().contentType("application/json"))
-//            .andExpect(jsonPath("$.name").value("Lee"));
+    public void getEvent() throws Exception {
+        this.mockMvc
+        	.perform(get("/event/display?id=1")
+        			.with(userPresets())
+        			.accept("application/json"))
+        	.andExpect(status().isOk());
+    }
+    
+    private RequestPostProcessor userPresets(){
+    	
+    	User user = new User();
+    	user.setId(1);
+    	user.setName("t");
+    	user.setPassword("t");
+    	return user(user);
     }
 
 }
