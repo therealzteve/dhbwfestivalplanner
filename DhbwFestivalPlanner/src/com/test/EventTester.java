@@ -29,9 +29,12 @@ public class EventTester {
 
     private MockMvc mockMvc;
 
+    @Autowired
+    private javax.servlet.Filter[] springSecurityFilterChain;
+    
     @Before
     public void setup() throws Exception {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).addFilters(springSecurityFilterChain).build();
         login();
     }
     
@@ -43,7 +46,7 @@ public class EventTester {
     public void getAccount() throws Exception {
     	//this.mockMvc.perform(post("/register").requestAttr("username", "t").requestAttr("password", "t").requestAttr("email", "test@test.de"));
     	HttpSession session = this.mockMvc.perform(post("/login").param("username", "t").param("password", "t")).andReturn().getRequest().getSession();
-        this.mockMvc.perform(get("/event/display?id=1").session((MockHttpSession)session)).andExpect(status().isOk());
+        this.mockMvc.perform(get("/event/display?id=1").session((MockHttpSession)session).accept("application/json")).andExpect(status().isOk());
 //            .andExpect(content().contentType("application/json"))
 //            .andExpect(jsonPath("$.name").value("Lee"));
     }
