@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +20,9 @@ public class Budget {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id = 0;
 
+	@OneToOne
+	private Event event;
+	
 	@OneToMany
 	private List<BudgetPosition> budgetPositions;
 
@@ -46,5 +50,17 @@ public class Budget {
 
 	public void setBudgetPositions(List<BudgetPosition> budgetPositions) {
 		this.budgetPositions = budgetPositions;
+	}
+
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+
+	public User getUser() {
+		return event.getCreator();
 	}
 }

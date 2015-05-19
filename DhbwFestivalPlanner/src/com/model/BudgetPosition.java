@@ -57,5 +57,9 @@ public class BudgetPosition {
 		this.budget = budget;
 	}
 	
+	public User getUser(){
+		return budget.getUser();
+	}
+	
 	
 }
