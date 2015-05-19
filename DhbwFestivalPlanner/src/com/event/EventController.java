@@ -1,5 +1,6 @@
 package com.event;
 
+import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -151,6 +152,23 @@ public class EventController {
 
 		return "event/edit";
 	}
+	
+	@RequestMapping(value = "/delete", method= RequestMethod.POST)
+	public String delete(
+			Model model,
+			@RequestParam(value = "id", required = true, defaultValue = "0") int id) {
+
+		Event event = eventFactory.getEvent(id, false);
+		
+		if(event == null){
+			model.addAttribute("errorMessage", "Event mit id: " + id + " nicht gefunden.");
+			return "event/error";
+		}
+		
+		deleteEvent(event);
+		
+		return list(model);
+	}
 
 	@RequestMapping(value = { "/guestView", "/guestview" })
 	public String guestView(
@@ -245,6 +263,13 @@ public class EventController {
 		c.setTime(date);
 		SimpleDateFormat df = new SimpleDateFormat("dd.mm.yyyy");
 		return df.format(date);
+	}
+	
+	private void deleteEvent(Event event){
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.delete(event);
+		session.getTransaction().commit();
 	}
 
 	public EventFactory getEventFactory() {
