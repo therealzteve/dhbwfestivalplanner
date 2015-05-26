@@ -93,6 +93,7 @@ public class EventController {
 		// Save event in database
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
+		session.saveOrUpdate(event.getBudget());
 		session.saveOrUpdate(event);
 		session.getTransaction().commit();
 

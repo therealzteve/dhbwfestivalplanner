@@ -7,6 +7,7 @@ import org.hibernate.collection.internal.PersistentBag;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.helper.UserHelper;
+import com.model.Budget;
 import com.model.Event;
 
 public class EventFactory {
@@ -40,6 +41,8 @@ public class EventFactory {
 		}
 
 		event = new Event();
+		Budget budget = new Budget();
+		event.setBudget(budget);
 		return event;
 	}
 

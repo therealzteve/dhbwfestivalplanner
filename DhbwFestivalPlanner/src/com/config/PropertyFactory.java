@@ -7,8 +7,8 @@ import java.util.Properties;
 
 public class PropertyFactory {
 
-	public static final String DB_PROP = "com/config/database.properties";
-	public static final String HIB_PROP = "com/config/hibernate.properties";
+	public static final String DB_PROP = "database.properties";
+	public static final String HIB_PROP = "hibernate.properties";
 	
 	public Properties getDbProperties() throws IOException {
 		return getProperties(DB_PROP);

@@ -97,13 +97,11 @@
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-core</artifactId>
 			<version>1.2.2</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java</artifactId>
 			<version>1.2.2</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>info.cukes</groupId>
@@ -114,7 +112,6 @@
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-jvm-deps</artifactId>
 			<version>1.0.3</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>info.cukes</groupId>
@@ -125,13 +122,11 @@
 			<groupId>info.cukes</groupId>
 			<artifactId>gherkin</artifactId>
 			<version>2.12.2</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-html</artifactId>
 			<version>0.2.3</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -142,13 +137,11 @@
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-firefox-driver</artifactId>
 			<version>2.45.0</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
 			<version>2.45.0</version>
-			<scope>test</scope>
 			<exclusions>
 				<exclusion>
 					<artifactId>servlet-api-2.5</artifactId>
@@ -180,6 +173,12 @@
 
 			<version>4.0.0.M1</version>
 
+		</dependency>
+
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>

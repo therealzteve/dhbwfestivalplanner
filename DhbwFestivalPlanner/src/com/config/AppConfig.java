@@ -116,7 +116,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tc = new TilesConfigurer();
-		tc.setDefinitions("classpath:main/resources/tiles.xml");
+		tc.setDefinitions("classpath:tiles.xml");
 		return tc;
 	}
 
