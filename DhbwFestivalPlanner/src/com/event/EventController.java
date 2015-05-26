@@ -133,7 +133,7 @@ public class EventController {
 			return null;
 		}
 		model.addAttribute("event", event);
-		Hibernate.initialize(event);
+		//Hibernate.initialize(event);
 
 		return event;
 	}

@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "budget")
 public class Budget {
@@ -21,6 +23,7 @@ public class Budget {
 	private int id = 0;
 
 	@OneToOne
+	@JsonIgnore
 	private Event event;
 	
 	@OneToMany
@@ -52,6 +55,7 @@ public class Budget {
 		this.budgetPositions = budgetPositions;
 	}
 
+	
 	public Event getEvent() {
 		return event;
 	}
@@ -60,7 +64,13 @@ public class Budget {
 		this.event = event;
 	}
 
+	@JsonIgnore
 	public User getUser() {
 		return event.getCreator();
+	}
+
+	public void add(BudgetPosition budgetPosition) {
+		budgetPositions.add(budgetPosition);
+		
 	}
 }

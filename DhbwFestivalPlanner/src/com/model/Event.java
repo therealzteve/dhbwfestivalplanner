@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "event")
 public class Event implements Serializable{
 
-	
+
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -34,6 +35,7 @@ public class Event implements Serializable{
 	private String title, address, city, description;
 	
 	@OneToOne
+	@NotNull
 	private Budget budget;
 
 	@OneToMany(mappedBy="event", fetch= FetchType.EAGER)

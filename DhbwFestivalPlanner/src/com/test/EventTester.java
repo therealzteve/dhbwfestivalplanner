@@ -15,10 +15,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.model.Budget;
 import com.model.Event;
 import com.model.User;
 
@@ -47,28 +49,50 @@ public class EventTester {
 
 	@Test
 	public void getEvent() throws Exception {
-		this.mockMvc.perform(
+		ResultActions ra = this.mockMvc.perform(
 				get("/event/display?id=1").with(userPresets()).accept(
-						"application/json")).andExpect(status().isOk());
+						"application/json"));
+		
+		ra.andExpect(status().isOk());
 	}
 
 	@Test
 	public void deleteEvent() throws Exception {
-		int eventId  = prepareTestEvent();
-		
+		int eventId = prepareTestEvent();
+
 		this.mockMvc.perform(
-				post("/event/delete").param("id",Integer.toString(eventId)).with(userPresets()).accept(
-						MediaType.TEXT_HTML)).andExpect(status().isOk());
-		
+				post("/event/delete").param("id", Integer.toString(eventId))
+						.with(userPresets()).accept(MediaType.TEXT_HTML))
+				.andExpect(status().isOk());
+
+	}
+
+	@Test
+	public void addBudget() throws Exception {
+		int eventId = prepareTestEvent();
+
+		this.mockMvc.perform(
+				post("/budget/add").param("eventId", Integer.toString(eventId))
+						.param("amount", Integer.toString(1))
+						.param("price", Float.toString(9.99f))
+						.param("name", "testName").with(userPresets())
+						.accept(MediaType.TEXT_HTML))
+				.andExpect(status().isOk());
+
 	}
 
 	private int prepareTestEvent() {
 		Event event = new Event();
 
 		event.setCreator(createTestUser());
-
-		Session session = sessionFactory.openSession();
+		
+		Budget budget = new Budget();
+		
+		event.setBudget(budget);
+		
+		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
+		session.saveOrUpdate(budget);
 		session.saveOrUpdate(event);
 		session.getTransaction().commit();
 

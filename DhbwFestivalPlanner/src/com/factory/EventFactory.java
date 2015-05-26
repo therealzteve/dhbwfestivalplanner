@@ -1,7 +1,9 @@
 package com.factory;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.collection.internal.PersistentBag;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.helper.UserHelper;
@@ -13,11 +15,13 @@ public class EventFactory {
 	private SessionFactory sessionFactory;
 
 	public Event getEvent(int id, boolean guest) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		Event event = getOrCreateEvent(session, id, guest);
+		Hibernate.initialize(event.getBudget().getBudgetPositions());
 		session.getTransaction().commit();
-		session.close();
+		
+		
 		return event;
 	}
 
