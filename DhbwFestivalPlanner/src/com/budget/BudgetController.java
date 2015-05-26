@@ -24,13 +24,32 @@ public class BudgetController {
 
 	@Autowired
 	EventFactory eventFactory;
-
+	
 	@RequestMapping("/edit")
 	public void edit(Model model, @RequestBody BudgetPosition budgetPosition) {
 
 		if (hasPermission(budgetPosition)) {
 			save(budgetPosition);
 		}
+	}
+	
+	@RequestMapping("/delete")
+	public void delete(Model model, @RequestParam("eventId") int eventId, @RequestParam("id")  int id ) {
+		Event event = eventFactory.getEvent(eventId, false);
+
+		for(BudgetPosition budgetPosition : event.getBudget().getBudgetPositions()){
+			if(budgetPosition.getId() == id){
+				deleteBudgetPosition(budgetPosition);
+			}
+		}
+		
+	}
+
+	private void deleteBudgetPosition(BudgetPosition budgetPosition) {
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		session.delete(budgetPosition);
+		session.getTransaction().commit();
 	}
 
 	@RequestMapping("/add")
@@ -43,23 +62,21 @@ public class BudgetController {
 
 		BudgetPosition budgetPosition = buildBudgetPosition(amount, price, name);
 
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		session.refresh(event.getBudget());
 		Hibernate.initialize(event.getBudget());
 		event.getBudget().add(budgetPosition);
 		session.saveOrUpdate(budgetPosition);
 		session.getTransaction().commit();
-		session.close();
 		
 	}
 
 	private void save(BudgetPosition budgetPosition) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		session.saveOrUpdate(budgetPosition);
 		session.getTransaction().commit();
-		session.close();
 	}
 	
 
