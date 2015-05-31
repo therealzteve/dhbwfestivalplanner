@@ -119,11 +119,7 @@ a.iconsa:active {
   width: 100%;
   height: 100%; }
 
-/* line 3, C:/Users/Carina/Pictures/Festival Planner/Frontend/DhbwFestivalPlanner/WebContent/views/style/message.scss */
-.iconsa {
-  display: none; }
-
-/* line 7, C:/Users/Carina/Pictures/Festival Planner/Frontend/DhbwFestivalPlanner/WebContent/views/style/message.scss */
+/* line 2, C:/Users/Carina/Pictures/Festival Planner/Frontend/DhbwFestivalPlanner/WebContent/views/style/impressum.scss */
 #whitya {
   background-color: rgba(255, 255, 255, 0.53);
   -moz-border-radius: 15px;
@@ -133,46 +129,8 @@ a.iconsa:active {
   margin-top: 30px;
   padding: 5px;
   position: relative;
-  height: 90%;
+  height: 95%;
   overflow-y: auto;
   overflow-x: hidden; }
 
-/* line 20, C:/Users/Carina/Pictures/Festival Planner/Frontend/DhbwFestivalPlanner/WebContent/views/style/message.scss */
-h1 {
-  text-transform: uppercase;
-  font-family: "Novitolight";
-  text-align: center;
-  font-size: 50px;
-  font-weight: 100; }
-
-/* line 27, C:/Users/Carina/Pictures/Festival Planner/Frontend/DhbwFestivalPlanner/WebContent/views/style/message.scss */
-#labl {
-  display: block;
-  float: left;
-  width: 20%; }
-
-/* line 32, C:/Users/Carina/Pictures/Festival Planner/Frontend/DhbwFestivalPlanner/WebContent/views/style/message.scss */
-#inpt {
-  float: right;
-  width: 80%;
-  height: 90%; }
-  /* line 37, C:/Users/Carina/Pictures/Festival Planner/Frontend/DhbwFestivalPlanner/WebContent/views/style/message.scss */
-  #inpt input {
-    width: 80%; }
-
-/* line 41, C:/Users/Carina/Pictures/Festival Planner/Frontend/DhbwFestivalPlanner/WebContent/views/style/message.scss */
-#nachricht {
-  height: 180px; }
-
-/* line 46, C:/Users/Carina/Pictures/Festival Planner/Frontend/DhbwFestivalPlanner/WebContent/views/style/message.scss */
-.testmal {
-  height: 40px;
-  width: 250px;
-  background-color: rgba(255, 245, 0, 0.75);
-  border: 1px solid black;
-  border-radius: 10px;
-  font-family: "Novitolight";
-  text-transform: uppercase;
-  font-size: 35px; }
-
-/*# sourceMappingURL=message.css.map */
+/*# sourceMappingURL=impressum.css.map */
