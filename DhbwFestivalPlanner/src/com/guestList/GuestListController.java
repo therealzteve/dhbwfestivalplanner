@@ -10,13 +10,20 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.factory.EventFactory;
+import com.helper.RandomString;
 import com.model.Event;
 import com.model.Guest;
+import com.model.GuestList;
 import com.model.User;
+import com.model.wrapper.GuestListIdWrapper;
 
 @Controller
 @RequestMapping("/guestList")
@@ -27,6 +34,9 @@ public class GuestListController {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Autowired
+	EventFactory eventFactory;
 
 	/**
 	 * Zeigt das Gaestelisten Formular an
@@ -38,10 +48,11 @@ public class GuestListController {
 	@RequestMapping("/show")
 	public String show(Model model,
 			@RequestParam(value = "id", required = true) int id) {
+		model.addAttribute("eventId",id );
+		
+		model.addAttribute("guestList", eventFactory.getEvent(id,false).getGuests());
 
-		model.addAttribute("guestList", getEvent(id).getGuests());
-
-		return "guestList/show";
+		return "event/inviteguests";
 	}
 
 	/**
@@ -55,17 +66,19 @@ public class GuestListController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(
 			Model model,
-			@RequestParam(value = "id", required = true) int id,
-			@RequestParam(value = "guestList", required = true) List<Guest> guestList) {
+			@RequestBody GuestListIdWrapper guestListIdWrapper) {
 
 		// INITIALISIERUNG
-		List<Guest> currentGuestList = getEvent(id).getGuests();
+		List<Guest> internalGuestList = guestListIdWrapper.getGuests();
+		int id = guestListIdWrapper.getId();
+		Event currentEvent = eventFactory.getEvent(id,false);
+		List<Guest> currentGuestList = currentEvent.getGuests();
 		List<Guest> dirtyGuests = new ArrayList<Guest>();
-		Event currentEvent = getEvent(id);
+		
 		// END INITIALISIERUNG
 
 		// Fuer alle Gaeste in der neuen Gaesteliste
-		for (Guest guestToCheck : guestList) {
+		for (Guest guestToCheck : internalGuestList) {
 
 			// Event mappen
 			guestToCheck.setEvent(currentEvent);
@@ -86,53 +99,56 @@ public class GuestListController {
 		// Dirty guests gegen Datenbank abgleichen und uebrige Gaeste entfernen
 		updateDatabase(dirtyGuests, currentGuestList);
 
-		return "guestList/show";
+		return "event/inviteguests";
 	}
 
 	/**
 	 * Looks for all guests from an event and send an invitation to all guests
-	 * which don't got an invitation and are not email blocked.
 	 * 
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping(value = "/invite")
 	public String invite(@RequestParam(value = "id", required = true) int id) {
-		Event event = getEvent(id);
-		ArrayList<String> recipients = new ArrayList<String>();
-		ArrayList<Guest> recipientsGuests = new ArrayList<Guest>();
+		Event event = eventFactory.getEvent(id,false);
+
 		for (Guest g : event.getGuests()) {
-			if (g.isReceivesEmail() && !g.isReceivedInvitation()) {
-				recipients.add(g.getEmail());
-				g.setReceivedInvitation(true);
-				recipientsGuests.add(g);
-			}
+			sendInvitationMail(event, g);
 		}
-		if(recipients.size() >0){
-			String[] recipientsArray = new String[recipients.size()];
-			recipientsArray = recipients.toArray(recipientsArray);
-			sendInvitationMail(recipientsArray, event.getTitle(), id);
-			
-			updateInvitedGuests(recipientsGuests);
-		}
+
+		updateInvitedGuests(event.getGuests());
+
 		return "";
 	}
 
 	/**
-	 * Sends an invitation email to all given recipients
+	 * Sends an invitation email to a given guest from a given event
 	 * 
-	 * @param to
+	 * @param event the event
+	 * @param guest the guest which should receive the email
 	 */
-	private void sendInvitationMail(String[] to, String eventName, int id) {
+	private void sendInvitationMail(Event event, Guest guest) {
+		if (!guest.isReceivedInvitation()) {
 
-		SimpleMailMessage message = new SimpleMailMessage();
+			RandomString randomString = new RandomString(40);
+			guest.setEventCode(randomString.nextString());
+			
+			SimpleMailMessage message = new SimpleMailMessage();
 
-		message.setFrom("info@dhbwfestivalplanner.de");
-		message.setTo(to);
-		message.setSubject("Einladung zu: " + eventName);
-		message.setText("Du wurdest zu einer Veranstaltung eingeladen! Du findest sie unter folgendem Link: "
-				+ "\n http://festivalplanner.de/event/guestView?id="+id);
-		mailSender.send(message);
+			message.setFrom("info@dhbwfestivalplanner.de");
+			message.setTo(guest.getEmail());
+			message.setSubject("Einladung zu: " + event.getName());
+			message.setText("Du wurdest zu einer Veranstaltung eingeladen! Du findest sie unter folgendem Link: "
+					+ "\n http://festivalplanner.de/event/guestView?id="
+					+ event.getId()
+					+ "&gid="
+					+ guest.getId()
+					+ "&gcode="
+					+ guest.getEventCode());
+			mailSender.send(message);
+
+			guest.setReceivedInvitation(true);
+		}
 	}
 
 	/**
@@ -186,8 +202,7 @@ public class GuestListController {
 		session.getTransaction().commit();
 		session.close();
 	}
-	
-	
+
 	/**
 	 * Aktualisiert die Gaeste, die eine Einladungs-Email erhalten haben
 	 * 
@@ -203,18 +218,20 @@ public class GuestListController {
 		session.close();
 	}
 
-	/**
-	 * Holt das aktuelle event anhand der ID aus der Datenbank
-	 * 
-	 * @param id
-	 * @return
-	 */
-	protected Event getEvent(int id) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Event event = (Event) session.get(Event.class, id);
-		session.getTransaction().commit();
-		session.close();
-		return event;
+	public EventFactory getEventFactory() {
+		return eventFactory;
 	}
+
+	public void setEventFactory(EventFactory eventFactory) {
+		this.eventFactory = eventFactory;
+	}
+
+
+	
+
 }
+
+
+
+
+

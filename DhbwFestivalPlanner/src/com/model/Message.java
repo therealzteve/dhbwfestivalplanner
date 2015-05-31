@@ -1,12 +1,24 @@
 package com.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "message")
 public class Message {
-	String content;
+	private String content;
 	
-	User veranstalter;
-	Message vorgaenger;
-	Guest guest;
+	private Event event;
+	
+	@Id
+	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id = 0;
 	
 	public String getContent() {
 		return content;
@@ -14,23 +26,19 @@ public class Message {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public User getVeranstalter() {
-		return veranstalter;
+	
+	public Event getEvent() {
+		return event;
 	}
-	public void setVeranstalter(User veranstalter) {
-		this.veranstalter = veranstalter;
+	public void setEvent(Event event) {
+		this.event = event;
 	}
-	public Message getVorgaenger() {
-		return vorgaenger;
+	public int getId() {
+		return id;
 	}
-	public void setVorgaenger(Message vorgaenger) {
-		this.vorgaenger = vorgaenger;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public Guest getGuest() {
-		return guest;
-	}
-	public void setGuest(Guest guest) {
-		this.guest = guest;
-	}
+
 	
 }

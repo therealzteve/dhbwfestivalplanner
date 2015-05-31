@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.factory.EventFactory;
 import com.helper.UserHelper;
 import com.model.Event;
+import com.model.Guest;
 import com.model.User;
 
 @Controller
@@ -30,6 +32,9 @@ public class EventController {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+
+	@Autowired
+	private EventFactory eventFactory;
 
 	@RequestMapping("/create")
 	public String create(Model model) {
@@ -62,7 +67,7 @@ public class EventController {
 		} catch (Exception e) {
 			// Invalid dates were tried to be parsed, return error
 
-			Event event = getEvent(id, user, false);
+			Event event = eventFactory.getEvent(id, false);
 			fillEventData(event, title, description, name, address, city, plz,
 					design);
 
@@ -71,7 +76,7 @@ public class EventController {
 			return "event/edit";
 		}
 
-		Event event = getEvent(id, user, false);
+		Event event = eventFactory.getEvent(id, false);
 
 		if (event == null) {
 			throw new Exception("Event with id: " + id
@@ -88,6 +93,7 @@ public class EventController {
 		// Save event in database
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
+		session.saveOrUpdate(event.getBudget());
 		session.saveOrUpdate(event);
 		session.getTransaction().commit();
 
@@ -122,13 +128,13 @@ public class EventController {
 			Model model,
 			@RequestParam(value = "id", required = true, defaultValue = "0") int id) {
 
-		Event event = getEvent(id, UserHelper.getCurrentUser(), false);
+		Event event = eventFactory.getEvent(id, false);
 
 		if (id == 0) {
 			return null;
 		}
 		model.addAttribute("event", event);
-		Hibernate.initialize(event);
+		//Hibernate.initialize(event);
 
 		return event;
 	}
@@ -138,7 +144,7 @@ public class EventController {
 			Model model,
 			@RequestParam(value = "id", required = true, defaultValue = "0") int id) {
 
-		Event event = getEvent(id, UserHelper.getCurrentUser(), false);
+		Event event = eventFactory.getEvent(id, false);
 
 		model.addAttribute("event", event);
 		model.addAttribute("time", formatTime(event.getTime()));
@@ -146,41 +152,64 @@ public class EventController {
 
 		return "event/edit";
 	}
+	
+	@RequestMapping(value = "/delete", method= RequestMethod.POST)
+	public String delete(
+			Model model,
+			@RequestParam(value = "id", required = true, defaultValue = "0") int id) {
+
+		Event event = eventFactory.getEvent(id, false);
+		
+		if(event == null){
+			model.addAttribute("errorMessage", "Event mit id: " + id + " nicht gefunden.");
+			return "event/error";
+		}
+		
+		deleteEvent(event);
+		
+		return list(model);
+	}
 
 	@RequestMapping(value = { "/guestView", "/guestview" })
 	public String guestView(
 			Model model,
-			@RequestParam(value = "id", required = true, defaultValue = "0") int id) {
+			@RequestParam(value = "id", required = true, defaultValue = "0") int id,
+			@RequestParam(value = "gid", required = true, defaultValue = "0") int gid,
+			@RequestParam(value = "gcode", required = true, defaultValue = "0") String gcode) {
 
 		if (id != 0) {
-			Event event = getEvent(id, null, true);
-			if (event == null) {
+			Event event = eventFactory.getEvent(id, true);
+			Guest g = new Guest();
+			g.setId(gid);
+			g.setEventCode(gcode);
+
+			if (isValidGuestEvent(event, g)) {
 				return "event/guestViewError";
 			}
+
 			model.addAttribute("event", event);
-		} else {
-			return "event/guestViewError";
 		}
 
 		return "event/guestView";
 	}
 
-	private Event getOrCreateEvent(Session session, int id, User user,
-			boolean guest) {
-		Event event;
-		if (id != 0) {
-			event = (Event) session.get(Event.class, id);
-
-			// If given user is not the owner of the event, return null for
-			// security reasons
-			if (guest == false && event != null
-					&& event.getCreator().getId() != user.getId()) {
-				return null;
+	/**
+	 * Checks if a guest is allowed to see an event.
+	 * 
+	 * @param event
+	 * @param guest
+	 * @return
+	 */
+	private boolean isValidGuestEvent(Event event, Guest guest) {
+		if (event != null) {
+			for (Guest g : event.getGuests()) {
+				if (g.getId() == guest.getId()
+						&& g.getEventCode().equals(guest.getEventCode())) {
+					return true;
+				}
 			}
-		} else {
-			event = new Event();
 		}
-		return event;
+		return false;
 	}
 
 	private void fillEventData(Event event, String title, String description,
@@ -210,15 +239,6 @@ public class EventController {
 		return c.getTime();
 	}
 
-	private Event getEvent(int id, User user, boolean guest) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Event event = getOrCreateEvent(session, id, user, guest);
-		session.getTransaction().commit();
-		session.close();
-		return event;
-	}
-
 	private String formatTime(Date date) {
 		if (date == null) {
 			return "";
@@ -243,5 +263,20 @@ public class EventController {
 		c.setTime(date);
 		SimpleDateFormat df = new SimpleDateFormat("dd.mm.yyyy");
 		return df.format(date);
+	}
+	
+	private void deleteEvent(Event event){
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.delete(event);
+		session.getTransaction().commit();
+	}
+
+	public EventFactory getEventFactory() {
+		return eventFactory;
+	}
+
+	public void setEventFactory(EventFactory eventFactory) {
+		this.eventFactory = eventFactory;
 	}
 }

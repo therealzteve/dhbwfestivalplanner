@@ -10,7 +10,10 @@
     <link rel="stylesheet" href='../style/inviteguests.css'>
     <link href="../style/fonts/fontAwesome/css/font-awesome.min.css" rel='stylesheet'>
     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="../js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
     <script type="text/javascript" src="<c:url   />/js/Handler.js"></script>
+    <script type="text/javascript" src="../js/handler.js"></script>
 </head>
 
 <body>
@@ -32,58 +35,10 @@
             <div id="left">
                 <div id="gaestelistea" class="gaestela">
 
-                    <ul id="zgaestea">
-
-                        <li class="dummy">Name1, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name2, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name3, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name1, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name2, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name3, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name1, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name2, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name3, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name1, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name2, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name3, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name1, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name2, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                        <li class="dummy">Name3, Mail
-                            <input type="submit" value="Entfernen">
-                        </li>
-                    </ul>
+                    <ul id="zgaestea"></ul>
                 </div>
             </div>
-            <div id="right">
-                <form id="namemaileingeben">
+                        <div id="right">
                     <div id="labelseingaben">
                         <label for="gastname">Name:</label>
                         <br><br>
@@ -93,20 +48,20 @@
                         <br><br>
                     </div>
                     <div id="eingaben">
+                    	<input type="hidden" id="eventid" value="${eventId}" />
                         <input type="text" id="gastname">
                         <br><br>
-                        <input type="email" id="emailgast">
+                        <input id="emailgast">
                         <br><br>
                         <label for="emailgast" id="checkboxschrift">Gast soll einen Link auf die Einladungsseite bekommen</label>
                         <br><br>
                     </div>
                     <div id="absenden">
-                    <input type="submit" id="senden" value="hinzufügen"><br>
+                    <input type="button" id="senden" value="hinzuf&uuml;gen" onclick="addGuest()"><br>
                     </div>
-                </form>
                 <div id="platzhalterjo"></div>
                 <div id="sendforumlar">
-                <input class="testmal" type="submit" value="Speichern und Senden">
+                <input class="testmal" type="button" id="saveList" value="Speichern und Senden" onclick="saveGuests()">
                 </div>
             </div>
         </div>

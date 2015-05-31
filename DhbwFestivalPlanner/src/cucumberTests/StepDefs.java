@@ -1,5 +1,7 @@
 package cucumberTests;
 
+import org.openqa.selenium.By;
+
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -22,7 +24,7 @@ public class StepDefs {
 	
 	//LOGIN
 	
-	/*@Given("^I am not logged in$")
+	@Given("^I am not logged in$")
 	public void i_am_not_logged_in() throws Throwable {
 		setUpWebDriver();
 	    script.notLoggedIn();
@@ -53,42 +55,10 @@ public class StepDefs {
 	@Then("^the system should validate the data and show me an error message$")
 	public void the_system_should_validate_the_data_and_show_me_an_error_message() throws Throwable {
 	    script.checkLoginError();
-	}*/
+	}
 	
 	//REGISTER
 	
-	/*@Given("^I am on the Homepage$")
-	public void i_am_on_the_Homepage() throws Throwable {
-	    setUpWebDriver();
-	}
-
-	@When("^I click Register$")
-	public void i_click_Register() throws Throwable {
-	    script.clickRegister();
-	}
-
-	@When("^I fill out the required Information$")
-	public void i_fill_out_the_required_Information() throws Throwable {
-	    script.fillOutRegister();
-
-	}
-
-	@When("^click submit$")
-	public void click_submit() throws Throwable {
-	    script.submitRegister();
-	}
-
-	@Then("^I return to the Login form$")
-	public void i_return_to_the_Login_form() throws Throwable {
-		script.returnToLoginRegister();
-	    
-	}
-
-	@Then("^my Account is unlocked so I am able to Login now$")
-	public void my_Account_is_unlocked_so_I_am_able_to_Login_now() throws Throwable {
-		script.firstLoginRegister();
-	  
-	}*/
 	@Given("^I am on the Homepage$")
 	public void i_am_on_the_Homepage() throws Throwable {
 	    setUpWebDriver();
@@ -121,10 +91,13 @@ public class StepDefs {
 		script.firstLoginRegister();
 	  
 	}
+
+
+
 	
 	//DISPLAY
 	
-	/*@Given("^that the User is logged in$")
+	@Given("^that the User is logged in$")
 	public void that_the_User_is_logged_in() throws Throwable {
 		setUpWebDriver();
 	    script.logInUser();
@@ -159,11 +132,11 @@ public class StepDefs {
 	@Then("^he should be displayed the event page$")
 	public void he_should_be_displayed_the_event_page() throws Throwable {
 	    script.displayGuestView();
-	}*/
+	}
 	
 	//CREATE/EDIT
 	
-	/*@Given("^I am logged in$")
+	@Given("^I am logged in$")
 	public void i_am_logged_in() throws Throwable {
 		setUpWebDriver();
 	    script.logInUser();
@@ -205,9 +178,9 @@ public class StepDefs {
 	    script.fillOutEverything();
 	}
 
-	@When("^I submit the formular$")
-	public void i_submit_the_formular() throws Throwable {
-	    script.submit();
+	@When("^I submit the creation formular$")
+	public void i_submit_the_creation_formular() throws Throwable {
+	    script.submitCreate();
 	}
 
 	@Then("^the system should create the event$")
@@ -223,7 +196,7 @@ public class StepDefs {
 	@Given("^I did not fill all required fields$")
 	public void i_did_not_fill_all_required_fields() throws Throwable {
 		script.createEvent();
-	    script.submit();
+	    script.submitCreate();
 	}
 
 	@Then("^I should see the formular again$")
@@ -234,8 +207,60 @@ public class StepDefs {
 	@Then("^I should get a hint which fields are not valid$")
 	public void i_should_get_a_hint_which_fields_are_not_valid() throws Throwable {
 	    script.showHints();
-	}*/
+	}
+	
+	//INVITE
+	@When("^he clicks on the Guest Panel$")
+	public void he_clicks_on_the_Guest_Panel() throws Throwable {
+		script.clickGuestPanel();
+	}
 
+	@When("^he fills the form$")
+	public void he_fills_the_form() throws Throwable {
+	    script.fillGuestForm();
+	}
+
+	@Then("^the Guest appears on the Guest List$")
+	public void the_Guest_appears_on_the_Guest_List() throws Throwable {
+	    script.checkInvitation();
+	}
+
+	@Given("^a certain Guest is invited$")
+	public void a_certain_Guest_is_invited() throws Throwable {
+		script.clickGuestPanel();
+	    script.fillGuestForm();
+	    script.checkInvitation();
+	}
+
+	@When("^he removes the guest$")
+	public void he_removes_the_guest() throws Throwable {
+	    script.removeGuest();
+	}
+
+	@Then("^the Guest disappears from the Guest List$")
+	public void the_Guest_disappears_from_the_Guest_List() throws Throwable {
+	    script.checkUninvitation();
+	}
+	@When("^the user forgets to fill the name$")
+	public void the_user_forgets_to_fill_the_name() throws Throwable {
+	    script.sendInvitation();
+	}
+
+	@Then("^he gets an alert that the name is required$")
+	public void he_gets_an_alert_that_the_name_is_required() throws Throwable {
+	    script.alertName();
+	}
+
+	@When("^the user enters an invalid email address$")
+	public void the_user_enters_an_invalid_email_address() throws Throwable {
+	    script.wrongMail();
+	}
+
+	@Then("^he gets an alert that the email address is invalid$")
+	public void he_gets_an_alert_that_the_email_address_is_invalid() throws Throwable {
+	    script.alertMail();
+	}
+	
 	@After
     public void tearDown() throws Exception {
 

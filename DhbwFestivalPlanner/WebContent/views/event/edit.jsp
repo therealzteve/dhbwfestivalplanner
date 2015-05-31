@@ -83,7 +83,17 @@
 						2:</label> <input type="radio" id="design2" onchange="changedesign(this)"
 						name="design" value="2"> <br> <label for="design3">Design
 						3:</label> <input type="radio" id="design3" onchange="changedesign(this)"
-						name="design" value="3"> <br> <label for="design4">Design
+						name="design" value="3"> <br> 
+						<label for="design4">Design 4:</label> <input type="radio"
+						id="design4" onchange="changedesign(this)"
+						name="design" value="4"> <br> <label for="design5">Design
+						5:</label> <input type="radio" id="design5" onchange="changedesign(this)"
+						name="design" value="5"> <br> <label for="design6">Design
+						6:</label> <input type="radio" id="design6" onchange="changedesign(this)"
+						name="design" value="6"> <br> 
+						<label for="design7">Design
+						7:</label> <input type="radio" id="design7" onchange="changedesign(this)"
+						name="design" value="7"> <br> 
 						<img src="../style/images/FrauBallons.jpg"
 						id="bilddesign">
 

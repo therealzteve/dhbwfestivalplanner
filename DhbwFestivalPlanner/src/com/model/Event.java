@@ -1,7 +1,6 @@
 package com.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,24 +11,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
-import org.hibernate.Hibernate;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "event")
 public class Event implements Serializable{
 
-	
+
 	@Id
 	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id = 0;
 
 	private String name;
@@ -37,11 +34,16 @@ public class Event implements Serializable{
 	
 	private String title, address, city, description;
 	
-
+	@OneToOne
+	@NotNull
+	private Budget budget;
 
 	@OneToMany(mappedBy="event", fetch= FetchType.EAGER)
 	private List<Guest> guests;
 
+	@OneToMany
+	@JsonIgnore
+	private List<Message> messages;
 
 	private int plz = -1;
 	private int design = -1;
@@ -150,5 +152,21 @@ public class Event implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+
+	public Budget getBudget() {
+		return budget;
+	}
+
+	public void setBudget(Budget budget) {
+		this.budget = budget;
 	}
 }
