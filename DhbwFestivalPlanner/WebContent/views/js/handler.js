@@ -103,6 +103,7 @@ function pickTime() {
 }
 
 function validateEmail(id) {
+	console.log("funktion ausgeloest");
 	var email = document.getElementById(id);
 
 	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;

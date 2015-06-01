@@ -55,7 +55,7 @@
             <div id="changes">
                 <form id="editemail">
                     <input type="email" id="changemail">
-                    <input type="button" id="losmail" value="ändern" onclick="return validateEmail(changemail)">
+                    <input type="button" id="losmail" value="ändern" onclick="validateEmail('changemail')">
                     <br>
                     <br>
                 </form>

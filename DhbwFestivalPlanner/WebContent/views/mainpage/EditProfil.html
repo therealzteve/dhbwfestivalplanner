@@ -10,7 +10,9 @@
     <link rel="stylesheet" href='../style/editprofil.css'>
     <link href="../style/fonts/fontAwesome/css/font-awesome.min.css" rel='stylesheet'>
     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="<c:url   />/js/Handler.js"></script>
+        <script type="text/javascript" src="../js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="../js/handler.js"></script>
 </head>
 
 <body>
@@ -49,7 +51,7 @@
             <div id="changes">
                 <form id="editemail">
                     <input type="email" id="changemail">
-                    <input type="submit" id="losmail" value="ändern">
+                    <input type="button" id="losmail" value="ändern" onclick="validateEmail('changemail')">
                     <br>
                     <br>
                 </form>

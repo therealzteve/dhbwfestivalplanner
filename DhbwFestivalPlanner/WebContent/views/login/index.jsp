@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    <a id="ImpressumLink" href="">Impressum</a>
+    <a id="ImpressumLink" href='<c:url value="/impressum/impressum.jsp"></c:url>'>Impressum</a>
 </body>
 
 </html>

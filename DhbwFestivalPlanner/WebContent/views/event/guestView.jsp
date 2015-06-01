@@ -94,7 +94,7 @@ I like it!</a>
                     <br>
                     <br>
                     <br>
-                    <a href="#" id="mail" class="button"><i class="fa fa-envelope-o"></i>
+                    <a href="<c:url value="/eventpage/message.jsp"></c:url>" target="_blank" id="mail" class="button"><i class="fa fa-envelope-o"></i>
 Nachricht </a>
                     <div id="imbutton"><a href="#" id="zusage" class="button"><i class="fa fa-check"></i>
 Zusagen </a>

@@ -21,18 +21,8 @@
 </head>
 
 <body>
-    <div id="headera">
-        <a class="iconsa" href="#" id="postfachbuttona">g</a>
-        <a class="iconsa" href="#" id="ausloggenbuttona">L</a>
-        <a class="iconsa" href="#" id="einstellungsbuttona">Y</a>
-        <div class="iconsa" id="headerplatzhaltera"></div>
-        <center>
-            <div id="logoboxa">
-                Festival Planner
-            </div>
-        </center>
-
-    </div>
+	<tiles:insertTemplate   template="/views/style/template/mainFrame.jsp"></tiles:insertTemplate>
+		
 
     <div id="contenta">
         <div id="whitya">

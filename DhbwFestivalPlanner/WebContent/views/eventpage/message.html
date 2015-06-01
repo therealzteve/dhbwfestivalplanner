@@ -3,6 +3,9 @@
 
 <head>
     <link rel="stylesheet" href="../style/message.css">
+    <script type="text/javascript" src="../js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="../js/handler.js"></script>
 </head>
 
 <body>
@@ -42,7 +45,7 @@
     </div>
 <br><br>
 
-        <input type="submit" id="abschicken" class="testmal">
+        <input type="button" value="senden" id="abschicken" class="testmal" onlick="validateEmail('empfanger')">
 
     </form>
 </div>
