@@ -28,10 +28,10 @@ public class LoginTest extends AbstractTest {
 		this.getMockMvc()
 				.perform(
 						post("/login")
-								.param("id", "Test3")
+								.param("username", "Test3")
 								.param("password", "test")
 								.accept(MediaType.TEXT_HTML))
-				.andExpect(status().isFound());
+				.andExpect(status().is3xxRedirection());
 
 	}
 
