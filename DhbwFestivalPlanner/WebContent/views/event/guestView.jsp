@@ -90,18 +90,16 @@ window.addEventListener('load',
 I like it!</a>
                     <br>15 Leute mögen das.
                     <br>
-                    <br>
-                    <br>
+                                       <br><br>
+                   <a href="#" id="Umfrage" class="button" ><i class="fa fa-pie-chart"></i> Umfrage </a>
                     <br>
                     <br>
                     <a href="<c:url value="/eventpage/message.jsp"></c:url>" target="_blank" id="mail" class="button"><i class="fa fa-envelope-o"></i>
 Nachricht </a>
-                    <div id="imbutton"><a href="#" id="zusage" class="button"><i class="fa fa-check"></i>
-Zusagen </a>
+                    <div id="imbutton"><a href="#" id="zusage" class="button"><i class="fa fa-check"></i>Zusagen </a>
                         <br>
                         <br>
-                        <a href="#" id="absage" class="button"><i class="fa fa-meh-o"></i>
-                    Absagen </a>
+                        <a href="#" id="absage" class="button"><i class="fa fa-meh-o"></i> Absagen </a>
                         <br>
                 </center>
                 </div>

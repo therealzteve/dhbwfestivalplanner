@@ -67,8 +67,8 @@ function sendEdit(url) {
 			.post(url, $("#eventdata").serialize())
 			.done(
 					function() {
-						document.getElementById("aftersend").innerHTML = "&Auml;nderungen erfolgreich &uuml;bertragen! Bitte schlie&szlig;e das Fenster."
-								+ "<br> <input type='button' value='Fenster schlie&szlig;en' onclick='javascript:window.close()'>";
+						document.getElementById("aftersend").innerHTML = "&Auml;nderungen erfolgreich &uuml;bertragen!"
+								+ "<br> <a href='/DhbwFestivalPlanner'><input type='button' value='Zurück zur Übersicht'>";
 					})
 			.fail(
 					function() {
@@ -205,6 +205,13 @@ saveGuests = function() {
 		}
 	});
 
+}
+
+function deleteEvent(id,event){
+	$.post( "/DhbwFestivalPlanner/event/delete?id="+id)
+	  .done(function() {
+	    event.target.parentNode.parentNode.parentNode.parentNode.remove();
+	  });
 }
 
 $(document).ready(function() {

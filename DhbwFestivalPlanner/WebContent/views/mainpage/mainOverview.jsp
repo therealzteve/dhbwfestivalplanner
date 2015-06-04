@@ -23,11 +23,12 @@
 
  <div id="gaesteliste" class="gaestel">
 
-                    Zugesagt:
+                    <p>  Zugesagt:</p><br>
                     <ul id="zgaeste">
                     </ul>
                 </div>
-                <div id="vgaesteliste" class="gaestel">Vielleicht:
+                <div id="vgaesteliste" class="gaestel"><p>Vielleicht:</p>
+    <br>
                     <ul id="vgaeste">
                     </ul>
                 </div>
@@ -35,7 +36,7 @@
             </div>
              <div id="rightside">
                 <div id="yeah">
-                    <a class="icons" href="<c:url value="/event/edit"></c:url>" target="_blank" id="createevent">
+                    <a class="icons" href="<c:url value="/event/edit"></c:url>" id="createevent">
                         <i class="fa fa-plus fontawicons"></i> NEUE PARTY</a>
                     <div class="clear"></div>
                 </div>
@@ -50,10 +51,11 @@
                         <li class="dummy"><a href="#" onclick="fetchguests(${event.id})">${event.title}</a>
                             <ul>
                                 <!-- steht für veranstaltungsseite bearbeiten-->
-                                <li class="dropdo"><a href="<c:url value="/event/edit?id=${event.id}"></c:url>" target="_blank" ><i class="fa fa-pencil"></i></a>
+                                <li class="dropdo"><a href="<c:url value="/event/edit?id=${event.id}"></c:url>" ><i class="fa fa-pencil"></i></a>
                                 </li>
                                 <!-- steht für veranstaltung absagen/löschen-->
-                                <li class="dropdo"><a href="#"><i class="fa fa-times-circle"></i></a>
+                                
+                                <li class="dropdo" ><a onclick="deleteEvent(${event.id},event)"><i class="fa fa-times-circle"></i></a>
                                 </li>
                             </ul>
                         </li>
