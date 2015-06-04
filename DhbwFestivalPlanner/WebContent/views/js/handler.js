@@ -214,6 +214,32 @@ function deleteEvent(id,event){
 	  });
 }
 
+function showChart(){
+	 $('#rightside').highcharts({
+	        chart: {
+	            type: 'pie'
+	        },
+	        title: {
+	            text: 'Fruit Consumption'
+	        },
+	        xAxis: {
+	            categories: ['Apples', 'Bananas', 'Oranges']
+	        },
+	        yAxis: {
+	            title: {
+	                text: 'Fruit eaten'
+	            }
+	        },
+	        series: [{
+	            name: 'Jane',
+	            data: [1, 0, 4]
+	        }, {
+	            name: 'John',
+	            data: [5, 7, 3]
+	        }]
+	    });
+}
+
 $(document).ready(function() {
 	if ($.datetimepicker) {
 		pickDate();
