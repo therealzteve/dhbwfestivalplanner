@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="header">
-        <a class="icons" href="<c:url value="/eventpage/message.jsp"></c:url>" target="_blank" id="postfachbutton">g</a>
+        <a class="icons" href="<c:url value="/DhbwFestivalPlanner/message"></c:url>" target="_blank" id="postfachbutton">g</a>
         <a class="icons" href="<c:url value="/logout"></c:url>" id="ausloggenbutton">L</a>
         <a class="icons" href="<c:url value="/mainpage/EditProfil.jsp"></c:url>" id="einstellungsbutton">Y</a>
         <div class="icons" id="headerplatzhalter"></div>

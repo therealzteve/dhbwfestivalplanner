@@ -91,10 +91,10 @@ I like it!</a>
                     <br>15 Leute mögen das.
                     <br>
                                        <br><br>
-                   <a href="#" id="Umfrage" class="button" ><i class="fa fa-pie-chart"></i> Umfrage </a>
+                   <a href="/DhbwFestivalPlanner/survey" id="Umfrage" class="button" ><i class="fa fa-pie-chart"></i> Umfrage </a>
                     <br>
                     <br>
-                    <a href="<c:url value="/eventpage/message.jsp"></c:url>" target="_blank" id="mail" class="button"><i class="fa fa-envelope-o"></i>
+                    <a href="<c:url value="/DhbwFestivalPlanner/message"></c:url>" target="_blank" id="mail" class="button"><i class="fa fa-envelope-o"></i>
 Nachricht </a>
                     <div id="imbutton"><a href="#" id="zusage" class="button"><i class="fa fa-check"></i>Zusagen </a>
                         <br>
