@@ -57,7 +57,7 @@
                                 
                                 <li class="dropdo" ><a onclick="deleteEvent(${event.id},event)"><i class="fa fa-times-circle"></i></a>
                                 </li>
-                                <li class="dropdo" ><a href="<c:url value="/message/create?id=${event.id}"></c:url>"><i class="fa fa-envelope"></i></a>
+                                <li class="dropdo" ><a target="_blank" href="<c:url value="/message/create?id=${event.id}"></c:url>"><i class="fa fa-envelope"></i></a>
                                 </li>
                                
                             </ul>
