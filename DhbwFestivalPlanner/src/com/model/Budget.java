@@ -1,5 +1,6 @@
 package com.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,7 +16,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "budget")
-public class Budget {
+public class Budget implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8277253160806766298L;
 
 	@Id
 	@Column(name = "ID")

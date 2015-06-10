@@ -3,8 +3,6 @@ package com.config;
 import java.io.IOException;
 import java.util.Properties;
 
-import javax.persistence.EntityManager;
-
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
@@ -88,6 +86,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 			ds.setPassword(prop.getProperty("password"));
 
 		} catch (IOException e) {
+			
 			e.printStackTrace();
 		}
 		sessionFactory.setDataSource(ds);

@@ -10,19 +10,15 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.factory.EventFactory;
 import com.helper.RandomString;
 import com.model.Event;
 import com.model.Guest;
-import com.model.GuestList;
-import com.model.User;
 import com.model.wrapper.GuestListIdWrapper;
 
 @Controller

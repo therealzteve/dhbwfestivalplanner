@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -37,7 +36,7 @@ public class EventController {
 	private EventFactory eventFactory;
 
 	@RequestMapping("/create")
-	public String create(Model model) {
+	public String create() {
 		return "event/create";
 	}
 
@@ -134,7 +133,6 @@ public class EventController {
 			return null;
 		}
 		model.addAttribute("event", event);
-		//Hibernate.initialize(event);
 
 		return event;
 	}

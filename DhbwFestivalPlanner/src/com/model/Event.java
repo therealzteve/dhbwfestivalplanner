@@ -24,6 +24,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Event implements Serializable{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6860643835231072795L;
+
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)

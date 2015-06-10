@@ -1,6 +1,6 @@
 package test.java;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Test;
@@ -9,7 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class LoginTest extends AbstractTest {
+public class MainSiteTest extends AbstractTest {
 
 	/*@Test
 	public void getEvent() throws Exception {
@@ -25,11 +25,8 @@ public class LoginTest extends AbstractTest {
 
 		this.getMockMvc()
 				.perform(
-						post("/login")
-								.param("username", "Test3")
-								.param("password", "test")
-								.accept(MediaType.TEXT_HTML))
-				.andExpect(status().is3xxRedirection());
+						get("/").with(userPresets()).accept(MediaType.TEXT_HTML))
+				.andExpect(status().isOk());
 
 	}
 
