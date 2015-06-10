@@ -127,10 +127,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	MailSender mailSender() {
 		JavaMailSenderImpl sender = new JavaMailSenderImpl();
-		sender.setHost("smtp.gmail.com");
+		sender.setHost("in-v3.mailjet.com");
 		sender.setPort(587);
-		sender.setUsername("dhbwfestivalplanner@gmail.com");
-		sender.setPassword("Test1234!");
+		sender.setUsername("bf26299f7f98338811389d4d129250cb ");
+		sender.setPassword("a8fbc3232d2f1e804c8150901e6ff414");
 
 		Properties p = new Properties();
 		p.setProperty("mail.transport.protocol", "smtp");

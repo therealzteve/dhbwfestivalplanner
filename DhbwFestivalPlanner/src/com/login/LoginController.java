@@ -171,7 +171,7 @@ public class LoginController {
 
 		SimpleMailMessage message = new SimpleMailMessage();
 
-		message.setFrom("dhbwfestivalplanner@gmail.com");
+		message.setFrom("noreply@dhbw-dhbwfp.rhcloud.com");
 		message.setTo(u.getEmail());
 		message.setSubject("Deine Registrierung bei DhbwFestivalplanner");
 		message.setText("Vielen Dank f&uumlr deine Registrierung bei DhbwFestivalplanner!\n"

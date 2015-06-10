@@ -131,7 +131,7 @@ public class GuestListController {
 			
 			SimpleMailMessage message = new SimpleMailMessage();
 
-			message.setFrom("dhbwfestivalplanner@gmail.com");
+			message.setFrom("noreply@dhbw-dhbwfp.rhcloud.com");
 			message.setTo(guest.getEmail());
 			message.setSubject("Einladung zu: " + event.getName());
 			message.setText("Du wurdest zu einer Veranstaltung eingeladen! Du findest sie unter folgendem Link: "

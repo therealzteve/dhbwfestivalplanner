@@ -54,7 +54,7 @@ public class MessagesController {
 		List<String> recipients = getMessageRecipients(event);
 		mail.setTo(recipients.toArray(new String[recipients.size()]));
 		mail.setText(createMessageText(message, event));
-		mail.setFrom("dhbwfestivalplanner@gmail.com");
+		mail.setFrom("noreply@dhbw-dhbwfp.rhcloud.com");
 		try{
 			mailSender.send(mail);
 		}catch(Exception e){
