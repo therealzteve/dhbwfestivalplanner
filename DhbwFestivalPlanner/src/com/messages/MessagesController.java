@@ -38,9 +38,9 @@ public class MessagesController {
 		Event event = eventFactory.getEvent(id, false);
 		if (event != null) {
 			sendMessage(event, message);
-			return "message/success";
+			return "eventpage/success";
 		}
-		return "message/error";
+		return "eventpage/error";
 	}
 
 	@RequestMapping("/create")
