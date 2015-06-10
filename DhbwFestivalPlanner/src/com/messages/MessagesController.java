@@ -44,8 +44,9 @@ public class MessagesController {
 	}
 
 	@RequestMapping("/create")
-	public String create() {
-		return "message/create";
+	public String create(Model model, @RequestParam(value = "id", required = false, defaultValue = "0") int id) {
+		model.addAttribute("eventid",id);
+		return "eventpage/message";
 	}
 
 	private void sendMessage(Event event, String message) {
