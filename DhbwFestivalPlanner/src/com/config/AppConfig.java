@@ -79,12 +79,17 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 		try {
 			Properties prop = propertyFactory.getDbProperties();
-
-			ds.setUrl(prop.getProperty("url"));
-			ds.setDriverClassName(prop.getProperty("driver"));
-			ds.setUsername(prop.getProperty("username"));
-			ds.setPassword(prop.getProperty("password"));
-
+			if(System.getenv("OPENSHIFT_MYSQL_DB_HOST") == null){
+				ds.setUrl(prop.getProperty("url"));
+				ds.setDriverClassName(prop.getProperty("driver"));
+				ds.setUsername(prop.getProperty("username"));
+				ds.setPassword(prop.getProperty("password"));
+			}else{
+				ds.setUrl("jdbc:mysql://"+System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":" + System.getenv("OPENSHIFT_MYSQL_DB_PORT")+"/dhbw?zeroDateTimeBehavior=convertToNull&createDatabaseIfNotExist=true");
+				ds.setDriverClassName(prop.getProperty("driver"));
+				ds.setUsername("admin8jPBBgT");
+				ds.setPassword("7zB3tQlxuKDk");
+			}
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -122,14 +127,15 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	MailSender mailSender() {
 		JavaMailSenderImpl sender = new JavaMailSenderImpl();
-		sender.setHost("localhost");
-		sender.setPort(23);
-		sender.setPassword("1234");
-		sender.setUsername("username");
+		sender.setHost("smtp.gmail.com");
+		sender.setPort(587);
+		sender.setUsername("dhbwfestivalplanner@gmail.com");
+		sender.setPassword("Test1234!");
 
 		Properties p = new Properties();
 		p.setProperty("mail.transport.protocol", "smtp");
 		p.setProperty("mail.smtp.auth", "true");
+		p.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		p.setProperty("mail.smtp.starttls.enable", "true");
 		sender.setJavaMailProperties(p);
 
