@@ -52,10 +52,14 @@ public class MessagesController {
 	private void sendMessage(Event event, String message) {
 		SimpleMailMessage mail = new SimpleMailMessage();
 		List<String> recipients = getMessageRecipients(event);
-		mail.setTo((String[]) recipients.toArray());
+		mail.setTo(recipients.toArray(new String[recipients.size()]));
 		mail.setText(createMessageText(message, event));
 		mail.setFrom("noreply@dhbwfestivalplanner.de");
-		mailSender.send(mail);
+		try{
+			mailSender.send(mail);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	private List<String> getMessageRecipients(Event event) {
