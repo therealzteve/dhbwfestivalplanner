@@ -91,7 +91,7 @@ I like it!</a>
                     <br>15 Leute mögen das.
                     <br>
                                        <br><br>
-                   <a href="/DhbwFestivalPlanner/survey" id="Umfrage" class="button" ><i class="fa fa-pie-chart"></i> Umfrage </a>
+                   <a href="<c:url value="/survey/vote"></c:url>" id="Umfrage" class="button" ><i class="fa fa-pie-chart"></i> Umfrage </a>
                     <br>
                     <br>
                <!--      <a href="<c:url value="/DhbwFestivalPlanner/message"></c:url>" target="_blank" id="mail" class="button"><i class="fa fa-envelope-o"></i>

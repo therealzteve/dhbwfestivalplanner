@@ -12,7 +12,6 @@
     <script type="text/javascript" src="../js/highcharts.js"></script>
 <script type="text/javascript" src="../js/jquery.datetimepicker.js"></script>
 <script type="text/javascript" src="../js/handler.js"></script>
-
     <title> Umfrage Tool</title>
 </head>
 
@@ -36,17 +35,20 @@
                 <h1>Deine Umfragen: </h1><br>
                <div id=gaesteliste class=gaestel>
                  <ul id="zgaeste">
-                     <li class="dummy" id=hinzufugen> <i class="fa fa-plus fontawicons"></i> <a href="<c:url value="/survey/edit"></c:url>">Neue Umfrage hinzufügen...</a>
+                     <li class="dummy" id=hinzufugen> <i class="fa fa-plus fontawicons"></i> Neue Umfrage hinzufÃ¼gen...
                         </li>
-                        <li class="dummy"><a onclick="showChart()">Ist jemand Vegetarier?</a>
+           
+                        <li class="dummy"><a onclick="showChart">Ist jemand Vegetarier?</a>
                         </li>
-                        <li class="dummy"><a onclick="showChart()">Wann habt ihr Zeit?</a>
+                        <li class="dummy"><a onclick="showChart">Wann habt ihr Zeit?</a>
+                        </li>
+                        <li class="dummy"><a onclick="showChart">Wo wollen wir feiern?</a>
                         </li>
                    </ul></div>
             </div>
         <div id="rightside">
         <p> Hier werden die Umfrageergebnisse angezeigt. </p><br>
-        <p>Mit Klick auf das jeweilige Listenelement wird die Umfrage ausgewählt, die gezeigt werden soll</p>
+        <p>Mit Klick auf das jeweilige Listenelement wird die Umfrage ausgewählt, die gezeigt werden soll.</p>
 
         </div>
     </div>
@@ -55,31 +57,5 @@
 
 
 </body>
-<script>
-function showChart(){
-	 $('#rightside').highcharts({
-	        chart: {
-	            type: 'pie'
-	        },
-	        title: {
-	            text: 'Fruit Consumption'
-	        },
-	        xAxis: {
-	            categories: ['Apples', 'Bananas', 'Oranges']
-	        },
-	        yAxis: {
-	            title: {
-	                text: 'Fruit eaten'
-	            }
-	        },
-	        series: [{
-	            name: 'Jane',
-	            data: [1, 0, 4]
-	        }, {
-	            name: 'John',
-	            data: [5, 7, 3]
-	        }]
-	    });
-}
-</script>
+
 </html>

@@ -59,7 +59,10 @@
                                 </li>
                                 <li class="dropdo" ><a target="_blank" href="<c:url value="/message/create?id=${event.id}"></c:url>"><i class="fa fa-envelope"></i></a>
                                 </li>
+                               <li class="dropdo" ><a target="_blank" href="<c:url value="/survey/display"></c:url>"><i class="fa fa-pie-chart"></i></a>
+                                </li>
                                
+                             
                             </ul>
                         </li>
                         </c:forEach>

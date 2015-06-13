@@ -141,7 +141,7 @@ public class SeleniumTest {
 	}
 
 	public void followGuestLink(){
-		driver.get("http://localhost:8080/DhbwFestivalPlanner/event/guestView?id=1");
+		driver.get("http://localhost:8080/DhbwFestivalPlanner/event/guestView?id=2");
 	}
 	public void displayGuestView(){
 		assertEquals("UPDATED SAMPLE", driver.findElement(By.id("titel")).getText());

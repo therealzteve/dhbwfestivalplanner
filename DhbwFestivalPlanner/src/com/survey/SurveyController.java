@@ -14,7 +14,7 @@ import com.factory.SurveyFactory;
 import com.model.Survey;
 
 @Controller
-@RequestMapping("/survery")
+@RequestMapping("/survey")
 public class SurveyController {
 
 	@Autowired
@@ -24,15 +24,22 @@ public class SurveyController {
 	SurveyFactory surveyFactory;
 
 	@RequestMapping("/display")
-	@ResponseBody
+	/*@ResponseBody
 	public Survey getSurvey(Model model, @RequestParam("survey") int surveyId,
 			@RequestParam("event") int eventId) {
 		Survey survey = surveyFactory.getSurvey(surveyId, eventId);
-		return survey;
+		return survey;*/
+	//DEMO
+	
+	public String display(Model model, @RequestParam(value = "id", required = false, defaultValue = "0") int id) {
+		model.addAttribute("eventid",id);
+		return "event/umfrage";
 	}
+	
+	
 
 	@RequestMapping("/edit")
-	public String edit(
+	/*public String edit(
 			Model model,
 			@RequestParam("event") int eventId,
 			@RequestParam(value = "survey", required = false, defaultValue = "0") int surveyId) {
@@ -42,7 +49,28 @@ public class SurveyController {
 		model.addAttribute("survey", survey);
 
 		return "survey/edit";
+	}*/
+	//DEMO
+	public String edit(Model model, @RequestParam(value = "id", required = false, defaultValue = "0") int id) {
+		model.addAttribute("eventid",id);
+		return "event/umfrageerstellen";
 	}
+	
+	//NOCH MEHR DEMO
+	@RequestMapping("/update")
+	//DEMO
+	public String update(Model model, @RequestParam(value = "id", required = false, defaultValue = "0") int id) {
+		model.addAttribute("eventid",id);
+		return "event/umfrage_refresh";
+	}
+	
+	@RequestMapping("/vote")
+	//DEMO
+	public String vote(Model model, @RequestParam(value = "id", required = false, defaultValue = "0") int id) {
+		model.addAttribute("eventid",id);
+		return "eventpage/umfrageuser";
+	}
+	
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Model model, Survey survey) {
