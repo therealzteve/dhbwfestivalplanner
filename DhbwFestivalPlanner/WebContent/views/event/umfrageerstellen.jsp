@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" href='../style/umfrage.css'>
-    <link href="../style/fonts/fontAwesome/css/font-awesome.min.css" rel='stylesheet'>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel='stylesheet'>
+    <link rel="stylesheet" href='../style/umfrageerst.css'>
+    <!--  <link href="../style/fonts/fontAwesome/css/font-awesome.min.css" rel='stylesheet'>-->
+    
     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="../js/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="../js/highcharts.js"></script>
@@ -31,7 +34,7 @@
     <br><br>
     <form>
     <p>Erstelle hier eine Umfrage, an der deine Gaste teilnehmen können. </p>
-    <form><br><br>
+    <form id="antworten"><br><br>
         <label for="Frage" class="left">Gib hier deine Frage ein: </label>
         <input type="text" class="right"><br><br>
         <label for="antw" class="left">Antwort 1: </label>
@@ -42,10 +45,10 @@
         <input type="text" class="right"><br><br>
         <label for="antw" class="left">Antwort 4: </label>
         <input type="text" class="right"><br><br>
-        <label for="antw" class="left">Antwort 4: </label>
+        <label for="antw" class="left">Antwort 5: </label>
         <input type="text" class="right"><br><br>
 
-        <a class="icons" href="#" id="postfachbutton"><i class="fa fa-plus fontawicons"></i> weitere Antwort hinzufügen</a>
+        <a class="icons" id="postfachbutton" onclick="addAnswer()"><i class="fa fa-plus fontawicons"></i> weitere Antwort hinzufügen</a>
        <br><br>
         <center>
         <a href="<c:url value="/survey/update"></c:url>"><input type="button" value="erstellen" class="testmal"></a>

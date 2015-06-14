@@ -240,6 +240,11 @@ function showChart(){
 	    });
 }
 
+function addAnswer(){
+	$('antworten').append('<label for="antw" class="left">Antwort 6: </label><input type="text" class="right"><br><br>');
+	
+}
+
 $(document).ready(function() {
 	if ($.datetimepicker) {
 		pickDate();

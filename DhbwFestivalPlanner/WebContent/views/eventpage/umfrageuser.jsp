@@ -8,7 +8,7 @@
     <link href="../style/fonts/fontAwesome/css/font-awesome.min.css" rel='stylesheet'>
     <link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
 
-    <title> Umfrage erstellen</title>
+    <title> Umfrage</title>
 </head>
 
 <body>
@@ -38,6 +38,7 @@
 
         <input type="radio" name="answers1">ja<br>
         <input type="radio" name="answers1">nein<br>
+        <input type="radio" name="answers1">vegan<br>
         <input type="button" value="abstimmen" onclick="alert('Vielen Dank für deine Stimme!')">
     </form>
 </div>

@@ -38,9 +38,9 @@
                  <ul id="zgaeste">
                      <li class="dummy" id=hinzufugen> <i class="fa fa-plus fontawicons"></i> <a href="<c:url value="/survey/edit"></c:url>">Neue Umfrage hinzufügen...</a>
                         </li>
-                        <li class="dummy"><a onclick="showChart()">Ist jemand Vegetarier?</a>
+                        <li class="dummy"><a onclick="showChart(0)">Ist jemand Vegetarier?</a>
                         </li>
-                        <li class="dummy"><a onclick="showChart()">Wann habt ihr Zeit?</a>
+                        <li class="dummy"><a onclick="showChart(1)">Wann habt ihr Zeit?</a>
                         </li>
                    </ul></div>
             </div>
@@ -56,30 +56,45 @@
 
 </body>
 <script>
-function showChart(){
+function showChart(i){
+	
+	if (i==0){
+		title="Ist jemand Vegetarier?";
+		data=[['ja',3],['nein',4],['vegan',1]];
+	}
+	if (i==1){
+		title="Wann habt ihr Zeit?";
+		data=[['Freitag',6],['Samstag',4],['Sonntag',9]];
+	}
+	
 	 $('#rightside').highcharts({
-	        chart: {
-	            type: 'pie'
-	        },
-	        title: {
-	            text: 'Fruit Consumption'
-	        },
-	        xAxis: {
-	            categories: ['Apples', 'Bananas', 'Oranges']
-	        },
-	        yAxis: {
-	            title: {
-	                text: 'Fruit eaten'
-	            }
-	        },
-	        series: [{
-	            name: 'Jane',
-	            data: [1, 0, 4]
-	        }, {
-	            name: 'John',
-	            data: [5, 7, 3]
-	        }]
-	    });
+         chart: {
+             plotBackgroundColor: null,
+             plotBorderWidth: null,
+             plotShadow: false
+         },
+         title: {
+             text: title
+         },
+         tooltip: {
+             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+         },
+         plotOptions: {
+             pie: {
+                 allowPointSelect: true,
+                 cursor: 'pointer',
+                 dataLabels: {
+                     enabled: false
+                 },
+                 showInLegend: true
+             }
+         },
+         series: [{
+             type: 'pie',
+             name: title,
+             data: data
+         }]
+     });
 }
 </script>
 </html>
